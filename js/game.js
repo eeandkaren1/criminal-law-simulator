@@ -240,8 +240,10 @@ class BootScene extends Phaser.Scene {
     // 頂部
     g.fillStyle(0x263238, 1); g.fillRect(4, 34, w-8, 10);
     g.fillStyle(0x37474f, 1); g.fillTriangle(w/2, 12, 8, 38, w-8, 38);
-    // 警徽
-    g.fillStyle(0xe8c873, 1); g.fillStar(w/2, 24, 5, 8, 4);
+    // 警徽（用兩個三角形交疊畫六角星）
+    g.fillStyle(0xe8c873, 1);
+    g.fillTriangle(w/2, 16, w/2-7, 28, w/2+7, 28);
+    g.fillTriangle(w/2, 32, w/2-7, 20, w/2+7, 20);
     g.generateTexture("b_detective", w, h); g.destroy();
   }
  
