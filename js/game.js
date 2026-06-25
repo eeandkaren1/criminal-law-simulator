@@ -674,10 +674,11 @@ class VillageScene extends Phaser.Scene {
     const camH = this.cameras.main.height;
     this.touchState = { up: false, down: false, left: false, right: false };
  
-    // ── 虛擬搖桿：右下角，大圓盤好按 ──
-    const joyRadius = 64;
-    const joyBaseX = camW - joyRadius - 16;
-    const joyBaseY = camH - joyRadius - 16;
+    // ── 虛擬搖桿：固定在地圖右下角，不遮擋地圖內容 ──
+    // 搖桿中心固定在畫面右下，使用 HTML overlay 而非 Phaser Graphics
+    const joyRadius = 60;
+    const joyBaseX = camW - joyRadius - 20;
+    const joyBaseY = camH - joyRadius - 20;
  
     // 底盤（半透明大圓）
     const joyBg = this.add.graphics().setScrollFactor(0).setDepth(20);
@@ -712,23 +713,14 @@ class VillageScene extends Phaser.Scene {
  
     const resetJoy = () => {
       this.touchState = { up: false, down: false, left: false, right: false };
+      // 放開後搖桿頭回到固定中心點
       activeX = joyBaseX; activeY = joyBaseY;
       joyBg.clear(); drawBg();
       drawKnob(0, 0);
     };
  
     zone.on("pointerdown", (ptr) => {
-      // 以按下點為新搖桿中心（動態搖桿體驗更好）
-      const nx = Phaser.Math.Clamp(ptr.x, zoneX + joyRadius, camW - joyRadius);
-      const ny = Phaser.Math.Clamp(ptr.y, joyRadius, camH - joyRadius);
-      activeX = nx; activeY = ny;
-      // 重畫底盤到新位置
-      joyBg.clear();
-      joyBg.fillStyle(0x000000, 0.35); joyBg.fillCircle(activeX, activeY, joyRadius);
-      joyBg.lineStyle(3, 0xffffff, 0.5); joyBg.strokeCircle(activeX, activeY, joyRadius);
-      joyBg.lineStyle(1.5, 0xffffff, 0.25);
-      joyBg.beginPath(); joyBg.moveTo(activeX, activeY - joyRadius + 10); joyBg.lineTo(activeX, activeY + joyRadius - 10); joyBg.strokePath();
-      joyBg.beginPath(); joyBg.moveTo(activeX - joyRadius + 10, activeY); joyBg.lineTo(activeX + joyRadius - 10, activeY); joyBg.strokePath();
+      // 固定搖桿中心不移動，只移動搖桿頭
       this._updateJoy(ptr.x, ptr.y, activeX, activeY, joyRadius, drawKnob);
     });
  
@@ -757,7 +749,7 @@ class VillageScene extends Phaser.Scene {
   }
  
   update(time) {
-    const speed = 160;
+    const speed = 110;
     this.player.setVelocity(0);
     const left = this.cursors.left.isDown || this.wasd.A.isDown || this.touchState.left;
     const right = this.cursors.right.isDown || this.wasd.D.isDown || this.touchState.right;
@@ -827,17 +819,27 @@ let _pendingVillageKey = "criminal";
 
 function initGame() {
   if (game) return;
+  const isMobile = window.innerWidth <= 768;
   const gameContainer = document.getElementById('game-container');
   const containerW = gameContainer ? gameContainer.parentElement.offsetWidth : window.innerWidth;
-  const containerH = window.innerHeight - 50;
 
-  // 地圖比例 20:13 (640:416)
-  const MAP_RATIO = 20 / 13;
-  let gameW = Math.min(containerW - 4, 900);
-  let gameH = Math.round(gameW / MAP_RATIO);
-  if (gameH > containerH) {
+  // 手機版：填滿全螢幕；桌機版：保留底部工具列 50px
+  const containerH = isMobile ? window.innerHeight : window.innerHeight - 50;
+
+  let gameW, gameH;
+  if (isMobile) {
+    // 手機版：填滿整個螢幕
+    gameW = containerW;
     gameH = containerH;
-    gameW = Math.round(gameH * MAP_RATIO);
+  } else {
+    // 桌機版：保持地圖比例 20:13
+    const MAP_RATIO = 20 / 13;
+    gameW = Math.min(containerW - 4, 900);
+    gameH = Math.round(gameW / MAP_RATIO);
+    if (gameH > containerH) {
+      gameH = containerH;
+      gameW = Math.round(gameH * MAP_RATIO);
+    }
   }
 
   const cfg = {

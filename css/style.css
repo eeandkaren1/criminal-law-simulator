@@ -832,6 +832,33 @@ body {
 /* ===================================================
    響應式
    =================================================== */
+@media (max-width: 768px) {
+  /* 手機版遊戲畫面：填滿全螢幕，隱藏底部工具列 */
+  .game-screen {
+    background: #000;
+  }
+  #game-wrapper {
+    position: fixed;
+    inset: 0;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  #game-container {
+    border: none;
+    border-radius: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  #game-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  /* 手機版隱藏底部工具列（操作說明和重設鈕） */
+  .game-toolbar-overlay {
+    display: none !important;
+  }
+}
+
 @media (max-width: 600px) {
   .village-labels { top: 22%; }
   .char-left, .char-right { display: none; }
