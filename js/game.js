@@ -9,9 +9,9 @@
  *  - 漂浮雲朵動畫、飛鳥
  *  - 標題畫面改為完整村景 + 進入按鈕（不擋住背景）
  */
-
+ 
 const TILE = 32;
-
+ 
 // ----------------------------------------------------------------
 // 調色盤 - 增加兩個村莊專屬色系
 // ----------------------------------------------------------------
@@ -34,13 +34,13 @@ const PALETTE = {
   plazaStone: 0xd7ccc8, plazaEdge: 0xa1887f,
   gold: 0xe8c873, stone: 0x90a4ae
 };
-
+ 
 // ----------------------------------------------------------------
 // BootScene：生成所有紋理
 // ----------------------------------------------------------------
 class BootScene extends Phaser.Scene {
   constructor() { super("BootScene"); }
-
+ 
   create() {
     this.makeGrass();
     this.makePath();
@@ -66,12 +66,12 @@ class BootScene extends Phaser.Scene {
     this.makeBird();
     this.makeMountain("mtn_warm", PALETTE.crimMountain, PALETTE.crimMountain2);
     this.makeMountain("mtn_cool", PALETTE.procMountain, PALETTE.procMountain2);
-
+ 
     this.scene.start("TitleScene");
   }
-
+ 
   g() { return this.make.graphics({ x: 0, y: 0, add: false }); }
-
+ 
   makeGrass() {
     for (let v = 0; v < 3; v++) {
       const g = this.g();
@@ -89,7 +89,7 @@ class BootScene extends Phaser.Scene {
       g.generateTexture("grass"+v, TILE, TILE); g.destroy();
     }
   }
-
+ 
   makePath() {
     const g = this.g();
     g.fillStyle(PALETTE.pathA, 1); g.fillRect(0, 0, TILE, TILE);
@@ -99,7 +99,7 @@ class BootScene extends Phaser.Scene {
     g.fillRect(0, 0, TILE, 2); g.fillRect(0, TILE-2, TILE, 2);
     g.generateTexture("path", TILE, TILE); g.destroy();
   }
-
+ 
   makeStonePath() {
     const g = this.g();
     g.fillStyle(PALETTE.plazaStone, 1); g.fillRect(0, 0, TILE, TILE);
@@ -108,7 +108,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xffffff, 0.1); g.fillRect(2, 2, TILE-4, 4);
     g.generateTexture("stonepath", TILE, TILE); g.destroy();
   }
-
+ 
   makeTree() {
     const g = this.g();
     g.fillStyle(PALETTE.trunk, 1); g.fillRect(13, 22, 6, 10);
@@ -117,14 +117,14 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xffffff, 0.15); g.fillCircle(10, 8, 4);
     g.generateTexture("tree", 32, 32); g.destroy();
   }
-
+ 
   makeBush() {
     const g = this.g();
     g.fillStyle(PALETTE.leafDark, 1); g.fillCircle(16, 20, 11);
     g.fillStyle(PALETTE.leaf, 1); g.fillCircle(16, 17, 9);
     g.generateTexture("bush", 32, 32); g.destroy();
   }
-
+ 
   makeFlowerBush() {
     const g = this.g();
     g.fillStyle(PALETTE.leafDark, 1); g.fillCircle(16, 20, 11);
@@ -132,14 +132,14 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xffb6c1, 1); g.fillCircle(12, 12, 4); g.fillCircle(20, 10, 3); g.fillCircle(16, 8, 3);
     g.generateTexture("flowerbush", 32, 32); g.destroy();
   }
-
+ 
   makeWater() {
     const g = this.g();
     g.fillStyle(PALETTE.water, 1); g.fillRect(0, 0, TILE, TILE);
     g.fillStyle(0xffffff, 0.25); g.fillRect(4,6,10,2); g.fillRect(18,18,10,2);
     g.generateTexture("water", TILE, TILE); g.destroy();
   }
-
+ 
   makePlayer() {
     const g = this.g();
     g.fillStyle(0x2b2b2b, 1); g.fillRect(9, 1, 14, 8);
@@ -151,7 +151,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0x222222, 1); g.fillRect(7, 31, 8, 2); g.fillRect(17, 31, 8, 2);
     g.generateTexture("player", 32, 33); g.destroy();
   }
-
+ 
   makeBuilding(key, roof, roofDark, wall) {
     const w = 100, h = 100;
     const g = this.g();
@@ -161,7 +161,7 @@ class BootScene extends Phaser.Scene {
     else this.drawKoban(g, w, h, roof, roofDark, wall);
     g.generateTexture("b_"+key, w, h); g.destroy();
   }
-
+ 
   drawTaiwanTemple(g, w, h, roof, roofDark, wall) {
     g.fillStyle(0xb24a36, 1); g.fillRect(10, 46, w-20, h-56);
     g.fillStyle(0x8f3a29, 0.5);
@@ -181,7 +181,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(PALETTE.lantern, 1); g.fillRoundedRect(w/2-5, 44, 10, 14, 3);
     g.fillStyle(0xffe9a8, 1); g.fillRect(w/2-1, 56, 2, 4);
   }
-
+ 
   drawTaiwanCourt(g, w, h, roof, roofDark, wall) {
     g.fillStyle(wall, 1); g.fillRect(8, 40, w-16, h-50);
     g.fillStyle(0xa85c43, 1); g.fillRect(8, h-22, w-16, 12);
@@ -196,7 +196,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xffffff, 0.15); g.fillTriangle(w/2, 10, w/2-16, 36, w/2+4, 36);
     g.fillStyle(0xe8c873, 1); g.fillCircle(w/2, 24, 5);
   }
-
+ 
   drawKoban(g, w, h, roof, roofDark, wall) {
     g.fillStyle(wall, 1); g.fillRect(16, 50, w-32, h-60);
     g.fillStyle(PALETTE.woodDark, 1); g.fillRect(w/2-8, h-30, 16, 20);
@@ -205,7 +205,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(roof, 1); g.fillTriangle(w/2, 16, 14, 46, w-14, 46);
     g.fillStyle(0xffffff, 1); g.fillRect(w/2-16, 18, 32, 8);
   }
-
+ 
   // 圖書館：圓頂+書架紋理
   makeLibrary() {
     const w = 100, h = 100, g = this.g();
@@ -224,7 +224,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xe8c873, 1); g.fillCircle(w/2, 8, 5);
     g.generateTexture("b_library", w, h); g.destroy();
   }
-
+ 
   // 偵查局：深色威嚴外觀
   makeDetectiveBureau() {
     const w = 100, h = 100, g = this.g();
@@ -246,7 +246,7 @@ class BootScene extends Phaser.Scene {
     g.fillTriangle(w/2, 32, w/2-7, 20, w/2+7, 20);
     g.generateTexture("b_detective", w, h); g.destroy();
   }
-
+ 
   // 鐘樓
   makeClockTower() {
     const w = 70, h = 120, g = this.g();
@@ -268,7 +268,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xe8c873, 1); g.fillCircle(w/2, 8, 3);
     g.generateTexture("b_clocktower", w, h); g.destroy();
   }
-
+ 
   // 中央天秤廣場雕像
   makeScalePlaza() {
     const w = 80, h = 100, g = this.g();
@@ -292,7 +292,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xe8c873, 1); g.fillCircle(w/2, 18, 5);
     g.generateTexture("b_scale", w, h); g.destroy();
   }
-
+ 
   // 法典石碑
   makeStele() {
     const w = 32, h = 48, g = this.g();
@@ -302,7 +302,7 @@ class BootScene extends Phaser.Scene {
     g.fillRect(8, 14, 16, 2); g.fillRect(8, 18, 16, 2); g.fillRect(8, 22, 16, 2); g.fillRect(8, 26, 10, 2);
     g.generateTexture("stele", w, h); g.destroy();
   }
-
+ 
   // 路燈
   makeLampPost() {
     const w = 16, h = 40, g = this.g();
@@ -312,7 +312,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xffcc02, 0.7); g.fillCircle(8, 12, 3);
     g.generateTexture("lamppost", w, h); g.destroy();
   }
-
+ 
   // 指示牌
   makeSignPost() {
     const w = 32, h = 32, g = this.g();
@@ -322,7 +322,7 @@ class BootScene extends Phaser.Scene {
     g.fillRect(4, 7, 12, 2); g.fillRect(4, 11, 8, 2);
     g.generateTexture("signpost", w, h); g.destroy();
   }
-
+ 
   makeGate() {
     const g = this.g(), w = 80, h = 60;
     g.fillStyle(0xb33f3f, 1); g.fillRect(8, 14, 10, 44); g.fillRect(w-18, 14, 10, 44);
@@ -334,13 +334,13 @@ class BootScene extends Phaser.Scene {
     g.fillTriangle(4, 20, 0, 8, 16, 16); g.fillTriangle(w-4, 20, w, 8, w-16, 16);
     g.generateTexture("gate", w, h); g.destroy();
   }
-
+ 
   makeFence() {
     const g = this.g();
     g.fillStyle(PALETTE.woodDark, 1); g.fillRect(0, 10, 32, 4); g.fillRect(2, 0, 4, 32); g.fillRect(26, 0, 4, 32);
     g.generateTexture("fence", 32, 32); g.destroy();
   }
-
+ 
   makeCloud() {
     const g = this.g();
     g.fillStyle(0xffffff, 0.9); g.fillEllipse(30, 20, 50, 22);
@@ -348,7 +348,7 @@ class BootScene extends Phaser.Scene {
     g.fillStyle(0xf0f0f0, 0.4); g.fillEllipse(30, 26, 50, 12);
     g.generateTexture("cloud", 70, 36); g.destroy();
   }
-
+ 
   makeBird() {
     const g = this.g();
     g.fillStyle(0x333333, 1);
@@ -356,7 +356,7 @@ class BootScene extends Phaser.Scene {
     g.fillTriangle(8, 0, 16, 4, 8, 6);
     g.generateTexture("bird", 16, 8); g.destroy();
   }
-
+ 
   makeMountain(key, col1, col2) {
     const w = 160, h = 80, g = this.g();
     g.fillStyle(col1, 1); g.fillTriangle(w*0.1, h, w*0.4, h*0.15, w*0.7, h);
@@ -365,134 +365,134 @@ class BootScene extends Phaser.Scene {
     g.generateTexture(key, w, h); g.destroy();
   }
 }
-
+ 
 // ----------------------------------------------------------------
 // TitleScene：完整村景 + 進入按鈕（不再擋住背景）
 // ----------------------------------------------------------------
 class TitleScene extends Phaser.Scene {
   constructor() { super("TitleScene"); }
-
+ 
   create() {
     const w = this.cameras.main.width, h = this.cameras.main.height;
-
+ 
     // --- 左側刑法村（暖黃昏） ---
     const leftBg = this.add.graphics();
     leftBg.fillGradientStyle(0xf9a825, 0xf9a825, 0xffe0b2, 0xffe0b2, 1);
     leftBg.fillRect(0, 0, w/2, h);
-
+ 
     // --- 右側刑訴村（清晨藍） ---
     const rightBg = this.add.graphics();
     rightBg.fillGradientStyle(0x1a3a5c, 0x1a3a5c, 0x90caf9, 0x90caf9, 1);
     rightBg.fillRect(w/2, 0, w/2, h);
-
+ 
     // 遠山
     this.add.image(w*0.12, h-40, "mtn_warm").setScale(1.2).setAlpha(0.7).setDepth(1);
     this.add.image(w*0.35, h-40, "mtn_warm").setScale(0.9).setAlpha(0.5).setDepth(1);
     this.add.image(w*0.62, h-40, "mtn_cool").setScale(1.1).setAlpha(0.7).setDepth(1);
     this.add.image(w*0.88, h-40, "mtn_cool").setScale(0.85).setAlpha(0.5).setDepth(1);
-
+ 
     // 雲朵
     [w*0.08, w*0.28, w*0.6, w*0.82].forEach((cx, i) => {
       const cld = this.add.image(cx, 30+i*10, "cloud").setScale(0.9+i*0.1).setAlpha(0.85).setDepth(2);
       this.tweens.add({ targets: cld, x: cld.x + 30, duration: 4000+i*1200, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
     });
-
+ 
     // 中央分隔線（法治大道）
     const divider = this.add.graphics().setDepth(3);
     divider.fillStyle(0xd7ccc8, 0.5); divider.fillRect(w/2-20, 0, 40, h);
-
+ 
     // 地面草皮
     for (let x = 0; x < Math.ceil(w/TILE); x++) {
       this.add.image(x*TILE, h-TILE/2, "grass0").setDisplaySize(TILE, TILE).setDepth(4);
     }
-
+ 
     // 路面
     for (let y = 0; y < 3; y++) {
       this.add.image(w/2, h - TILE*1.5 - y*TILE, "path").setDisplaySize(40, TILE).setDepth(4);
     }
-
+ 
     // 左側建築群
     this.add.image(w*0.18, h-120, "b_temple").setScale(1.15).setDepth(5);
     this.add.image(w*0.18, h-185, "gate").setScale(1.1).setDepth(5);
     this.add.image(w*0.35, h-115, "b_library").setScale(1.0).setDepth(5);
     this.add.image(w*0.08, h-95, "bush").setScale(0.9).setDepth(5);
-
+ 
     // 右側建築群
     this.add.image(w*0.82, h-120, "b_court").setScale(1.15).setDepth(5);
     this.add.image(w*0.65, h-115, "b_detective").setScale(1.0).setDepth(5);
     this.add.image(w*0.9, h-95, "bush").setScale(0.9).setDepth(5);
-
+ 
     // 中央天秤（上移）
     this.add.image(w/2, h-160, "b_scale").setScale(1.1).setDepth(6);
-
+ 
     // 裝飾
     this.add.image(w*0.26, h-50, "stele").setDepth(6);
     this.add.image(w*0.75, h-50, "stele").setDepth(6);
     this.add.image(w*0.12, h-50, "lamppost").setDepth(6);
     this.add.image(w*0.88, h-50, "lamppost").setDepth(6);
-
+ 
     // 飛鳥動畫
     const bird1 = this.add.image(-20, 60, "bird").setDepth(7);
     const bird2 = this.add.image(-50, 80, "bird").setScale(0.8).setDepth(7);
     this.tweens.add({ targets: bird1, x: w+30, duration: 7000, repeat: -1, delay: 0 });
     this.tweens.add({ targets: bird2, x: w+60, duration: 9000, repeat: -1, delay: 2000 });
-
+ 
     // 標籤
     this.add.text(w*0.25, 20, "刑法村", { fontSize: "22px", color: "#fff8e1", fontStyle: "bold", shadow: { fill: true, blur: 4, color: "#7a2a2a" } }).setOrigin(0.5).setDepth(8);
     this.add.text(w*0.25, 44, "刑法總則 / 刑法分則", { fontSize: "12px", color: "#ffe082" }).setOrigin(0.5).setDepth(8);
     this.add.text(w*0.75, 20, "刑事訴訟村", { fontSize: "22px", color: "#e3f2fd", fontStyle: "bold", shadow: { fill: true, blur: 4, color: "#1a3a5c" } }).setOrigin(0.5).setDepth(8);
     this.add.text(w*0.75, 44, "偵查 / 起訴 / 審判 / 執行", { fontSize: "12px", color: "#90caf9" }).setOrigin(0.5).setDepth(8);
-
+ 
     // 主標題（上移到畫面中段）
     this.add.text(w/2, h*0.38, "🏯 刑法鎮 LawTown", { fontSize: "18px", color: "#fff8e1", fontStyle: "bold", backgroundColor: "#00000055", padding: { x: 10, y: 5 } }).setOrigin(0.5).setDepth(9);
     this.add.text(w/2, h*0.38+28, "⚖ 法治廣場", { fontSize: "12px", color: "#e8c873" }).setOrigin(0.5).setDepth(9);
-
+ 
     // 互動按鈕
     this.makeTitleButton(w*0.25, h-60, "▶ 進入刑法村", 0xb33f3f, 0x8b1a1a, () => this.startEnter("criminal"));
     this.makeTitleButton(w*0.75, h-60, "▶ 進入刑訴村", 0x1a3a5c, 0x0d2030, () => this.startEnter("procedure"));
-
+ 
     // 提示說明
     this.add.text(w/2, h-28, "💡 點擊村莊按鈕開始冒險", { fontSize: "11px", color: "#ffffffaa", backgroundColor: "#00000033", padding: { x: 6, y: 2 } }).setOrigin(0.5).setDepth(9);
   }
-
+ 
   makeTitleButton(x, y, label, bg, bgDark, callback) {
     const btn = this.add.text(x, y, label, {
       fontSize: "14px", color: "#ffffff", backgroundColor: "#" + bg.toString(16).padStart(6, "0"),
       padding: { x: 14, y: 8 }, fixedWidth: 130
     }).setOrigin(0.5).setDepth(10).setInteractive({ cursor: "pointer" });
-
+ 
     btn.on("pointerover", () => btn.setStyle({ backgroundColor: "#" + bgDark.toString(16).padStart(6, "0") }));
     btn.on("pointerout", () => btn.setStyle({ backgroundColor: "#" + bg.toString(16).padStart(6, "0") }));
     btn.on("pointerdown", callback);
-
+ 
     // 脈衝動畫
     this.tweens.add({ targets: btn, scaleX: 1.04, scaleY: 1.04, duration: 700, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
     return btn;
   }
-
+ 
   startEnter(villageKey) {
     // 顯示HTML輸入名字overlay，再跳進村莊
     _pendingVillageKey = villageKey;
     showTitleOverlay();
   }
 }
-
+ 
 // ----------------------------------------------------------------
 // VillageScene：豐富視覺版
 // ----------------------------------------------------------------
 class VillageScene extends Phaser.Scene {
   constructor() { super("VillageScene"); }
-
+ 
   init(data) {
     this.villageKey = data.villageKey;
     this.village = VILLAGES[this.villageKey];
   }
-
+ 
   create() {
     const cols = this.village.mapCols, rows = this.village.mapRows;
     const mapW = cols * TILE, mapH = rows * TILE;
     const isCriminal = this.villageKey === "criminal";
-
+ 
     // ── 天空背景層（gradient覆蓋整個地圖） ──
     const sky = this.add.graphics().setDepth(-10).setScrollFactor(0);
     if (isCriminal) {
@@ -501,13 +501,13 @@ class VillageScene extends Phaser.Scene {
       sky.fillGradientStyle(0x1a3a5c, 0x1a3a5c, 0x90caf9, 0x90caf9, 1);
     }
     sky.fillRect(0, 0, this.cameras.main.width, this.cameras.main.height);
-
+ 
     // ── 遠山（ScrollFactor 0.2 產生視差感） ──
     const mtnKey = isCriminal ? "mtn_warm" : "mtn_cool";
     for (let i = 0; i < Math.ceil(mapW / 160) + 1; i++) {
       this.add.image(i*140, mapH - TILE*3, mtnKey).setScale(1.4).setAlpha(0.55).setDepth(-8).setScrollFactor(0.25);
     }
-
+ 
     // ── 雲朵（parallax） ──
     this.clouds = [];
     for (let i = 0; i < 5; i++) {
@@ -515,7 +515,7 @@ class VillageScene extends Phaser.Scene {
         .setAlpha(0.75).setDepth(-6).setScrollFactor(0.15 + i*0.05);
       this.clouds.push({ img: cld, speed: 0.15 + i*0.05 });
     }
-
+ 
     // ── 地面 ──
     for (let x = 0; x < cols; x++) {
       for (let y = 0; y < rows; y++) {
@@ -523,16 +523,16 @@ class VillageScene extends Phaser.Scene {
         const isHRoad = (y === midRow);
         const isVRoad = (x === midCol);
         const isPlaza = (Math.abs(x - midCol) <= 1 && Math.abs(y - midRow) <= 1);
-
+ 
         let tex;
         if (isPlaza) tex = "stonepath";
         else if (isHRoad || isVRoad) tex = "path";
         else tex = (((x+y) % 5 === 0) ? "grass2" : ((x+y)%3===0 ? "grass1" : "grass0"));
-
+ 
         this.add.image(x*TILE, y*TILE, tex).setOrigin(0).setDepth(0);
       }
     }
-
+ 
     // ── 邊界樹木 ──
     for (let x = 0; x < cols; x++) {
       this.add.image(x*TILE+TILE/2, TILE/2-6, "tree").setDepth(1).setScale(0.85);
@@ -543,25 +543,25 @@ class VillageScene extends Phaser.Scene {
       this.add.image(TILE/2-4, y*TILE+TILE/2, tex).setDepth(1).setScale(0.7);
       this.add.image(mapW-TILE/2+4, y*TILE+TILE/2, tex).setDepth(1).setScale(0.7);
     }
-
+ 
     // ── 廣場裝飾（中央十字路口） ──
     const cx = Math.floor(cols/2)*TILE + TILE/2;
     const cy = Math.floor(rows/2)*TILE + TILE/2;
     this.add.image(cx, cy, "b_scale").setScale(0.8).setDepth(2);
     this.add.text(cx, cy+36, "法治廣場", { fontSize:"10px", color:"#e8c873", backgroundColor:"#00000066", padding:{x:3,y:1} }).setOrigin(0.5).setDepth(3);
-
+ 
     // ── 路燈（每隔幾格放一個） ──
     for (let x = 2; x < cols-2; x+=4) {
       this.add.image(x*TILE+TILE/2, (Math.floor(rows/2)-1)*TILE, "lamppost").setDepth(2);
     }
-
+ 
     // ── 石碑 & 指示牌 ──
     this.add.image(cx - TILE*3, cy + TILE*2, "stele").setDepth(2);
     this.add.image(cx + TILE*3, cy + TILE*2, "stele").setDepth(2);
     [cx-TILE*5, cx+TILE*5].forEach(sx => {
       this.add.image(sx, cy, "signpost").setDepth(2);
     });
-
+ 
     // ── 出口門 ──
     const gateX = cx;
     this.add.image(gateX, TILE*0.6, "gate").setDepth(2).setScale(1.1);
@@ -569,13 +569,13 @@ class VillageScene extends Phaser.Scene {
     this.add.text(gateX, TILE*1.6, "⬆ 返回鎮口", {
       fontSize: "11px", color: "#fff", backgroundColor: "#00000088", padding: { x: 4, y: 2 }
     }).setOrigin(0.5).setDepth(3);
-
+ 
     // ── 村莊名稱 ──
     const nameStyle = isCriminal
       ? { fontSize: "16px", color: "#fff8e1", backgroundColor: "#b33f3f99", padding: { x: 10, y: 4 } }
       : { fontSize: "16px", color: "#e3f2fd", backgroundColor: "#1a3a5c99", padding: { x: 10, y: 4 } };
     this.add.text(mapW/2, 8, this.village.name, nameStyle).setOrigin(0.5, 0).setDepth(6);
-
+ 
     // ── 建築物 ──
     this.buildingSprites = [];
     this.village.buildings.forEach(b => {
@@ -585,16 +585,16 @@ class VillageScene extends Phaser.Scene {
       const img = this.add.image(px, py, tex).setDepth(2).setScale(1.05);
       img.buildingData = b;
       this.buildingSprites.push(img);
-
+ 
       // 陰影
       const shadow = this.add.graphics().setDepth(1.5);
       shadow.fillStyle(0x000000, 0.12); shadow.fillEllipse(px, py+img.displayHeight*0.42, img.displayWidth*0.6, 12);
-
+ 
       // 名稱標籤
       this.add.text(px, py+img.displayHeight/2-6, b.name, {
         fontSize: "12px", color: "#000", backgroundColor: "#ffffffcc", padding: { x: 4, y: 1 }
       }).setOrigin(0.5, 0).setDepth(3);
-
+ 
       // 進度標籤
       if (b.levels) {
         const total = LEVELS[b.levels].length;
@@ -605,7 +605,7 @@ class VillageScene extends Phaser.Scene {
         }).setOrigin(1, 0).setDepth(3);
       }
     });
-
+ 
     // ── 玩家 ──
     const saved = SaveSystem.getPosition(this.villageKey);
     const startX = saved ? saved.x : gateX;
@@ -614,24 +614,24 @@ class VillageScene extends Phaser.Scene {
     this.player.body.setSize(20, 14).setOffset(6, 18);
     this.player.setCollideWorldBounds(true);
     this.physics.world.setBounds(0, 0, mapW, mapH);
-
+ 
     this.cameras.main.setBounds(0, 0, mapW, mapH);
     this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
-
+ 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys("W,A,S,D,E");
-
+ 
     this.promptText = this.add.text(0, 0, "", {
       fontSize: "13px", color: "#fff", backgroundColor: "#000000cc", padding: { x: 6, y: 4 }
     }).setDepth(10).setVisible(false);
-
+ 
     this.nearbyBuilding = null;
     this.nearExit = false;
     this.autoTriggeredId = null;
-
+ 
     this.createTouchControls();
     this.createTownSwitchButton();
-
+ 
     // ── 飛鳥 ──
     this.birds = [];
     for (let i = 0; i < 3; i++) {
@@ -639,11 +639,11 @@ class VillageScene extends Phaser.Scene {
       this.tweens.add({ targets: brd, x: this.cameras.main.width+60, duration: 8000+i*2000, repeat: -1, delay: i*3000, ease: "Linear" });
       this.birds.push(brd);
     }
-
+ 
     this._cloudTime = 0;
     this._saveTimer = 0;
   }
-
+ 
   createTownSwitchButton() {
     const isCriminal = this.villageKey === "criminal";
     const btnBg = isCriminal ? "#b33f3fcc" : "#1a3a5ccc";
@@ -652,81 +652,100 @@ class VillageScene extends Phaser.Scene {
     }).setScrollFactor(0).setDepth(20).setInteractive();
     btn.on("pointerdown", () => goToTitle());
   }
-
+ 
   createTouchControls() {
     const camW = this.cameras.main.width;
     const camH = this.cameras.main.height;
     this.touchState = { up: false, down: false, left: false, right: false };
-
-    // ── 虛擬搖桿：左下角圓盤，滑動方向控制移動 ──
-    const joyBaseX = 72, joyBaseY = camH - 72, joyRadius = 52;
-
-    // 底盤
-    const joyBg = this.add.graphics().setScrollFactor(0).setDepth(20).setAlpha(0.45);
-    joyBg.fillStyle(0x000000, 1); joyBg.fillCircle(joyBaseX, joyBaseY, joyRadius);
-    joyBg.lineStyle(2, 0xffffff, 0.6); joyBg.strokeCircle(joyBaseX, joyBaseY, joyRadius);
-
+ 
+    // ── 虛擬搖桿：右下角，大圓盤好按 ──
+    const joyRadius = 64;
+    const joyBaseX = camW - joyRadius - 16;
+    const joyBaseY = camH - joyRadius - 16;
+ 
+    // 底盤（半透明大圓）
+    const joyBg = this.add.graphics().setScrollFactor(0).setDepth(20);
+    const drawBg = () => {
+      joyBg.clear();
+      joyBg.fillStyle(0x000000, 0.35); joyBg.fillCircle(joyBaseX, joyBaseY, joyRadius);
+      joyBg.lineStyle(3, 0xffffff, 0.5); joyBg.strokeCircle(joyBaseX, joyBaseY, joyRadius);
+      // 方向刻度提示
+      joyBg.lineStyle(1.5, 0xffffff, 0.25);
+      joyBg.beginPath(); joyBg.moveTo(joyBaseX, joyBaseY - joyRadius + 10); joyBg.lineTo(joyBaseX, joyBaseY + joyRadius - 10); joyBg.strokePath();
+      joyBg.beginPath(); joyBg.moveTo(joyBaseX - joyRadius + 10, joyBaseY); joyBg.lineTo(joyBaseX + joyRadius - 10, joyBaseY); joyBg.strokePath();
+    };
+    drawBg();
+ 
     // 搖桿頭
-    const joyKnob = this.add.graphics().setScrollFactor(0).setDepth(21).setAlpha(0.7);
+    const joyKnob = this.add.graphics().setScrollFactor(0).setDepth(21);
     const drawKnob = (ox, oy) => {
       joyKnob.clear();
-      joyKnob.fillStyle(0xffffff, 1); joyKnob.fillCircle(joyBaseX + ox, joyBaseY + oy, 20);
+      joyKnob.fillStyle(0xffffff, 0.85); joyKnob.fillCircle(joyBaseX + ox, joyBaseY + oy, 26);
+      joyKnob.fillStyle(0xcccccc, 0.4);  joyKnob.fillCircle(joyBaseX + ox - 6, joyBaseY + oy - 6, 10);
     };
     drawKnob(0, 0);
-
-    // 方向箭頭提示
-    const arrows = this.add.text(joyBaseX, joyBaseY, "✛", {
-      fontSize: "28px", color: "#ffffff55"
-    }).setOrigin(0.5).setScrollFactor(0).setDepth(20);
-
-    // 觸控偵測區（左半畫面下方）
-    const zone = this.add.zone(0, camH/2, camW/2, camH/2)
-      .setOrigin(0).setScrollFactor(0).setDepth(19).setInteractive();
-
-    let touching = false;
-
-    zone.on("pointerdown", (ptr) => {
-      touching = true; arrows.setVisible(false);
-      this._updateJoy(ptr.x, ptr.y, joyBaseX, joyBaseY, joyRadius, drawKnob);
-    });
-    zone.on("pointermove", (ptr) => {
-      if (!touching) return;
-      this._updateJoy(ptr.x, ptr.y, joyBaseX, joyBaseY, joyRadius, drawKnob);
-    });
-    zone.on("pointerup", () => {
-      touching = false;
-      this.touchState = { up: false, down: false, left: false, right: false };
-      drawKnob(0, 0); arrows.setVisible(true);
-    });
-    zone.on("pointerout", () => {
-      touching = false;
-      this.touchState = { up: false, down: false, left: false, right: false };
-      drawKnob(0, 0); arrows.setVisible(true);
-    });
-
-    // ── 互動按鈕（右下角） ──
-    const interact = this.add.text(camW - 70, camH - 60, "互動", {
-      fontSize: "16px", color: "#fff", backgroundColor: "#2e7d32cc", padding: { x: 14, y: 10 }
+ 
+    // 互動按鈕移到左下角
+    const interact = this.add.text(16, camH - 52, "互動\nE", {
+      fontSize: "14px", color: "#fff", backgroundColor: "#2e7d32cc",
+      padding: { x: 14, y: 8 }, align: "center"
     }).setScrollFactor(0).setDepth(20).setInteractive().setAlpha(0.85);
     interact.on("pointerdown", () => this.tryInteract());
+ 
+    // 觸控偵測區：整個右半畫面下半（含搖桿位置的大範圍，方便拇指任意觸碰）
+    const zoneX = camW / 2, zoneY = camH * 0.45;
+    const zone = this.add.zone(zoneX, zoneY, camW / 2, camH - zoneY)
+      .setOrigin(0).setScrollFactor(0).setDepth(19).setInteractive();
+ 
+    // 動態搖桿：按下時以觸點為新圓心（不需要精準點到圓盤）
+    let activeX = joyBaseX, activeY = joyBaseY;
+ 
+    const resetJoy = () => {
+      this.touchState = { up: false, down: false, left: false, right: false };
+      activeX = joyBaseX; activeY = joyBaseY;
+      joyBg.clear(); drawBg();
+      drawKnob(0, 0);
+    };
+ 
+    zone.on("pointerdown", (ptr) => {
+      // 以按下點為新搖桿中心（動態搖桿體驗更好）
+      const nx = Phaser.Math.Clamp(ptr.x, zoneX + joyRadius, camW - joyRadius);
+      const ny = Phaser.Math.Clamp(ptr.y, joyRadius, camH - joyRadius);
+      activeX = nx; activeY = ny;
+      // 重畫底盤到新位置
+      joyBg.clear();
+      joyBg.fillStyle(0x000000, 0.35); joyBg.fillCircle(activeX, activeY, joyRadius);
+      joyBg.lineStyle(3, 0xffffff, 0.5); joyBg.strokeCircle(activeX, activeY, joyRadius);
+      joyBg.lineStyle(1.5, 0xffffff, 0.25);
+      joyBg.beginPath(); joyBg.moveTo(activeX, activeY - joyRadius + 10); joyBg.lineTo(activeX, activeY + joyRadius - 10); joyBg.strokePath();
+      joyBg.beginPath(); joyBg.moveTo(activeX - joyRadius + 10, activeY); joyBg.lineTo(activeX + joyRadius - 10, activeY); joyBg.strokePath();
+      this._updateJoy(ptr.x, ptr.y, activeX, activeY, joyRadius, drawKnob);
+    });
+ 
+    zone.on("pointermove", (ptr) => {
+      if (!ptr.isDown) return;
+      this._updateJoy(ptr.x, ptr.y, activeX, activeY, joyRadius, drawKnob);
+    });
+ 
+    zone.on("pointerup",  resetJoy);
+    zone.on("pointerout", resetJoy);
   }
-
+ 
   _updateJoy(px, py, bx, by, radius, drawKnob) {
     const dx = px - bx, dy = py - by;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const clamp = Math.min(dist, radius * 0.7);
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxTravel = radius * 0.65;
+    const clamped = Math.min(dist, maxTravel);
     const angle = Math.atan2(dy, dx);
-    const ox = Math.cos(angle) * clamp;
-    const oy = Math.sin(angle) * clamp;
-    drawKnob(ox, oy);
-
-    const threshold = radius * 0.25;
+    drawKnob(Math.cos(angle) * clamped, Math.sin(angle) * clamped);
+ 
+    const threshold = radius * 0.18;   // 很小的死區，稍微移動就反應
     this.touchState.left  = dx < -threshold;
     this.touchState.right = dx >  threshold;
     this.touchState.up    = dy < -threshold;
     this.touchState.down  = dy >  threshold;
   }
-
+ 
   update(time) {
     const speed = 160;
     this.player.setVelocity(0);
@@ -736,16 +755,16 @@ class VillageScene extends Phaser.Scene {
     const down = this.cursors.down.isDown || this.wasd.S.isDown || this.touchState.down;
     if (left) this.player.setVelocityX(-speed); else if (right) this.player.setVelocityX(speed);
     if (up) this.player.setVelocityY(-speed); else if (down) this.player.setVelocityY(speed);
-
+ 
     let closest = null, closestDist = 60;
     this.buildingSprites.forEach(img => {
       const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, img.x, img.y+10);
       if (dist < closestDist) { closest = img; closestDist = dist; }
     });
-
+ 
     const distToExit = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.exitZone.x, this.exitZone.y);
     this.nearExit = distToExit < this.exitZone.radius;
-
+ 
     if (closest && closest.buildingData.type === "quiz") {
       this.nearbyBuilding = closest.buildingData;
       this.promptText.setText(`📖 走進了「${this.nearbyBuilding.name}」……`)
@@ -764,19 +783,19 @@ class VillageScene extends Phaser.Scene {
     }
     if (!closest) this.autoTriggeredId = null;
     if (Phaser.Input.Keyboard.JustDown(this.wasd.E)) this.tryInteract();
-
+ 
     if (!this._saveTimer || time - this._saveTimer > 800) {
       this._saveTimer = time;
       SaveSystem.savePosition(this.villageKey, this.player.x, this.player.y);
     }
   }
-
+ 
   tryInteract() {
     if (this.nearbyBuilding && this.nearbyBuilding.levels) openLevelMenu(this.nearbyBuilding);
     else if (this.nearExit) goToTitle();
   }
 }
-
+ 
 // ----------------------------------------------------------------
 // Phaser 設定
 // ----------------------------------------------------------------
@@ -790,12 +809,12 @@ const config = {
   physics: { default: "arcade", arcade: { debug: false } },
   scene: [BootScene, TitleScene, VillageScene]
 };
-
+ 
 let game;
 let _pendingVillageKey = "criminal";
-
+ 
 window.addEventListener("load", () => { game = new Phaser.Game(config); });
-
+ 
 // ----------------------------------------------------------------
 // HTML覆蓋層
 // ----------------------------------------------------------------
@@ -805,11 +824,11 @@ function showTitleOverlay() {
   document.getElementById("player-name-input").value = SaveSystem.getName() || "";
   overlay.classList.remove("hidden");
 }
-
+ 
 function hideTitleOverlay() {
   document.getElementById("title-overlay").classList.add("hidden");
 }
-
+ 
 function enterVillage(villageKey) {
   const key = villageKey || _pendingVillageKey || "criminal";
   const nameInput = document.getElementById("player-name-input");
@@ -820,21 +839,21 @@ function enterVillage(villageKey) {
   game.scene.stop("TitleScene");
   game.scene.start("VillageScene", { villageKey: key });
 }
-
+ 
 function goToTitle() {
   if (game.scene.isActive("VillageScene")) game.scene.stop("VillageScene");
   game.scene.start("TitleScene");
 }
-
+ 
 function pauseVillageScene() {
   if (game && game.scene.isActive("VillageScene") && !game.scene.isPaused("VillageScene"))
     game.scene.pause("VillageScene");
 }
-
+ 
 function resumeVillageScene() {
   if (game && game.scene.isPaused("VillageScene")) game.scene.resume("VillageScene");
 }
-
+ 
 function openLevelMenu(building) {
   const levels = LEVELS[building.levels];
   const menu = document.getElementById("level-menu");
@@ -852,14 +871,14 @@ function openLevelMenu(building) {
   menu.classList.remove("hidden");
   pauseVillageScene();
 }
-
+ 
 function closeLevelMenu() {
   document.getElementById("level-menu").classList.add("hidden");
   resumeVillageScene();
 }
-
+ 
 let currentLevel = null;
-
+ 
 function openQuiz(level) {
   currentLevel = level;
   document.getElementById("level-menu").classList.add("hidden");
@@ -881,7 +900,7 @@ function openQuiz(level) {
   modal.classList.remove("hidden");
   pauseVillageScene();
 }
-
+ 
 function answerQuiz(idx) {
   const correct = idx === currentLevel.answer;
   const resultEl = document.getElementById("quiz-result");
@@ -891,12 +910,12 @@ function answerQuiz(idx) {
   document.querySelectorAll(".quiz-option").forEach(b => b.disabled = true);
   if (correct) SaveSystem.markCompleted(currentLevel.id);
 }
-
+ 
 function closeQuiz() {
   document.getElementById("quiz-modal").classList.add("hidden");
   resumeVillageScene();
 }
-
+ 
 function resetSave() {
   if (confirm("確定要重設所有進度嗎？此動作無法復原（只會清除你自己裝置上的資料）。")) {
     SaveSystem.reset(); location.reload();
