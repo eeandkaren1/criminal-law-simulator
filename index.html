@@ -6,66 +6,125 @@
 <title>刑法鎮 LawTown - 用闖關學刑法與刑事訴訟法</title>
 <meta name="description" content="刑法鎮：以台灣風格像素遊戲，透過故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。" />
 
-<!-- ====== Google AdSense（請填入你自己的發布商ID） ====== -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <h1>🏯 刑法鎮 <span>LawTown</span></h1>
-    <nav>
-      <button onclick="document.getElementById('hero').scrollIntoView()">首頁</button>
-      <a href="privacy.html">隱私權政策</a>
-    </nav>
-  </div>
-</header>
+<!-- ====== 遊戲主畫面（全螢幕像素風格） ====== -->
+<div id="main-screen" class="main-screen">
 
-<!-- ====== 首頁台灣風格插畫區 ====== -->
-<section id="hero" class="hero">
-  <div class="hero-bg">
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="mountain"></div>
-    <div class="temple-roof"></div>
-    <div class="lantern lantern1"></div>
-    <div class="lantern lantern2"></div>
-    <div class="lantern lantern3"></div>
+  <!-- 頂部版本號 -->
+  <div class="corner-badge corner-badge--left">
+    <span class="corner-icon">📖</span>
+    <span>版本 1.0.0</span>
   </div>
-  <div class="hero-content">
-    <h2>歡迎來到刑法鎮</h2>
-    <p>一座融合台灣廟埕街景與法律故事的像素小鎮。<br/>
-       走進「刑法村」與「刑事訴訟村」，在一個個小故事中認識條文背後的道理。</p>
-    <button class="cta-btn" onclick="document.getElementById('game-section').scrollIntoView({behavior:'smooth'})">🎮 立即進入小鎮</button>
-  </div>
-</section>
 
-<!-- ====== AdSense 廣告版位 ====== -->
-<section class="ad-slot">
-  <div class="ad-placeholder">
-    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
-    廣告版位（不影響遊戲畫面）
-  </div>
-</section>
+  <!-- 頂部設定按鈕 -->
+  <button class="corner-badge corner-badge--right" onclick="document.getElementById('settings-modal').classList.remove('hidden')">
+    <span class="corner-icon">⚙</span>
+    <span>設定</span>
+  </button>
 
-<!-- ====== 遊戲區 ====== -->
-<section id="game-section" class="game-section">
-  <div class="game-toolbar">
-    <p>操作說明：方向鍵 / WASD 移動。<b>走到建築物前面會自動觸發故事與題目</b>，不需要按任何鍵；只有要返回鎮口時才需要按 <b>E</b> 或點畫面右下角「互動」鍵。手機請用畫面上的虛擬按鍵。</p>
-    <button class="reset-btn" onclick="resetSave()">🗑 重設我的進度</button>
+  <!-- 背景圖 -->
+  <div class="title-bg" id="title-bg-container">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663221733224/aqdqRfyazZnxEkeg.png"
+         alt="刑法鎮背景" class="title-bg-img" id="title-bg-img" />
+    <!-- 漸層遮罩，讓按鈕區域更清晰 -->
+    <div class="title-bg-overlay"></div>
   </div>
-  <div id="game-wrapper" style="position:relative;">
+
+  <!-- 主標題區 -->
+  <div class="title-area">
+    <div class="title-emblem">⚖</div>
+    <h1 class="game-title">刑法鎮</h1>
+    <div class="game-subtitle-bar">
+      <span>學法・懂法・守法・用法</span>
+    </div>
+  </div>
+
+  <!-- 雙村標籤 -->
+  <div class="village-labels">
+    <div class="village-label village-label--criminal">
+      <span class="village-label-icon">⚖</span>
+      <span>刑法村</span>
+    </div>
+    <div class="village-label village-label--procedure">
+      <span class="village-label-icon">🔨</span>
+      <span>刑事訴訟村</span>
+    </div>
+  </div>
+
+  <!-- 角色對話框 -->
+  <div class="char-left">
+    <div class="char-bubble char-bubble--left">了解犯罪<br/>與法律責任！</div>
+    <div class="char-sprite char-sprite--left">🧑‍⚖️</div>
+  </div>
+  <div class="char-right">
+    <div class="char-bubble char-bubble--right">認識程序<br/>與權利保障！</div>
+    <div class="char-sprite char-sprite--right">👨‍💼</div>
+  </div>
+
+  <!-- 主選單按鈕 -->
+  <div class="main-menu" id="main-menu">
+    <button class="menu-btn menu-btn--start" id="btn-start" onclick="showNameInput()">
+      <span class="menu-btn-icon">⚔</span>
+      <span class="menu-btn-text">開始冒險</span>
+    </button>
+    <button class="menu-btn menu-btn--library" onclick="document.getElementById('library-modal').classList.remove('hidden')">
+      <span class="menu-btn-icon">📖</span>
+      <span class="menu-btn-text">法學圖鑑</span>
+    </button>
+    <button class="menu-btn menu-btn--achievement" onclick="document.getElementById('achievement-modal').classList.remove('hidden')">
+      <span class="menu-btn-icon">🏆</span>
+      <span class="menu-btn-text">成就系統</span>
+    </button>
+  </div>
+
+  <!-- 底部提示 -->
+  <div class="bottom-hint">
+    按下方向鍵選擇・按下 Enter 確認
+  </div>
+</div>
+
+<!-- ====== 輸入名字 + 選擇村莊 彈窗 ====== -->
+<div id="name-input-modal" class="overlay hidden">
+  <div class="pixel-modal">
+    <div class="pixel-modal-head">
+      <h3>⚔ 開始冒險</h3>
+      <button class="pixel-close-btn" onclick="document.getElementById('name-input-modal').classList.add('hidden')">✕</button>
+    </div>
+    <p class="pixel-modal-label">✏ 請輸入您的名字</p>
+    <input id="player-name-input" type="text" maxlength="10" placeholder="例如：阿明" class="pixel-input" />
+    <p class="pixel-modal-label">選擇你要冒險的村莊</p>
+    <div class="village-choice-row">
+      <button class="village-btn village-btn-criminal" onclick="enterVillage('criminal')">
+        <span class="village-btn-icon">⚖</span>
+        <span class="village-btn-title">刑法村</span>
+        <small>刑法總則 / 刑法分則</small>
+      </button>
+      <button class="village-btn village-btn-procedure" onclick="enterVillage('procedure')">
+        <span class="village-btn-icon">🔨</span>
+        <span class="village-btn-title">刑事訴訟村</span>
+        <small>偵查 / 起訴 / 審判 / 執行</small>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 遊戲畫面容器 ====== -->
+<div id="game-screen" class="game-screen hidden">
+  <div id="game-wrapper" style="position:relative; width:100%; height:100%;">
     <div id="game-container"></div>
-
-    <!-- ====== 鎮口標題覆蓋層：輸入名字＋選擇村莊 ====== -->
+    <!-- 鎮口標題覆蓋層（保留原有功能） -->
     <div id="title-overlay" class="title-overlay hidden">
       <div class="title-dialog">
         <p class="title-dialog-label">✏️ 請輸入您的名字</p>
-        <input id="player-name-input" type="text" maxlength="10" placeholder="例如：阿明" />
+        <input id="player-name-input-2" type="text" maxlength="10" placeholder="例如：阿明" />
         <p class="title-dialog-label">選擇你要冒險的村莊</p>
         <div class="village-choice-row">
           <button class="village-btn village-btn-criminal" onclick="enterVillage('criminal')">
@@ -78,31 +137,75 @@
       </div>
     </div>
   </div>
-</section>
-
-<!-- ====== AdSense 廣告版位（遊戲下方） ====== -->
-<section class="ad-slot">
-  <div class="ad-placeholder">
-    廣告版位（不影響遊戲畫面）
+  <!-- 遊戲操作工具列 -->
+  <div class="game-toolbar-overlay">
+    <p>操作說明：方向鍵 / WASD 移動。<b>走到建築物前面會自動觸發故事與題目</b>；按 <b>E</b> 或點「互動」鍵返回鎮口。</p>
+    <button class="pixel-reset-btn" onclick="resetSave()">🗑 重設進度</button>
   </div>
-</section>
+</div>
 
-<section class="about">
-  <h3>關於這個專案</h3>
-  <p>本遊戲內容以教育為目的，將刑法與刑事訴訟法之條文精神改編為故事情境，幫助初學者建立基礎概念，<b>不能取代正式法律諮詢</b>。條文內容請以「全國法規資料庫」(law.moj.gov.tw) 公告之最新版本為準。</p>
-</section>
+<!-- ====== 法學圖鑑 Modal ====== -->
+<div id="library-modal" class="overlay hidden">
+  <div class="pixel-modal pixel-modal--wide">
+    <div class="pixel-modal-head">
+      <h3>📖 法學圖鑑</h3>
+      <button class="pixel-close-btn" onclick="document.getElementById('library-modal').classList.add('hidden')">✕</button>
+    </div>
+    <p class="pixel-modal-desc">完成關卡後，相關法條將收錄於此。</p>
+    <div id="library-content" class="library-content">
+      <div class="library-empty">尚未解鎖任何法條。<br/>開始冒險後，完成關卡即可收錄！</div>
+    </div>
+  </div>
+</div>
 
-<footer class="site-footer">
-  <p>本網站使用 Cookie 及第三方廣告服務（Google AdSense）以提供廣告與分析服務，詳見 <a href="privacy.html">隱私權政策</a>。</p>
-  <p>© <span id="year"></span> 宸鑫頤意企業社 版權所有 All Rights Reserved.</p>
-</footer>
+<!-- ====== 成就系統 Modal ====== -->
+<div id="achievement-modal" class="overlay hidden">
+  <div class="pixel-modal pixel-modal--wide">
+    <div class="pixel-modal-head">
+      <h3>🏆 成就系統</h3>
+      <button class="pixel-close-btn" onclick="document.getElementById('achievement-modal').classList.add('hidden')">✕</button>
+    </div>
+    <div id="achievement-list" class="achievement-list">
+      <!-- 由 JS 動態填入 -->
+    </div>
+  </div>
+</div>
+
+<!-- ====== 設定 Modal ====== -->
+<div id="settings-modal" class="overlay hidden">
+  <div class="pixel-modal">
+    <div class="pixel-modal-head">
+      <h3>⚙ 設定</h3>
+      <button class="pixel-close-btn" onclick="document.getElementById('settings-modal').classList.add('hidden')">✕</button>
+    </div>
+    <div class="settings-list">
+      <div class="settings-item">
+        <span>🔊 音效</span>
+        <label class="pixel-toggle">
+          <input type="checkbox" id="sfx-toggle" checked>
+          <span class="pixel-toggle-slider"></span>
+        </label>
+      </div>
+      <div class="settings-item">
+        <span>🎵 音樂</span>
+        <label class="pixel-toggle">
+          <input type="checkbox" id="bgm-toggle" checked>
+          <span class="pixel-toggle-slider"></span>
+        </label>
+      </div>
+      <hr class="settings-divider"/>
+      <button class="pixel-danger-btn" onclick="if(confirm('確定要重設所有進度嗎？'))resetSave()">🗑 重設所有進度</button>
+      <a href="privacy.html" class="settings-link">隱私權政策</a>
+    </div>
+  </div>
+</div>
 
 <!-- ====== 關卡選單彈窗 ====== -->
 <div id="level-menu" class="overlay hidden">
-  <div class="modal">
-    <div class="modal-head">
+  <div class="pixel-modal">
+    <div class="pixel-modal-head">
       <h3 id="level-menu-title"></h3>
-      <button class="close-btn" onclick="closeLevelMenu()">✕</button>
+      <button class="pixel-close-btn" onclick="closeLevelMenu()">✕</button>
     </div>
     <div id="level-list" class="level-list"></div>
   </div>
@@ -110,23 +213,113 @@
 
 <!-- ====== 答題彈窗 ====== -->
 <div id="quiz-modal" class="overlay hidden">
-  <div class="modal quiz-modal">
-    <div class="modal-head">
+  <div class="pixel-modal quiz-modal">
+    <div class="pixel-modal-head">
       <h3 id="quiz-title"></h3>
-      <button class="close-btn" onclick="closeQuiz()">✕</button>
+      <button class="pixel-close-btn" onclick="closeQuiz()">✕</button>
     </div>
     <p class="quiz-law" id="quiz-law"></p>
-    <p class="quiz-story" id="quiz-story"></p>
+    <div class="quiz-story-box">
+      <p class="quiz-story" id="quiz-story"></p>
+    </div>
     <p class="quiz-question" id="quiz-question"></p>
     <div id="quiz-options" class="quiz-options"></div>
     <pre id="quiz-result" class="hidden"></pre>
-    <button class="cta-btn" onclick="closeQuiz()">返回小鎮</button>
+    <button class="menu-btn menu-btn--start" style="margin-top:12px;width:100%;" onclick="closeQuiz()">⬅ 返回小鎮</button>
   </div>
 </div>
 
-<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script>
+// ====== 主畫面鍵盤導航 ======
+(function() {
+  const menuItems = ['btn-start'];
+  let selectedIdx = 0;
+
+  function updateSelection() {
+    menuItems.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('menu-btn--selected', i === selectedIdx);
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    const mainScreen = document.getElementById('main-screen');
+    if (mainScreen.classList.contains('hidden')) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      selectedIdx = (selectedIdx + 1) % menuItems.length;
+      updateSelection();
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      selectedIdx = (selectedIdx - 1 + menuItems.length) % menuItems.length;
+      updateSelection();
+    } else if (e.key === 'Enter') {
+      const el = document.getElementById(menuItems[selectedIdx]);
+      if (el) el.click();
+    }
+  });
+})();
+
+function showNameInput() {
+  document.getElementById('name-input-modal').classList.remove('hidden');
+}
+
+function showMainScreen() {
+  document.getElementById('main-screen').classList.remove('hidden');
+  document.getElementById('game-screen').classList.add('hidden');
+}
+</script>
+
 <script src="data/levels.js"></script>
 <script src="js/save.js"></script>
 <script src="js/game.js"></script>
+<script>
+// 成就系統初始化
+(function initAchievements() {
+  const achievements = [
+    { id: 'first_try', icon: '🌟', title: '初次嘗試', desc: '完成第一個關卡', check: () => SaveSystem.getCompletedCount() >= 1 },
+    { id: 'streak3', icon: '🔥', title: '三連勝', desc: '連續答對3題', check: () => SaveSystem.getStreak() >= 3 },
+    { id: 'streak5', icon: '💥', title: '五連勝', desc: '連續答對5題', check: () => SaveSystem.getStreak() >= 5 },
+    { id: 'half_done', icon: '⚔', title: '半程達人', desc: '完成一半以上關卡', check: () => false },
+    { id: 'all_done', icon: '🎓', title: '法學博士', desc: '完成所有關卡', check: () => false },
+    { id: 'perfect', icon: '💯', title: '完美答題', desc: '一次全對', check: () => false },
+  ];
+
+  const list = document.getElementById('achievement-list');
+  if (!list) return;
+  list.innerHTML = achievements.map(a => {
+    const unlocked = a.check();
+    return `<div class="achievement-item ${unlocked ? 'achievement-item--unlocked' : ''}">
+      <span class="achievement-icon">${a.icon}</span>
+      <div class="achievement-info">
+        <div class="achievement-title">${a.title}</div>
+        <div class="achievement-desc">${a.desc}</div>
+      </div>
+      <span class="achievement-status">${unlocked ? '✅' : '🔒'}</span>
+    </div>`;
+  }).join('');
+})();
+
+// 法學圖鑑初始化
+(function initLibrary() {
+  const content = document.getElementById('library-content');
+  if (!content) return;
+  const completed = [];
+  if (typeof LEVELS !== 'undefined') {
+    Object.values(LEVELS).forEach(arr => {
+      arr.forEach(lvl => {
+        if (SaveSystem.isCompleted(lvl.id)) {
+          completed.push(lvl);
+        }
+      });
+    });
+  }
+  if (completed.length === 0) return;
+  content.innerHTML = completed.map(lvl => `
+    <div class="library-item">
+      <div class="library-item-law">${lvl.law || ''}</div>
+      <div class="library-item-title">${lvl.title || ''}</div>
+    </div>
+  `).join('');
+})();
+</script>
 </body>
 </html>

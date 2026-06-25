@@ -796,53 +796,92 @@ class VillageScene extends Phaser.Scene {
   }
 }
  
-// ----------------------------------------------------------------
-// Phaser 設定
-// ----------------------------------------------------------------
-const config = {
-  type: Phaser.AUTO,
-  parent: "game-container",
-  width: Math.min(window.innerWidth-4, 900),
-  height: 480,
-  pixelArt: true,
-  backgroundColor: "#8bc16a",
-  physics: { default: "arcade", arcade: { debug: false } },
-  scene: [BootScene, TitleScene, VillageScene]
-};
- 
+// 遊戲在進入村莊時才初始化，避免首頁載入時就啟動 Phaser
 let game;
 let _pendingVillageKey = "criminal";
- 
-window.addEventListener("load", () => { game = new Phaser.Game(config); });
+
+function initGame() {
+  if (game) return;
+  const gameContainer = document.getElementById('game-container');
+  const containerW = gameContainer ? gameContainer.parentElement.offsetWidth : window.innerWidth;
+  const containerH = window.innerHeight - 50;
+
+  const cfg = {
+    type: Phaser.AUTO,
+    parent: "game-container",
+    width: Math.min(containerW - 4, 900),
+    height: Math.min(containerH, 520),
+    pixelArt: true,
+    backgroundColor: "#8bc16a",
+    physics: { default: "arcade", arcade: { debug: false } },
+    scene: [BootScene, TitleScene, VillageScene]
+  };
+  game = new Phaser.Game(cfg);
+}
+
+window.addEventListener("load", () => {
+  // 首頁不自動啟動 Phaser，等使用者點擊進入
+});
  
 // ----------------------------------------------------------------
 // HTML覆蓋層
 // ----------------------------------------------------------------
 function showTitleOverlay() {
-  const overlay = document.getElementById("title-overlay");
-  if (!overlay) return;
-  document.getElementById("player-name-input").value = SaveSystem.getName() || "";
-  overlay.classList.remove("hidden");
+  // 新版：不再使用這個函數，由首頁的 showNameInput() 處理
 }
- 
+
 function hideTitleOverlay() {
-  document.getElementById("title-overlay").classList.add("hidden");
+  const overlay = document.getElementById("title-overlay");
+  if (overlay) overlay.classList.add("hidden");
+  const nameModal = document.getElementById("name-input-modal");
+  if (nameModal) nameModal.classList.add("hidden");
 }
- 
+
 function enterVillage(villageKey) {
   const key = villageKey || _pendingVillageKey || "criminal";
-  const nameInput = document.getElementById("player-name-input");
-  const name = (nameInput.value || "").trim() || "無名旅人";
+  // 支援兩種輸入框（首頁 Modal 和遊戲內 overlay）
+  const nameInput1 = document.getElementById("player-name-input");
+  const nameInput2 = document.getElementById("player-name-input-2");
+  const nameInput = nameInput1 || nameInput2;
+  const name = (nameInput ? nameInput.value : "").trim() || "無名旅人";
   SaveSystem.setName(name);
   hideTitleOverlay();
-  if (game.scene.isActive("VillageScene")) game.scene.stop("VillageScene");
-  game.scene.stop("TitleScene");
-  game.scene.start("VillageScene", { villageKey: key });
+
+  // 切換到遊戲畫面
+  const mainScreen = document.getElementById('main-screen');
+  const gameScreen = document.getElementById('game-screen');
+  if (mainScreen) mainScreen.classList.add('hidden');
+  if (gameScreen) gameScreen.classList.remove('hidden');
+
+  // 初始化或重啟 Phaser
+  if (!game) {
+    // 儲存目標村莊，等 BootScene 完成後由 TitleScene 轉到 VillageScene
+    _pendingVillageKey = key;
+    initGame();
+    // 等待 Phaser 初始化完成，監聴 TitleScene 啟動再轉到村莊
+    const waitForBoot = setInterval(() => {
+      try {
+        if (game && game.scene && game.scene.isActive('TitleScene')) {
+          clearInterval(waitForBoot);
+          game.scene.stop('TitleScene');
+          game.scene.start('VillageScene', { villageKey: key });
+        }
+      } catch(e) { /* 等待中 */ }
+    }, 150);
+  } else {
+    if (game.scene.isActive("VillageScene")) game.scene.stop("VillageScene");
+    if (game.scene.isActive("TitleScene")) game.scene.stop("TitleScene");
+    game.scene.start("VillageScene", { villageKey: key });
+  }
 }
- 
+
 function goToTitle() {
-  if (game.scene.isActive("VillageScene")) game.scene.stop("VillageScene");
-  game.scene.start("TitleScene");
+  // 返回首頁主畫面
+  const mainScreen = document.getElementById('main-screen');
+  const gameScreen = document.getElementById('game-screen');
+  if (mainScreen) mainScreen.classList.remove('hidden');
+  if (gameScreen) gameScreen.classList.add('hidden');
+  if (game && game.scene.isActive("VillageScene")) game.scene.stop("VillageScene");
 }
  
 function pauseVillageScene() {
@@ -917,7 +956,6 @@ function closeQuiz() {
 }
  
 function resetSave() {
-  if (confirm("確定要重設所有進度嗎？此動作無法復原（只會清除你自己裝置上的資料）。")) {
-    SaveSystem.reset(); location.reload();
-  }
+  SaveSystem.reset();
+  location.reload();
 }

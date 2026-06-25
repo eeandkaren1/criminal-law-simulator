@@ -1,120 +1,346 @@
-* { box-sizing: border-box; }
+/* ===================================================
+   刑法鎮 LawTown - 像素遊戲風格 CSS
+   =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@700;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  margin: 0;
   font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-  background: #fdf6ec;
-  color: #2b2b2b;
+  background: #1a1a2e;
+  color: #f0e6d3;
+  overflow: hidden;
+  height: 100dvh;
+  width: 100vw;
 }
 
-/* ===== Header ===== */
-.site-header { background: #b71c1c; color: #fff; padding: 10px 0; position: sticky; top: 0; z-index: 50; }
-.header-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 16px; }
-.site-header h1 { margin: 0; font-size: 20px; }
-.site-header h1 span { font-size: 12px; opacity: 0.8; }
-.site-header nav button, .site-header nav a {
-  background: none; border: 1px solid #fff; color: #fff; padding: 6px 12px;
-  margin-left: 8px; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 13px;
+/* ===================================================
+   主畫面（全螢幕）
+   =================================================== */
+.main-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  z-index: 1;
 }
 
-/* ===== Hero（台灣風格插畫，純CSS繪製） ===== */
-.hero {
-  position: relative; min-height: 360px; overflow: hidden;
-  background: linear-gradient(to bottom, #ffe0b2 0%, #ffcc80 40%, #fdf6ec 100%);
-  display: flex; align-items: center; justify-content: center; text-align: center;
+/* ── 背景圖 ── */
+.title-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
-.hero-bg { position: absolute; inset: 0; }
-.mountain {
-  position: absolute; bottom: 0; left: -5%; width: 60%; height: 140px;
-  background: #6d8b74; clip-path: polygon(0% 100%, 20% 30%, 40% 70%, 60% 10%, 80% 60%, 100% 100%);
-  opacity: 0.7;
+.title-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  image-rendering: pixelated;
 }
-.temple-roof {
-  position: absolute; bottom: 60px; right: 8%; width: 220px; height: 90px;
-  background: #8d2c2c;
-  clip-path: polygon(50% 0%, 100% 60%, 85% 60%, 85% 100%, 15% 100%, 15% 60%, 0% 60%);
-}
-.temple-roof::after {
-  content: ""; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-  width: 14px; height: 14px; background: #ffca28; border-radius: 50%;
-}
-.lantern {
-  position: absolute; width: 26px; height: 36px; background: #d32f2f; border-radius: 10px 10px 14px 14px;
-  box-shadow: inset -4px 0 6px rgba(0,0,0,0.2);
-}
-.lantern::before { content: ""; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 16px; height: 6px; background: #5d4037; border-radius: 4px; }
-.lantern1 { top: 30px; left: 12%; }
-.lantern2 { top: 50px; left: 20%; }
-.lantern3 { top: 30px; right: 30%; }
-.cloud { position: absolute; background: #fff; border-radius: 50px; opacity: 0.8; }
-.cloud1 { width: 120px; height: 30px; top: 20px; left: 5%; }
-.cloud2 { width: 90px; height: 24px; top: 40px; right: 15%; }
-
-.hero-content { position: relative; z-index: 2; max-width: 700px; padding: 0 16px; }
-.hero-content h2 { font-size: 30px; margin-bottom: 8px; color: #4e342e; }
-.hero-content p { font-size: 15px; line-height: 1.7; color: #4e342e; }
-.cta-btn {
-  margin-top: 16px; padding: 12px 26px; font-size: 16px; border: none; border-radius: 8px;
-  background: #c62828; color: #fff; cursor: pointer; box-shadow: 0 3px 0 #8e1c1c;
-}
-.cta-btn:active { transform: translateY(2px); box-shadow: none; }
-
-/* ===== Ad slots ===== */
-.ad-slot { display: flex; justify-content: center; padding: 14px; background: #f2e7d5; }
-.ad-placeholder {
-  width: 100%; max-width: 900px; min-height: 90px; border: 2px dashed #bbb;
-  display: flex; align-items: center; justify-content: center; color: #999; font-size: 13px; border-radius: 8px;
+.title-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.0) 0%,
+    rgba(0,0,0,0.0) 55%,
+    rgba(0,0,0,0.45) 75%,
+    rgba(0,0,0,0.65) 100%
+  );
 }
 
-/* ===== Game section ===== */
-.game-section { padding: 16px; display: flex; flex-direction: column; align-items: center; }
-.game-toolbar { width: 100%; max-width: 900px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; font-size: 13px; }
-.reset-btn { background: #eee; border: 1px solid #ccc; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
-#game-container { border: 4px solid #4e342e; border-radius: 8px; overflow: hidden; max-width: 900px; width: 100%; image-rendering: pixelated; }
-
-/* ===== About ===== */
-.about { max-width: 800px; margin: 0 auto; padding: 24px 16px; font-size: 14px; line-height: 1.8; color: #555; }
-
-/* ===== Footer ===== */
-.site-footer { background: #3e2723; color: #ddd; text-align: center; padding: 16px; font-size: 12px; line-height: 1.8; }
-.site-footer a { color: #ffcc80; }
-
-/* ===== Overlays / Modals ===== */
-.overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100;
-  display: flex; align-items: center; justify-content: center; padding: 16px;
+/* ── 角落徽章（版本號 / 設定） ── */
+.corner-badge {
+  position: absolute;
+  top: 12px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(20,15,10,0.82);
+  border: 2px solid #8b6914;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #f5d87a;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 0 #5a4008, inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: filter 0.15s;
+  text-decoration: none;
+  font-family: inherit;
 }
-.overlay.hidden { display: none; }
-.modal {
-  background: #fffdf8; border-radius: 10px; padding: 18px; max-width: 480px; width: 100%;
-  max-height: 85vh; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+.corner-badge:hover { filter: brightness(1.2); }
+.corner-badge--left  { left: 14px; }
+.corner-badge--right { right: 14px; }
+.corner-icon { font-size: 16px; }
+
+/* ── 主標題區 ── */
+.title-area {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-top: 10px;
+  pointer-events: none;
+  user-select: none;
 }
-.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.close-btn { background: none; border: none; font-size: 18px; cursor: pointer; }
-.level-list { display: flex; flex-direction: column; gap: 8px; }
-.level-item {
-  display: flex; flex-direction: column; align-items: flex-start; text-align: left;
-  border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: #fff; cursor: pointer; font-size: 14px;
+
+.title-emblem {
+  font-size: 36px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
+  margin-bottom: 2px;
+  opacity: 0;
+  pointer-events: none;
 }
-.level-item small { color: #888; margin-top: 2px; }
-.level-item.done { background: #e8f5e9; border-color: #a5d6a7; }
 
-.quiz-modal { max-width: 540px; }
-.quiz-law { font-size: 12px; color: #888; }
-.quiz-story { font-size: 14px; line-height: 1.7; background: #f5f0e6; padding: 10px; border-radius: 8px; }
-.quiz-question { font-weight: bold; margin-top: 12px; }
-.quiz-options { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
-.quiz-option { padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: #fff; cursor: pointer; text-align: left; font-size: 14px; }
-.quiz-option:hover:not(:disabled) { background: #fff3e0; }
-.quiz-option:disabled { opacity: 0.6; cursor: default; }
-#quiz-result { white-space: pre-wrap; font-family: inherit; padding: 10px; border-radius: 8px; }
-#quiz-result.correct { background: #e8f5e9; color: #2e7d32; }
-#quiz-result.wrong { background: #ffebee; color: #c62828; }
+.game-title {
+  font-family: "Noto Serif TC", "Noto Sans TC", serif;
+  font-size: clamp(42px, 8vw, 80px);
+  font-weight: 900;
+  color: #f5d87a;
+  letter-spacing: 0.12em;
+  text-shadow:
+    3px 3px 0 #5a2e00,
+    -1px -1px 0 #5a2e00,
+    1px -1px 0 #5a2e00,
+    -1px 1px 0 #5a2e00,
+    0 4px 0 #3a1c00,
+    0 8px 16px rgba(0,0,0,0.6);
+  line-height: 1.1;
+  /* 背景圖已有標題文字，隱藏 HTML 標題避免重疊 */
+  display: none;
+}
 
-/* ===== Policy page ===== */
-.policy { max-width: 760px; margin: 0 auto; padding: 24px 16px; line-height: 1.8; font-size: 14px; }
-.policy h3 { margin-top: 24px; color: #4e342e; }
+.game-subtitle-bar {
+  /* 背景圖已有副標題，隱藏 HTML 版本 */
+  display: none;
+}
 
-/* ===== 鎮口標題覆蓋層（JRPG對話框風格） ===== */
+/* ── 雙村標籤（背景圖已有，隱藏 HTML 版本） ── */
+.village-labels {
+  display: none;
+}
+
+.village-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: clamp(16px, 3vw, 26px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.05em;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.4), 0 6px 18px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+.village-label--criminal {
+  background: linear-gradient(135deg, #9b2020 0%, #c0392b 50%, #9b2020 100%);
+  border: 2px solid #e8c873;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+  padding-right: 28px;
+}
+
+.village-label--procedure {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 50%, #1a3a5c 100%);
+  border: 2px solid #e8c873;
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%);
+  padding-left: 28px;
+}
+
+.village-label-icon { font-size: 1.1em; }
+
+/* ── 角色 ── */
+.char-left, .char-right {
+  position: absolute;
+  bottom: 18%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.char-left  { left: 2%; }
+.char-right { right: 2%; }
+
+.char-sprite { font-size: clamp(28px, 5vw, 52px); }
+
+.char-bubble {
+  background: rgba(255,252,240,0.95);
+  border: 2px solid #5a3a1a;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: clamp(10px, 1.5vw, 13px);
+  color: #3a2010;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
+  box-shadow: 2px 2px 0 #5a3a1a;
+  position: relative;
+  white-space: nowrap;
+}
+.char-bubble--left::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #5a3a1a;
+}
+.char-bubble--right::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #5a3a1a;
+}
+
+/* ── 主選單按鈕 ── */
+.main-menu {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: min(280px, 60vw);
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: clamp(15px, 2.5vw, 19px);
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0.05em;
+  transition: filter 0.12s, transform 0.1s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.4), 0 6px 16px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.menu-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40%;
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px 6px 0 0;
+}
+.menu-btn:hover  { filter: brightness(1.15); transform: translateY(-2px); }
+.menu-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.4); }
+.menu-btn--selected { filter: brightness(1.2); transform: translateY(-2px); outline: 3px solid #f5d87a; }
+
+.menu-btn--start {
+  background: linear-gradient(180deg, #2c6fad 0%, #1a4a7a 100%);
+  border-bottom: 4px solid #0e2d4d;
+}
+.menu-btn--library {
+  background: linear-gradient(180deg, #3a7a3a 0%, #235023 100%);
+  border-bottom: 4px solid #122a12;
+}
+.menu-btn--achievement {
+  background: linear-gradient(180deg, #7a5a1a 0%, #4a3510 100%);
+  border-bottom: 4px solid #2a1d08;
+}
+
+.menu-btn-icon { font-size: 1.3em; flex-shrink: 0; }
+.menu-btn-text { flex: 1; text-align: center; }
+
+/* ── 底部提示 ── */
+.bottom-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(20,12,5,0.85);
+  border-top: 2px solid #5a3a1a;
+  text-align: center;
+  padding: 8px;
+  font-size: clamp(11px, 1.8vw, 14px);
+  color: #f5d87a;
+  letter-spacing: 0.1em;
+}
+
+/* ===================================================
+   遊戲畫面
+   =================================================== */
+.game-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #1a1a2e;
+  z-index: 2;
+}
+.game-screen.hidden { display: none; }
+.main-screen.hidden { display: none; }
+
+#game-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#game-container {
+  image-rendering: pixelated;
+  border: 3px solid #4e342e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.game-toolbar-overlay {
+  background: rgba(20,12,5,0.9);
+  border-top: 2px solid #5a3a1a;
+  padding: 6px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #d4b896;
+  flex-wrap: wrap;
+}
+
+.pixel-reset-btn {
+  background: #3a1a1a;
+  border: 1px solid #7a3a3a;
+  color: #ff8a80;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.pixel-reset-btn:hover { background: #5a2a2a; }
+
+/* ===================================================
+   鎮口標題覆蓋層（遊戲內 HTML overlay）
+   =================================================== */
 .title-overlay {
   position: absolute; inset: 0; z-index: 30;
   display: flex; align-items: flex-end; justify-content: center;
@@ -130,21 +356,343 @@ body {
   padding: 16px 20px;
   width: 92%; max-width: 480px;
   text-align: center;
-  image-rendering: pixelated;
+  color: #2b2b2b;
 }
 .title-dialog-label { margin: 6px 0; font-size: 13px; color: #4e342e; font-weight: bold; }
-#player-name-input {
+#player-name-input-2 {
   width: 80%; padding: 8px 10px; font-size: 15px;
   border: 2px solid #4e342e; border-radius: 6px; text-align: center;
-  margin-bottom: 10px; background: #fff;
+  margin-bottom: 10px; background: #fff; color: #2b2b2b;
 }
-.village-choice-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* ===================================================
+   Overlay / Modal（像素風格）
+   =================================================== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(2px);
+}
+.overlay.hidden { display: none; }
+
+.pixel-modal {
+  background: #1e1408;
+  border: 3px solid #8b6914;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow:
+    0 0 0 1px #5a4008,
+    0 8px 0 #3a2a04,
+    0 12px 32px rgba(0,0,0,0.6);
+  color: #f0e6d3;
+}
+.pixel-modal--wide { max-width: 600px; }
+
+.pixel-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #5a4008;
+}
+.pixel-modal-head h3 {
+  font-size: 18px;
+  color: #f5d87a;
+  font-weight: bold;
+}
+.pixel-close-btn {
+  background: #3a2010;
+  border: 2px solid #7a5020;
+  color: #f5d87a;
+  width: 30px; height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.pixel-close-btn:hover { background: #5a3010; }
+
+.pixel-modal-label {
+  font-size: 13px;
+  color: #d4b896;
+  font-weight: bold;
+  margin: 10px 0 6px;
+}
+.pixel-modal-desc {
+  font-size: 13px;
+  color: #a08060;
+  margin-bottom: 12px;
+}
+
+.pixel-input {
+  width: 80%;
+  display: block;
+  margin: 0 auto 14px;
+  padding: 10px 14px;
+  font-size: 16px;
+  background: #0e0a04;
+  border: 2px solid #8b6914;
+  border-radius: 4px;
+  color: #f5d87a;
+  text-align: center;
+  font-family: inherit;
+  outline: none;
+}
+.pixel-input:focus { border-color: #f5d87a; box-shadow: 0 0 0 2px rgba(245,216,122,0.3); }
+
+/* ── 村莊選擇按鈕 ── */
+.village-choice-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
 .village-btn {
-  flex: 1; min-width: 150px; padding: 12px 10px; border-radius: 8px; cursor: pointer;
-  font-size: 14px; font-weight: bold; color: #fff; border: none;
-  box-shadow: 0 3px 0 rgba(0,0,0,0.3);
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+  padding: 14px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  color: #fff;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: filter 0.15s, transform 0.1s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.4);
 }
-.village-btn small { font-weight: normal; opacity: 0.9; }
+.village-btn:hover  { filter: brightness(1.15); transform: translateY(-2px); }
 .village-btn:active { transform: translateY(2px); box-shadow: none; }
-.village-btn-criminal { background: linear-gradient(#c0392b, #962d22); }
-.village-btn-procedure { background: linear-gradient(#34495e, #233140); }
+.village-btn-icon { font-size: 22px; }
+.village-btn-title { font-size: 16px; font-weight: bold; }
+.village-btn small { font-size: 11px; opacity: 0.85; }
+.village-btn-criminal {
+  background: linear-gradient(180deg, #c0392b 0%, #8b1a1a 100%);
+  border-bottom: 4px solid #5a0a0a;
+}
+.village-btn-procedure {
+  background: linear-gradient(180deg, #2c5f8a 0%, #1a3a5c 100%);
+  border-bottom: 4px solid #0a1e30;
+}
+
+/* ===================================================
+   關卡選單
+   =================================================== */
+.level-list { display: flex; flex-direction: column; gap: 8px; }
+.level-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  border: 2px solid #5a4008;
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: #120e04;
+  cursor: pointer;
+  font-size: 14px;
+  color: #f0e6d3;
+  transition: background 0.15s, border-color 0.15s;
+}
+.level-item:hover { background: #1e1408; border-color: #8b6914; }
+.level-item small { color: #a08060; margin-top: 2px; font-size: 12px; }
+.level-item.done {
+  background: #0a1a0a;
+  border-color: #2e7d32;
+  color: #a5d6a7;
+}
+.level-item.done small { color: #66bb6a; }
+
+/* ===================================================
+   答題 Modal
+   =================================================== */
+.quiz-modal { max-width: 560px; }
+.quiz-law { font-size: 12px; color: #a08060; margin-bottom: 8px; }
+.quiz-story-box {
+  background: #0a0804;
+  border: 2px solid #5a4008;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.quiz-story { font-size: 14px; line-height: 1.8; color: #d4b896; }
+.quiz-question { font-weight: bold; margin: 12px 0 8px; color: #f5d87a; font-size: 15px; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+.quiz-option {
+  padding: 11px 14px;
+  border: 2px solid #5a4008;
+  border-radius: 6px;
+  background: #120e04;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  color: #f0e6d3;
+  font-family: inherit;
+  transition: background 0.12s, border-color 0.12s;
+}
+.quiz-option:hover:not(:disabled) { background: #1e1408; border-color: #f5d87a; }
+.quiz-option:disabled { opacity: 0.6; cursor: default; }
+#quiz-result {
+  white-space: pre-wrap;
+  font-family: inherit;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+#quiz-result.correct { background: #0a1a0a; color: #81c784; border: 2px solid #2e7d32; }
+#quiz-result.wrong   { background: #1a0a0a; color: #ef9a9a; border: 2px solid #c62828; }
+#quiz-result.hidden  { display: none; }
+
+/* ===================================================
+   法學圖鑑
+   =================================================== */
+.library-content { display: flex; flex-direction: column; gap: 8px; }
+.library-empty { text-align: center; color: #a08060; padding: 24px; font-size: 14px; line-height: 2; }
+.library-item {
+  background: #0a0804;
+  border: 2px solid #5a4008;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+.library-item-law { font-size: 11px; color: #a08060; }
+.library-item-title { font-size: 14px; color: #f0e6d3; font-weight: bold; margin-top: 2px; }
+
+/* ===================================================
+   成就系統
+   =================================================== */
+.achievement-list { display: flex; flex-direction: column; gap: 8px; }
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0a0804;
+  border: 2px solid #3a2a04;
+  border-radius: 6px;
+  padding: 10px 14px;
+  opacity: 0.55;
+}
+.achievement-item--unlocked {
+  opacity: 1;
+  border-color: #8b6914;
+  background: #1a1204;
+}
+.achievement-icon { font-size: 24px; flex-shrink: 0; }
+.achievement-info { flex: 1; }
+.achievement-title { font-size: 14px; font-weight: bold; color: #f5d87a; }
+.achievement-desc  { font-size: 12px; color: #a08060; margin-top: 2px; }
+.achievement-status { font-size: 18px; }
+
+/* ===================================================
+   設定
+   =================================================== */
+.settings-list { display: flex; flex-direction: column; gap: 14px; }
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #0a0804;
+  border: 2px solid #3a2a04;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #d4b896;
+}
+.settings-divider { border: none; border-top: 1px solid #3a2a04; }
+.settings-link {
+  display: block;
+  text-align: center;
+  color: #a08060;
+  font-size: 13px;
+  text-decoration: underline;
+}
+.pixel-danger-btn {
+  background: #3a0a0a;
+  border: 2px solid #7a2a2a;
+  color: #ff8a80;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  width: 100%;
+  transition: background 0.15s;
+}
+.pixel-danger-btn:hover { background: #5a1a1a; }
+
+/* ── 像素切換開關 ── */
+.pixel-toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+.pixel-toggle input { opacity: 0; width: 0; height: 0; }
+.pixel-toggle-slider {
+  position: absolute; inset: 0;
+  background: #3a2a04;
+  border: 2px solid #5a4008;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pixel-toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  left: 2px; top: 2px;
+  background: #a08060;
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+.pixel-toggle input:checked + .pixel-toggle-slider { background: #1a4a1a; border-color: #2e7d32; }
+.pixel-toggle input:checked + .pixel-toggle-slider::before { transform: translateX(20px); background: #81c784; }
+
+/* ===================================================
+   隱私權政策頁
+   =================================================== */
+.policy-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  line-height: 1.8;
+  font-size: 14px;
+  color: #f0e6d3;
+}
+.policy-page h3 { margin-top: 24px; color: #f5d87a; }
+
+/* ===================================================
+   響應式
+   =================================================== */
+@media (max-width: 600px) {
+  .village-labels { top: 22%; }
+  .char-left, .char-right { display: none; }
+  .main-menu { bottom: 8%; width: 85vw; }
+  .menu-btn { font-size: 15px; padding: 11px 16px; }
+  .game-title { font-size: 52px; }
+}
+
+@media (max-width: 400px) {
+  .village-label { font-size: 14px; padding: 5px 12px; }
+  .game-title { font-size: 40px; }
+}
+
+/* ===================================================
+   滾動條美化
+   =================================================== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0804; }
+::-webkit-scrollbar-thumb { background: #5a4008; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #8b6914; }

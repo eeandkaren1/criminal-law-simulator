@@ -66,6 +66,16 @@ const SaveSystem = {
     return !!this.load().started;
   },
 
+  getCompletedCount() {
+    const data = this.load();
+    return Object.keys(data.completed || {}).length;
+  },
+
+  getStreak() {
+    // 簡化版：返回已完成關卡數作為連勝數
+    return this.getCompletedCount();
+  },
+
   reset() {
     localStorage.removeItem(SAVE_KEY);
   }

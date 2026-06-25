@@ -5,15 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>隱私權政策 - 刑法鎮 LawTown</title>
 <link rel="stylesheet" href="css/style.css" />
+<style>
+  body { overflow: auto; background: #120e04; }
+  .policy-page-wrapper {
+    max-width: 760px; margin: 0 auto; padding: 28px 20px 60px;
+    color: #f0e6d3; line-height: 1.8; font-size: 14px;
+  }
+  .policy-page-nav {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 14px;
+    border-bottom: 2px solid #3a2a04;
+  }
+  .policy-page-nav a {
+    color: #f5d87a; text-decoration: none; font-size: 14px;
+    background: #1e1408; border: 2px solid #5a4008;
+    padding: 6px 14px; border-radius: 4px;
+  }
+  .policy-page-nav a:hover { background: #2e1e08; }
+  .policy-page-wrapper h2 { color: #f5d87a; font-size: 22px; margin-bottom: 6px; }
+  .policy-page-wrapper h3 { color: #f5d87a; margin-top: 24px; margin-bottom: 8px; }
+  .policy-page-wrapper p, .policy-page-wrapper ul { margin-bottom: 12px; }
+  .policy-page-wrapper ul { padding-left: 20px; }
+  .policy-page-wrapper a { color: #f5d87a; }
+  .policy-page-footer {
+    margin-top: 40px; padding-top: 16px;
+    border-top: 2px solid #3a2a04;
+    text-align: center; color: #a08060; font-size: 12px;
+  }
+</style>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <h1>🏯 刑法鎮 <span>LawTown</span></h1>
-    <nav><a href="index.html">回首頁</a></nav>
-  </div>
-</header>
-
+<div class="policy-page-wrapper">
+  <nav class="policy-page-nav">
+    <a href="index.html">⬅ 返回刑法鎮</a>
+    <span style="color:#a08060;">隱私權政策</span>
+  </nav>
 <main class="policy">
   <h2>隱私權政策（Privacy Policy）</h2>
   <p>最後更新日期：<span id="updateDate"></span></p>
@@ -52,10 +78,10 @@
   <h3>七、聯絡方式</h3>
   <p>若您對本隱私權政策有任何疑問，歡迎透過網站經營者「宸鑫頤意企業社」之公開聯絡管道與我們聯繫。</p>
 </main>
-
-<footer class="site-footer">
-  <p>© <span id="year"></span> 宸鑫頤意企業社 版權所有 All Rights Reserved.</p>
-</footer>
+  <div class="policy-page-footer">
+    <p>© <span id="year"></span> 宸鑫頼意企業社 版權所有 All Rights Reserved.</p>
+  </div>
+</div>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
