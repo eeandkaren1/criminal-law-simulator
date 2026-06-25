@@ -848,6 +848,36 @@ body {
 /* ===================================================
    滾動條美化
    =================================================== */
+/* ===================================================
+   離開村莊確認對話框按鈕
+   =================================================== */
+.exit-confirm-btn {
+  width: 140px !important;
+  height: 52px !important;
+  font-size: 15px !important;
+  letter-spacing: 0.05em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+.exit-confirm-btn .menu-btn-content {
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  padding: 0 10px !important;
+  white-space: nowrap !important;
+}
+.exit-confirm-btn .menu-btn-icon {
+  font-size: 1.1em !important;
+  flex-shrink: 0 !important;
+}
+.exit-confirm-btn .menu-btn-text {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-size: 14px !important;
+  letter-spacing: 0.05em !important;
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0a0804; }
 ::-webkit-scrollbar-thumb { background: #5a4008; border-radius: 3px; }
