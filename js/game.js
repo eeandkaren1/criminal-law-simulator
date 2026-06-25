@@ -40,7 +40,19 @@ const PALETTE = {
 // ----------------------------------------------------------------
 class BootScene extends Phaser.Scene {
   constructor() { super("BootScene"); }
- 
+
+  preload() {
+    // 載入本地圖片素材（相對路徑）
+    this.load.image('img_bg_criminal',  'images/village_bg_criminal.png');
+    this.load.image('img_bg_procedure', 'images/village_bg_procedure.png');
+    this.load.image('img_temple',  'images/b_temple.png');
+    this.load.image('img_koban',   'images/b_koban.png');
+    this.load.image('img_court',   'images/b_court.png');
+    this.load.image('img_scale',   'images/b_scale.png');
+    this.load.image('img_player',  'images/player.png');
+    this.load.image('img_lamppost','images/lamppost.png');
+  }
+
   create() {
     this.makeGrass();
     this.makePath();
@@ -490,158 +502,160 @@ class VillageScene extends Phaser.Scene {
  
   create() {
     const cols = this.village.mapCols, rows = this.village.mapRows;
-    const mapW = cols * TILE, mapH = rows * TILE;
+    // 動態計算 TILE 大小，讓地圖填滿整個遊戲視窗
+    const camW = this.cameras.main.width;
+    const camH = this.cameras.main.height;
+    const tileW = Math.floor(camW / cols);
+    const tileH = Math.floor(camH / rows);
+    const dynTile = Math.min(tileW, tileH);
+    const mapW = cols * dynTile;
+    const mapH = rows * dynTile;
     const isCriminal = this.villageKey === "criminal";
- 
-    // ── 天空背景層（gradient覆蓋整個地圖） ──
-    const sky = this.add.graphics().setDepth(-10).setScrollFactor(0);
-    if (isCriminal) {
-      sky.fillGradientStyle(0xf9a825, 0xf9a825, 0xfff3e0, 0xfff3e0, 1);
-    } else {
-      sky.fillGradientStyle(0x1a3a5c, 0x1a3a5c, 0x90caf9, 0x90caf9, 1);
-    }
-    sky.fillRect(0, 0, this.cameras.main.width, this.cameras.main.height);
- 
-    // ── 遠山（ScrollFactor 0.2 產生視差感） ──
-    const mtnKey = isCriminal ? "mtn_warm" : "mtn_cool";
-    for (let i = 0; i < Math.ceil(mapW / 160) + 1; i++) {
-      this.add.image(i*140, mapH - TILE*3, mtnKey).setScale(1.4).setAlpha(0.55).setDepth(-8).setScrollFactor(0.25);
-    }
- 
-    // ── 雲朵（parallax） ──
-    this.clouds = [];
-    for (let i = 0; i < 5; i++) {
-      const cld = this.add.image(Phaser.Math.Between(50, mapW-50), Phaser.Math.Between(20, 80), "cloud")
-        .setAlpha(0.75).setDepth(-6).setScrollFactor(0.15 + i*0.05);
-      this.clouds.push({ img: cld, speed: 0.15 + i*0.05 });
-    }
- 
-    // ── 地面 ──
-    for (let x = 0; x < cols; x++) {
-      for (let y = 0; y < rows; y++) {
-        const midRow = Math.floor(rows/2), midCol = Math.floor(cols/2);
-        const isHRoad = (y === midRow);
-        const isVRoad = (x === midCol);
-        const isPlaza = (Math.abs(x - midCol) <= 1 && Math.abs(y - midRow) <= 1);
- 
-        let tex;
-        if (isPlaza) tex = "stonepath";
-        else if (isHRoad || isVRoad) tex = "path";
-        else tex = (((x+y) % 5 === 0) ? "grass2" : ((x+y)%3===0 ? "grass1" : "grass0"));
- 
-        this.add.image(x*TILE, y*TILE, tex).setOrigin(0).setDepth(0);
-      }
-    }
- 
-    // ── 邊界樹木 ──
-    for (let x = 0; x < cols; x++) {
-      this.add.image(x*TILE+TILE/2, TILE/2-6, "tree").setDepth(1).setScale(0.85);
-      this.add.image(x*TILE+TILE/2, mapH-TILE/2+6, "tree").setDepth(1).setScale(0.85);
-    }
-    for (let y = 2; y < rows-2; y++) {
-      const tex = (y%3 === 0) ? "flowerbush" : "bush";
-      this.add.image(TILE/2-4, y*TILE+TILE/2, tex).setDepth(1).setScale(0.7);
-      this.add.image(mapW-TILE/2+4, y*TILE+TILE/2, tex).setDepth(1).setScale(0.7);
-    }
- 
-    // ── 廣場裝飾（中央十字路口） ──
-    const cx = Math.floor(cols/2)*TILE + TILE/2;
-    const cy = Math.floor(rows/2)*TILE + TILE/2;
-    this.add.image(cx, cy, "b_scale").setScale(0.8).setDepth(2);
-    this.add.text(cx, cy+36, "法治廣場", { fontSize:"10px", color:"#e8c873", backgroundColor:"#00000066", padding:{x:3,y:1} }).setOrigin(0.5).setDepth(3);
- 
-    // ── 路燈（每隔幾格放一個） ──
-    for (let x = 2; x < cols-2; x+=4) {
-      this.add.image(x*TILE+TILE/2, (Math.floor(rows/2)-1)*TILE, "lamppost").setDepth(2);
-    }
- 
-    // ── 石碑 & 指示牌 ──
-    this.add.image(cx - TILE*3, cy + TILE*2, "stele").setDepth(2);
-    this.add.image(cx + TILE*3, cy + TILE*2, "stele").setDepth(2);
-    [cx-TILE*5, cx+TILE*5].forEach(sx => {
-      this.add.image(sx, cy, "signpost").setDepth(2);
-    });
- 
-    // ── 出口門 ──
-    const gateX = cx;
-    this.add.image(gateX, TILE*0.6, "gate").setDepth(2).setScale(1.1);
-    this.exitZone = { x: gateX, y: TILE, radius: 50 };
-    this.add.text(gateX, TILE*1.6, "⬆ 返回鎮口", {
-      fontSize: "11px", color: "#fff", backgroundColor: "#00000088", padding: { x: 4, y: 2 }
+    const bgKey = isCriminal ? 'img_bg_criminal' : 'img_bg_procedure';
+
+    // ── 地圖背景圖（填滿整個遊戲視窗） ──
+    this.add.image(0, 0, bgKey)
+      .setOrigin(0, 0)
+      .setDisplaySize(mapW, mapH)
+      .setDepth(-1);
+
+    // ── 中央廣場天秤雕像 ──
+    const cx = Math.floor(cols/2)*dynTile + dynTile/2;
+    const cy = Math.floor(rows/2)*dynTile + dynTile/2;
+    const scaleSize = Math.round(dynTile * 2.0);
+    this.add.image(cx, cy, 'img_scale')
+      .setOrigin(0.5, 0.8)
+      .setDisplaySize(scaleSize, Math.round(scaleSize * 1.25))
+      .setDepth(2);
+
+    // 廣場名稱標籤
+    this.add.text(cx, cy + Math.round(dynTile * 0.9), '法治廣場', {
+      fontSize: Math.max(10, Math.round(dynTile * 0.35)) + 'px', color: '#e8c873',
+      backgroundColor: '#00000077', padding: { x: 5, y: 2 }
     }).setOrigin(0.5).setDepth(3);
- 
-    // ── 村莊名稱 ──
-    const nameStyle = isCriminal
-      ? { fontSize: "16px", color: "#fff8e1", backgroundColor: "#b33f3f99", padding: { x: 10, y: 4 } }
-      : { fontSize: "16px", color: "#e3f2fd", backgroundColor: "#1a3a5c99", padding: { x: 10, y: 4 } };
-    this.add.text(mapW/2, 8, this.village.name, nameStyle).setOrigin(0.5, 0).setDepth(6);
- 
-    // ── 建築物 ──
+
+    // ── 路燈裝飾 ──
+    const lampPositions = [
+      { x: cx - dynTile*3, y: cy - dynTile },
+      { x: cx + dynTile*3, y: cy - dynTile },
+      { x: cx - dynTile*3, y: cy + dynTile*2 },
+      { x: cx + dynTile*3, y: cy + dynTile*2 },
+    ];
+    const lampW = Math.round(dynTile * 0.55);
+    const lampH = Math.round(dynTile * 1.4);
+    lampPositions.forEach(pos => {
+      this.add.image(pos.x, pos.y, 'img_lamppost')
+        .setOrigin(0.5, 1)
+        .setDisplaySize(lampW, lampH)
+        .setDepth(2);
+    });
+
+    // ── 出口區（鳥居/大門已在背景圖中，只需設定出口碰撞區） ──
+    const gateX = cx;
+    this.exitZone = { x: gateX, y: dynTile * 1.2, radius: Math.round(dynTile * 1.8) };
+
+    // 出口提示文字（懸浮在背景圖的大門上方）
+    this.add.text(gateX, dynTile * 2.0, '⬆ 返回鎮口', {
+      fontSize: Math.max(10, Math.round(dynTile * 0.35)) + 'px', color: '#fff',
+      backgroundColor: '#00000099', padding: { x: 5, y: 2 }
+    }).setOrigin(0.5).setDepth(3);
+
+    // ── 村莊名稱橫幅 ──
+    const nameFg = isCriminal ? '#fff8e1' : '#e3f2fd';
+    const bannerG = this.add.graphics().setDepth(5).setScrollFactor(0);
+    bannerG.fillStyle(isCriminal ? 0x8b2020 : 0x0d2a45, 0.9);
+    bannerG.fillRoundedRect(mapW/2 - 80, 4, 160, 28, 6);
+    bannerG.lineStyle(2, isCriminal ? 0xe8c873 : 0x90caf9, 0.9);
+    bannerG.strokeRoundedRect(mapW/2 - 80, 4, 160, 28, 6);
+    this.add.text(mapW/2, 18, this.village.name, {
+      fontSize: '16px', fontStyle: 'bold',
+      color: nameFg,
+      fontFamily: '"Noto Serif TC", serif'
+    }).setOrigin(0.5).setDepth(6);
+
+    // ── 建築物（使用精美圖片素材） ──
     this.buildingSprites = [];
     this.village.buildings.forEach(b => {
-      const px = b.x * TILE;
-      const py = b.y * TILE;
-      const tex = "b_" + b.building;
-      const img = this.add.image(px, py, tex).setDepth(2).setScale(1.05);
+      // 建築物中心座標（使用 dynTile 縮放）
+      const px = b.x * dynTile + dynTile/2;
+      const py = b.y * dynTile + dynTile/2;
+
+      // 依建築類型選擇圖片
+      const texMap = { temple: 'img_temple', koban: 'img_koban', court: 'img_court' };
+      const texKey = texMap[b.building] || 'img_court';
+
+      // 建築物尺寸依 dynTile 縮放
+      const bldgSize = Math.round(dynTile * (b.building === 'temple' ? 3.5 : 3.2));
+      const img = this.add.image(px, py + dynTile*0.3, texKey)
+        .setOrigin(0.5, 0.85)
+        .setDisplaySize(bldgSize, bldgSize)
+        .setDepth(2);
       img.buildingData = b;
       this.buildingSprites.push(img);
- 
-      // 陰影
-      const shadow = this.add.graphics().setDepth(1.5);
-      shadow.fillStyle(0x000000, 0.12); shadow.fillEllipse(px, py+img.displayHeight*0.42, img.displayWidth*0.6, 12);
- 
+
+      // 建築物底部陰影
+      const shadow = this.add.graphics().setDepth(1.8);
+      shadow.fillStyle(0x000000, 0.18);
+      shadow.fillEllipse(px, py + dynTile*0.5, bldgSize * 0.7, 10);
+
       // 名稱標籤
-      this.add.text(px, py+img.displayHeight/2-6, b.name, {
-        fontSize: "12px", color: "#000", backgroundColor: "#ffffffcc", padding: { x: 4, y: 1 }
+      const labelY = py + dynTile * 0.55 + bldgSize * 0.15;
+      const labelFontSize = Math.max(10, Math.round(dynTile * 0.38));
+      this.add.text(px, labelY, b.name, {
+        fontSize: labelFontSize + 'px', fontStyle: 'bold',
+        color: '#fff',
+        backgroundColor: '#00000099',
+        padding: { x: 5, y: 2 }
       }).setOrigin(0.5, 0).setDepth(3);
- 
-      // 進度標籤
+
+      // 進度標籤（橙色徽章，右上角）
       if (b.levels) {
         const total = LEVELS[b.levels].length;
         const doneCount = LEVELS[b.levels].filter(l => SaveSystem.isCompleted(l.id)).length;
-        const pctColor = doneCount === total ? "#2e7d32cc" : "#e65100cc";
-        this.add.text(px+img.displayWidth/2-4, py-img.displayHeight/2+4, `${doneCount}/${total}`, {
-          fontSize: "11px", color: "#fff", backgroundColor: pctColor, padding: { x: 4, y: 1 }
-        }).setOrigin(1, 0).setDepth(3);
+        const badgeColor = doneCount === total ? 0x2e7d32 : 0xe65100;
+        const badgeX = px + bldgSize * 0.38;
+        const badgeY = py - dynTile * 0.3 - bldgSize * 0.38;
+        const badgeG = this.add.graphics().setDepth(3.5);
+        badgeG.fillStyle(badgeColor, 0.95);
+        badgeG.fillRoundedRect(badgeX - 22, badgeY - 10, 44, 20, 5);
+        this.add.text(badgeX, badgeY, `${doneCount}/${total}`, {
+          fontSize: '12px', fontStyle: 'bold', color: '#fff'
+        }).setOrigin(0.5).setDepth(4);
       }
     });
- 
-    // ── 玩家 ──
+
+    // ── 玩家（使用精美圖片） ──
     const saved = SaveSystem.getPosition(this.villageKey);
-    // 初始位置往下移，避免一進入就觸發鎮口對話框
     const startX = saved ? saved.x : gateX;
-    const startY = saved ? saved.y : TILE*4.5;
-    this.player = this.physics.add.sprite(startX, startY, "player").setDepth(4);
-    this.player.body.setSize(20, 14).setOffset(6, 18);
+    const startY = saved ? saved.y : dynTile * 4.5;
+    const playerW = Math.round(dynTile * 1.1);
+    const playerH = Math.round(dynTile * 1.4);
+    this.player = this.physics.add.image(startX, startY, 'img_player')
+      .setDepth(4)
+      .setDisplaySize(playerW, playerH);
+    this.player.body.setSize(Math.round(playerW * 0.65), Math.round(playerH * 0.45))
+      .setOffset(Math.round(playerW * 0.17), Math.round(playerH * 0.5));
     this.player.setCollideWorldBounds(true);
     this.physics.world.setBounds(0, 0, mapW, mapH);
- 
+
     this.cameras.main.setBounds(0, 0, mapW, mapH);
     this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
- 
+
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.wasd = this.input.keyboard.addKeys("W,A,S,D,E");
- 
-    this.promptText = this.add.text(0, 0, "", {
-      fontSize: "13px", color: "#fff", backgroundColor: "#000000cc", padding: { x: 6, y: 4 }
+    this.wasd = this.input.keyboard.addKeys('W,A,S,D,E');
+
+    this.promptText = this.add.text(0, 0, '', {
+      fontSize: '13px', color: '#fff',
+      backgroundColor: '#000000cc', padding: { x: 6, y: 4 }
     }).setDepth(10).setVisible(false);
- 
+
     this.nearbyBuilding = null;
     this.nearExit = false;
     this.autoTriggeredId = null;
- 
+
     this.createTouchControls();
     this.createTownSwitchButton();
- 
-    // ── 飛鳥 ──
-    this.birds = [];
-    for (let i = 0; i < 3; i++) {
-      const brd = this.add.image(-30, Phaser.Math.Between(30,80), "bird").setDepth(-5).setScrollFactor(0.05);
-      this.tweens.add({ targets: brd, x: this.cameras.main.width+60, duration: 8000+i*2000, repeat: -1, delay: i*3000, ease: "Linear" });
-      this.birds.push(brd);
-    }
- 
-    this._cloudTime = 0;
+
     this._saveTimer = 0;
     this._exitDialogShown = false;
   }
@@ -817,11 +831,20 @@ function initGame() {
   const containerW = gameContainer ? gameContainer.parentElement.offsetWidth : window.innerWidth;
   const containerH = window.innerHeight - 50;
 
+  // 地圖比例 20:13 (640:416)
+  const MAP_RATIO = 20 / 13;
+  let gameW = Math.min(containerW - 4, 900);
+  let gameH = Math.round(gameW / MAP_RATIO);
+  if (gameH > containerH) {
+    gameH = containerH;
+    gameW = Math.round(gameH * MAP_RATIO);
+  }
+
   const cfg = {
     type: Phaser.AUTO,
     parent: "game-container",
-    width: Math.min(containerW - 4, 900),
-    height: Math.min(containerH, 520),
+    width: gameW,
+    height: gameH,
     pixelArt: true,
     backgroundColor: "#8bc16a",
     physics: { default: "arcade", arcade: { debug: false } },
