@@ -5,26 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>刑法鎮 LawTown - 用闖關學刑法與刑事訴訟法</title>
 <meta name="description" content="刑法鎮：以台灣風格像素遊戲，透過故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。" />
- 
+
 <!-- ====== Google AdSense（請填入你自己的發布商ID） ====== -->
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
- 
+
 <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
- 
+
 <header class="site-header">
   <div class="header-inner">
     <h1>🏯 刑法鎮 <span>LawTown</span></h1>
     <nav>
       <button onclick="document.getElementById('hero').scrollIntoView()">首頁</button>
-      <button onclick="document.getElementById('game-section').scrollIntoView()">開始遊戲</button>
       <a href="privacy.html">隱私權政策</a>
     </nav>
   </div>
 </header>
- 
+
 <!-- ====== 首頁台灣風格插畫區 ====== -->
 <section id="hero" class="hero">
   <div class="hero-bg">
@@ -43,7 +42,7 @@
     <button class="cta-btn" onclick="document.getElementById('game-section').scrollIntoView({behavior:'smooth'})">🎮 立即進入小鎮</button>
   </div>
 </section>
- 
+
 <!-- ====== AdSense 廣告版位 ====== -->
 <section class="ad-slot">
   <div class="ad-placeholder">
@@ -52,7 +51,7 @@
     廣告版位（不影響遊戲畫面）
   </div>
 </section>
- 
+
 <!-- ====== 遊戲區 ====== -->
 <section id="game-section" class="game-section">
   <div class="game-toolbar">
@@ -61,7 +60,7 @@
   </div>
   <div id="game-wrapper" style="position:relative;">
     <div id="game-container"></div>
- 
+
     <!-- ====== 鎮口標題覆蓋層：輸入名字＋選擇村莊 ====== -->
     <div id="title-overlay" class="title-overlay hidden">
       <div class="title-dialog">
@@ -80,24 +79,24 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ====== AdSense 廣告版位（遊戲下方） ====== -->
 <section class="ad-slot">
   <div class="ad-placeholder">
     廣告版位（不影響遊戲畫面）
   </div>
 </section>
- 
+
 <section class="about">
   <h3>關於這個專案</h3>
   <p>本遊戲內容以教育為目的，將刑法與刑事訴訟法之條文精神改編為故事情境，幫助初學者建立基礎概念，<b>不能取代正式法律諮詢</b>。條文內容請以「全國法規資料庫」(law.moj.gov.tw) 公告之最新版本為準。</p>
 </section>
- 
+
 <footer class="site-footer">
   <p>本網站使用 Cookie 及第三方廣告服務（Google AdSense）以提供廣告與分析服務，詳見 <a href="privacy.html">隱私權政策</a>。</p>
   <p>© <span id="year"></span> 宸鑫頤意企業社 版權所有 All Rights Reserved.</p>
 </footer>
- 
+
 <!-- ====== 關卡選單彈窗 ====== -->
 <div id="level-menu" class="overlay hidden">
   <div class="modal">
@@ -108,7 +107,7 @@
     <div id="level-list" class="level-list"></div>
   </div>
 </div>
- 
+
 <!-- ====== 答題彈窗 ====== -->
 <div id="quiz-modal" class="overlay hidden">
   <div class="modal quiz-modal">
@@ -124,7 +123,7 @@
     <button class="cta-btn" onclick="closeQuiz()">返回小鎮</button>
   </div>
 </div>
- 
+
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 <script src="data/levels.js"></script>
 <script src="js/save.js"></script>
