@@ -69,19 +69,31 @@
     <div class="char-sprite char-sprite--right">👨‍💼</div>
   </div>
 
-  <!-- 主選單按鈕 -->
+  <!-- 主選單按鈕（木質招牌風格） -->
   <div class="main-menu" id="main-menu">
     <button class="menu-btn menu-btn--start" id="btn-start" onclick="showNameInput()">
-      <span class="menu-btn-icon">⚔</span>
-      <span class="menu-btn-text">開始冒險</span>
+      <div class="menu-btn-board"></div>
+      <span class="menu-btn-nail-left"></span>
+      <div class="menu-btn-content">
+        <span class="menu-btn-icon">⚔</span>
+        <span class="menu-btn-text">開始冒險</span>
+      </div>
     </button>
     <button class="menu-btn menu-btn--library" onclick="document.getElementById('library-modal').classList.remove('hidden')">
-      <span class="menu-btn-icon">📖</span>
-      <span class="menu-btn-text">法學圖鑑</span>
+      <div class="menu-btn-board"></div>
+      <span class="menu-btn-nail-left"></span>
+      <div class="menu-btn-content">
+        <span class="menu-btn-icon">📖</span>
+        <span class="menu-btn-text">法學圖鑑</span>
+      </div>
     </button>
     <button class="menu-btn menu-btn--achievement" onclick="document.getElementById('achievement-modal').classList.remove('hidden')">
-      <span class="menu-btn-icon">🏆</span>
-      <span class="menu-btn-text">成就系統</span>
+      <div class="menu-btn-board"></div>
+      <span class="menu-btn-nail-left"></span>
+      <div class="menu-btn-content">
+        <span class="menu-btn-icon">🏆</span>
+        <span class="menu-btn-text">成就系統</span>
+      </div>
     </button>
   </div>
 
