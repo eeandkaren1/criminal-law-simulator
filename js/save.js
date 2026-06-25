@@ -51,6 +51,14 @@ const SaveSystem = {
     return data.lastPos[villageKey] || null;
   },
 
+  clearPosition(villageKey) {
+    const data = this.load();
+    if (data.lastPos && data.lastPos[villageKey]) {
+      delete data.lastPos[villageKey];
+      this.save(data);
+    }
+  },
+
   setName(name) {
     const data = this.load();
     data.name = name;

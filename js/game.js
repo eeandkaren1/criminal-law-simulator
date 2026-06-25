@@ -608,8 +608,9 @@ class VillageScene extends Phaser.Scene {
  
     // ── 玩家 ──
     const saved = SaveSystem.getPosition(this.villageKey);
+    // 初始位置往下移，避免一進入就觸發鎮口對話框
     const startX = saved ? saved.x : gateX;
-    const startY = saved ? saved.y : TILE*2.5;
+    const startY = saved ? saved.y : TILE*4.5;
     this.player = this.physics.add.sprite(startX, startY, "player").setDepth(4);
     this.player.body.setSize(20, 14).setOffset(6, 18);
     this.player.setCollideWorldBounds(true);
@@ -642,6 +643,7 @@ class VillageScene extends Phaser.Scene {
  
     this._cloudTime = 0;
     this._saveTimer = 0;
+    this._exitDialogShown = false;
   }
  
   createTownSwitchButton() {
@@ -685,13 +687,7 @@ class VillageScene extends Phaser.Scene {
     };
     drawKnob(0, 0);
  
-    // 互動按鈕移到左下角
-    const interact = this.add.text(16, camH - 52, "互動\nE", {
-      fontSize: "14px", color: "#fff", backgroundColor: "#2e7d32cc",
-      padding: { x: 14, y: 8 }, align: "center"
-    }).setScrollFactor(0).setDepth(20).setInteractive().setAlpha(0.85);
-    interact.on("pointerdown", () => this.tryInteract());
- 
+    
     // 觸控偵測區：整個右半畫面下半（含搖桿位置的大範圍，方便拇指任意觸碰）
     const zoneX = camW / 2, zoneY = camH * 0.45;
     const zone = this.add.zone(zoneX, zoneY, camW / 2, camH - zoneY)
@@ -775,11 +771,18 @@ class VillageScene extends Phaser.Scene {
       }
     } else if (this.nearExit) {
       this.nearbyBuilding = null;
-      this.promptText.setText("按 E 或點「互動」返回鎮口")
-        .setPosition(this.player.x-80, this.player.y-70).setVisible(true);
+      this.promptText.setText("已到達鎮口")
+        .setPosition(this.player.x-60, this.player.y-70).setVisible(true);
+      // 自動觸發返回鎮口確認對話框
+      if (!this._exitDialogShown) {
+        this._exitDialogShown = true;
+        this.showExitConfirm();
+      }
     } else {
       this.nearbyBuilding = null;
       this.promptText.setVisible(false);
+      // 離開出口區後重設對話框狀態，下次進入可再次觸發
+      this._exitDialogShown = false;
     }
     if (!closest) this.autoTriggeredId = null;
     if (Phaser.Input.Keyboard.JustDown(this.wasd.E)) this.tryInteract();
@@ -792,7 +795,15 @@ class VillageScene extends Phaser.Scene {
  
   tryInteract() {
     if (this.nearbyBuilding && this.nearbyBuilding.levels) openLevelMenu(this.nearbyBuilding);
-    else if (this.nearExit) goToTitle();
+    else if (this.nearExit) this.showExitConfirm();
+  }
+
+  showExitConfirm() {
+    // 暫停遊戲場景
+    pauseVillageScene();
+    // 顯示自訂的像素風格確認對話框
+    const modal = document.getElementById('exit-confirm-modal');
+    if (modal) modal.classList.remove('hidden');
   }
 }
  
@@ -839,12 +850,25 @@ function hideTitleOverlay() {
 
 function enterVillage(villageKey) {
   const key = villageKey || _pendingVillageKey || "criminal";
-  // 支援兩種輸入框（首頁 Modal 和遊戲內 overlay）
+  // 支援兩種輸入框（首頁 Modal 和進入內 overlay）
   const nameInput1 = document.getElementById("player-name-input");
   const nameInput2 = document.getElementById("player-name-input-2");
   const nameInput = nameInput1 || nameInput2;
   const name = (nameInput ? nameInput.value : "").trim() || "無名旅人";
   SaveSystem.setName(name);
+  // 清除上次儲存的位置，避免一進入就觸發鎮口對話框
+  if (typeof SaveSystem.clearPosition === 'function') {
+    SaveSystem.clearPosition(key);
+  } else {
+    // 直接操作 localStorage（備用）
+    try {
+      const raw = localStorage.getItem('lawtown_save_v1');
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data.lastPos) { delete data.lastPos[key]; localStorage.setItem('lawtown_save_v1', JSON.stringify(data)); }
+      }
+    } catch(e) {}
+  }
   hideTitleOverlay();
 
   // 切換到遊戲畫面

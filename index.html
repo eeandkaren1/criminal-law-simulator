@@ -151,7 +151,7 @@
   </div>
   <!-- 遊戲操作工具列 -->
   <div class="game-toolbar-overlay">
-    <p>操作說明：方向鍵 / WASD 移動。<b>走到建築物前面會自動觸發故事與題目</b>；按 <b>E</b> 或點「互動」鍵返回鎮口。</p>
+    <p>操作說明：方向鍵 / WASD 移動。<b>走到建築物前面會自動觸發故事與題目</b>；走到頂部出口可返回鎮口。</p>
     <button class="pixel-reset-btn" onclick="resetSave()">🗑 重設進度</button>
   </div>
 </div>
@@ -212,7 +212,37 @@
   </div>
 </div>
 
-<!-- ====== 關卡選單彈窗 ====== -->
+<!-- ====== 返回鎮口確認對話框 ====== -->
+<div id="exit-confirm-modal" class="overlay hidden">
+  <div class="pixel-modal" style="max-width:360px; text-align:center;">
+    <div class="pixel-modal-head" style="justify-content:center; border-bottom:none; margin-bottom:8px;">
+      <h3>🏐 離開村莊</h3>
+    </div>
+    <p style="color:#d4b896; font-size:14px; margin-bottom:20px; line-height:1.8;">您已到達鎮口。<br/>要返回首頁選擇村莊嗎？</p>
+    <div style="display:flex; gap:12px; justify-content:center;">
+      <button class="menu-btn menu-btn--library" style="width:130px; height:48px; font-size:15px;"
+        onclick="document.getElementById('exit-confirm-modal').classList.add('hidden'); resumeVillageScene();">
+        <div class="menu-btn-board"></div>
+        <span class="menu-btn-nail-left"></span>
+        <div class="menu-btn-content">
+          <span class="menu-btn-icon">🏕</span>
+          <span class="menu-btn-text">留在此處</span>
+        </div>
+      </button>
+      <button class="menu-btn menu-btn--start" style="width:130px; height:48px; font-size:15px;"
+        onclick="document.getElementById('exit-confirm-modal').classList.add('hidden'); goToTitle();">
+        <div class="menu-btn-board"></div>
+        <span class="menu-btn-nail-left"></span>
+        <div class="menu-btn-content">
+          <span class="menu-btn-icon">🏠</span>
+          <span class="menu-btn-text">返回鎮口</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 關卡選單彊窗 ====== -->
 <div id="level-menu" class="overlay hidden">
   <div class="pixel-modal">
     <div class="pixel-modal-head">
