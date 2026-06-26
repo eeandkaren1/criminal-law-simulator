@@ -40,7 +40,7 @@ const PALETTE = {
 // ----------------------------------------------------------------
 class BootScene extends Phaser.Scene {
   constructor() { super("BootScene"); }
-
+ 
   preload() {
     // 載入本地圖片素材（相對路徑）
     this.load.image('img_bg_criminal',  'images/village_bg_criminal.png');
@@ -52,7 +52,7 @@ class BootScene extends Phaser.Scene {
     this.load.image('img_player',  'images/player.png');
     this.load.image('img_lamppost','images/lamppost.png');
   }
-
+ 
   create() {
     this.makeGrass();
     this.makePath();
@@ -512,13 +512,13 @@ class VillageScene extends Phaser.Scene {
     const mapH = rows * dynTile;
     const isCriminal = this.villageKey === "criminal";
     const bgKey = isCriminal ? 'img_bg_criminal' : 'img_bg_procedure';
-
+ 
     // ── 地圖背景圖（填滿整個遊戲視窗） ──
     this.add.image(0, 0, bgKey)
       .setOrigin(0, 0)
       .setDisplaySize(mapW, mapH)
       .setDepth(-1);
-
+ 
     // ── 中央廣場天秤雕像 ──
     const cx = Math.floor(cols/2)*dynTile + dynTile/2;
     const cy = Math.floor(rows/2)*dynTile + dynTile/2;
@@ -527,13 +527,13 @@ class VillageScene extends Phaser.Scene {
       .setOrigin(0.5, 0.8)
       .setDisplaySize(scaleSize, Math.round(scaleSize * 1.25))
       .setDepth(2);
-
+ 
     // 廣場名稱標籤
     this.add.text(cx, cy + Math.round(dynTile * 0.9), '法治廣場', {
       fontSize: Math.max(10, Math.round(dynTile * 0.35)) + 'px', color: '#e8c873',
       backgroundColor: '#00000077', padding: { x: 5, y: 2 }
     }).setOrigin(0.5).setDepth(3);
-
+ 
     // ── 路燈裝飾 ──
     const lampPositions = [
       { x: cx - dynTile*3, y: cy - dynTile },
@@ -549,17 +549,17 @@ class VillageScene extends Phaser.Scene {
         .setDisplaySize(lampW, lampH)
         .setDepth(2);
     });
-
+ 
     // ── 出口區（鳥居/大門已在背景圖中，只需設定出口碰撞區） ──
     const gateX = cx;
     this.exitZone = { x: gateX, y: dynTile * 1.2, radius: Math.round(dynTile * 1.8) };
-
+ 
     // 出口提示文字（懸浮在背景圖的大門上方）
     this.add.text(gateX, dynTile * 2.0, '⬆ 返回鎮口', {
       fontSize: Math.max(10, Math.round(dynTile * 0.35)) + 'px', color: '#fff',
       backgroundColor: '#00000099', padding: { x: 5, y: 2 }
     }).setOrigin(0.5).setDepth(3);
-
+ 
     // ── 村莊名稱橫幅 ──
     const nameFg = isCriminal ? '#fff8e1' : '#e3f2fd';
     const bannerG = this.add.graphics().setDepth(5).setScrollFactor(0);
@@ -572,18 +572,18 @@ class VillageScene extends Phaser.Scene {
       color: nameFg,
       fontFamily: '"Noto Serif TC", serif'
     }).setOrigin(0.5).setDepth(6);
-
+ 
     // ── 建築物（使用精美圖片素材） ──
     this.buildingSprites = [];
     this.village.buildings.forEach(b => {
       // 建築物中心座標（使用 dynTile 縮放）
       const px = b.x * dynTile + dynTile/2;
       const py = b.y * dynTile + dynTile/2;
-
+ 
       // 依建築類型選擇圖片
       const texMap = { temple: 'img_temple', koban: 'img_koban', court: 'img_court' };
       const texKey = texMap[b.building] || 'img_court';
-
+ 
       // 建築物尺寸依 dynTile 縮放
       const bldgSize = Math.round(dynTile * (b.building === 'temple' ? 3.5 : 3.2));
       const img = this.add.image(px, py + dynTile*0.3, texKey)
@@ -592,12 +592,12 @@ class VillageScene extends Phaser.Scene {
         .setDepth(2);
       img.buildingData = b;
       this.buildingSprites.push(img);
-
+ 
       // 建築物底部陰影
       const shadow = this.add.graphics().setDepth(1.8);
       shadow.fillStyle(0x000000, 0.18);
       shadow.fillEllipse(px, py + dynTile*0.5, bldgSize * 0.7, 10);
-
+ 
       // 名稱標籤
       const labelY = py + dynTile * 0.55 + bldgSize * 0.15;
       const labelFontSize = Math.max(10, Math.round(dynTile * 0.38));
@@ -607,7 +607,7 @@ class VillageScene extends Phaser.Scene {
         backgroundColor: '#00000099',
         padding: { x: 5, y: 2 }
       }).setOrigin(0.5, 0).setDepth(3);
-
+ 
       // 進度標籤（橙色徽章，右上角）
       if (b.levels) {
         const total = LEVELS[b.levels].length;
@@ -623,7 +623,7 @@ class VillageScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(4);
       }
     });
-
+ 
     // ── 玩家（使用精美圖片） ──
     const saved = SaveSystem.getPosition(this.villageKey);
     const startX = saved ? saved.x : gateX;
@@ -637,25 +637,25 @@ class VillageScene extends Phaser.Scene {
       .setOffset(Math.round(playerW * 0.17), Math.round(playerH * 0.5));
     this.player.setCollideWorldBounds(true);
     this.physics.world.setBounds(0, 0, mapW, mapH);
-
+ 
     this.cameras.main.setBounds(0, 0, mapW, mapH);
     this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
-
+ 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys('W,A,S,D,E');
-
+ 
     this.promptText = this.add.text(0, 0, '', {
       fontSize: '13px', color: '#fff',
       backgroundColor: '#000000cc', padding: { x: 6, y: 4 }
     }).setDepth(10).setVisible(false);
-
+ 
     this.nearbyBuilding = null;
     this.nearExit = false;
     this.autoTriggeredId = null;
-
+ 
     this.createTouchControls();
     this.createTownSwitchButton();
-
+ 
     this._saveTimer = 0;
     this._exitDialogShown = false;
   }
@@ -674,17 +674,17 @@ class VillageScene extends Phaser.Scene {
     const camH = this.cameras.main.height;
     this.touchState = { up: false, down: false, left: false, right: false };
  
-    // ── 虛擬搖桿：固定在地圖右下角，不遮擋地圖內容 ──
-    // 搖桿中心固定在畫面右下，使用 HTML overlay 而非 Phaser Graphics
-    const joyRadius = 60;
-    const joyBaseX = camW - joyRadius - 20;
-    const joyBaseY = camH - joyRadius - 20;
+    // ── 虛擬搖桿：固定在地圖右下角，平時半透明隱藏、觸控時才淡入，不會擋住畫面 ──
+    const joyRadius = 56;
+    const joyMargin = 26;
+    const joyBaseX = camW - joyRadius - joyMargin;
+    const joyBaseY = camH - joyRadius - joyMargin;
  
     // 底盤（半透明大圓）
-    const joyBg = this.add.graphics().setScrollFactor(0).setDepth(20);
+    const joyBg = this.add.graphics().setScrollFactor(0).setDepth(20).setAlpha(0);
     const drawBg = () => {
       joyBg.clear();
-      joyBg.fillStyle(0x000000, 0.35); joyBg.fillCircle(joyBaseX, joyBaseY, joyRadius);
+      joyBg.fillStyle(0x000000, 0.32); joyBg.fillCircle(joyBaseX, joyBaseY, joyRadius);
       joyBg.lineStyle(3, 0xffffff, 0.5); joyBg.strokeCircle(joyBaseX, joyBaseY, joyRadius);
       // 方向刻度提示
       joyBg.lineStyle(1.5, 0xffffff, 0.25);
@@ -694,33 +694,33 @@ class VillageScene extends Phaser.Scene {
     drawBg();
  
     // 搖桿頭
-    const joyKnob = this.add.graphics().setScrollFactor(0).setDepth(21);
+    const joyKnob = this.add.graphics().setScrollFactor(0).setDepth(21).setAlpha(0);
     const drawKnob = (ox, oy) => {
       joyKnob.clear();
-      joyKnob.fillStyle(0xffffff, 0.85); joyKnob.fillCircle(joyBaseX + ox, joyBaseY + oy, 26);
-      joyKnob.fillStyle(0xcccccc, 0.4);  joyKnob.fillCircle(joyBaseX + ox - 6, joyBaseY + oy - 6, 10);
+      joyKnob.fillStyle(0xffffff, 0.85); joyKnob.fillCircle(joyBaseX + ox, joyBaseY + oy, 24);
+      joyKnob.fillStyle(0xcccccc, 0.4);  joyKnob.fillCircle(joyBaseX + ox - 6, joyBaseY + oy - 6, 9);
     };
     drawKnob(0, 0);
  
-    
+    const showJoy = () => { joyBg.setAlpha(1); joyKnob.setAlpha(1); };
+    const hideJoy = () => { joyBg.setAlpha(0); joyKnob.setAlpha(0); };
+ 
     // 觸控偵測區：整個右半畫面下半（含搖桿位置的大範圍，方便拇指任意觸碰）
     const zoneX = camW / 2, zoneY = camH * 0.45;
     const zone = this.add.zone(zoneX, zoneY, camW / 2, camH - zoneY)
       .setOrigin(0).setScrollFactor(0).setDepth(19).setInteractive();
  
-    // 動態搖桿：按下時以觸點為新圓心（不需要精準點到圓盤）
-    let activeX = joyBaseX, activeY = joyBaseY;
+    // 搖桿中心固定不動，只移動搖桿頭（不再跟著觸點重新定位中心）
+    const activeX = joyBaseX, activeY = joyBaseY;
  
     const resetJoy = () => {
       this.touchState = { up: false, down: false, left: false, right: false };
-      // 放開後搖桿頭回到固定中心點
-      activeX = joyBaseX; activeY = joyBaseY;
-      joyBg.clear(); drawBg();
       drawKnob(0, 0);
+      hideJoy();
     };
  
     zone.on("pointerdown", (ptr) => {
-      // 固定搖桿中心不移動，只移動搖桿頭
+      showJoy();
       this._updateJoy(ptr.x, ptr.y, activeX, activeY, joyRadius, drawKnob);
     });
  
@@ -803,7 +803,7 @@ class VillageScene extends Phaser.Scene {
     if (this.nearbyBuilding && this.nearbyBuilding.levels) openLevelMenu(this.nearbyBuilding);
     else if (this.nearExit) this.showExitConfirm();
   }
-
+ 
   showExitConfirm() {
     // 暫停遊戲場景
     pauseVillageScene();
@@ -816,16 +816,21 @@ class VillageScene extends Phaser.Scene {
 // 遊戲在進入村莊時才初始化，避免首頁載入時就啟動 Phaser
 let game;
 let _pendingVillageKey = "criminal";
-
-function initGame() {
-  if (game) return;
-  const isMobile = window.innerWidth <= 768;
+ 
+function isMobileDevice() {
+  // 以「觸控能力」判斷是否為手機/平板，而非單純比較螢幕寬度，
+  // 這樣橫向/直向旋轉時都能正確套用手機版全螢幕佈局
+  return ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+}
+ 
+function computeGameSize() {
+  const isMobile = isMobileDevice();
   const gameContainer = document.getElementById('game-container');
   const containerW = gameContainer ? gameContainer.parentElement.offsetWidth : window.innerWidth;
-
-  // 手機版：填滿全螢幕；桌機版：保留底部工具列 50px
+ 
+  // 手機版：填滿全螢幕（不論橫向或直向）；桌機版：保留底部工具列 50px
   const containerH = isMobile ? window.innerHeight : window.innerHeight - 50;
-
+ 
   let gameW, gameH;
   if (isMobile) {
     // 手機版：填滿整個螢幕
@@ -841,7 +846,13 @@ function initGame() {
       gameW = Math.round(gameH * MAP_RATIO);
     }
   }
-
+  return { gameW, gameH };
+}
+ 
+function initGame() {
+  if (game) return;
+  const { gameW, gameH } = computeGameSize();
+ 
   const cfg = {
     type: Phaser.AUTO,
     parent: "game-container",
@@ -854,7 +865,35 @@ function initGame() {
   };
   game = new Phaser.Game(cfg);
 }
-
+ 
+// ----------------------------------------------------------------
+// 螢幕旋轉 / 尺寸變化：重新計算遊戲畫面大小並重排當前場景
+// ----------------------------------------------------------------
+let _resizeTimer = null;
+function handleViewportResize() {
+  if (!game) return;
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => {
+    const gameScreen = document.getElementById('game-screen');
+    if (!gameScreen || gameScreen.classList.contains('hidden')) return; // 還在首頁，不需處理
+    const { gameW, gameH } = computeGameSize();
+    game.scale.resize(gameW, gameH);
+    // 重新啟動目前場景，讓地圖、搖桿、UI 依新尺寸重新排版
+    if (game.scene.isActive('VillageScene')) {
+      const vs = game.scene.getScene('VillageScene');
+      const vk = vs && vs.villageKey;
+      game.scene.stop('VillageScene');
+      game.scene.start('VillageScene', { villageKey: vk || _pendingVillageKey || 'criminal' });
+    } else if (game.scene.isActive('TitleScene')) {
+      game.scene.stop('TitleScene');
+      game.scene.start('TitleScene');
+    }
+  }, 200);
+}
+ 
+window.addEventListener('resize', handleViewportResize);
+window.addEventListener('orientationchange', handleViewportResize);
+ 
 window.addEventListener("load", () => {
   // 首頁不自動啟動 Phaser，等使用者點擊進入
 });
@@ -865,14 +904,14 @@ window.addEventListener("load", () => {
 function showTitleOverlay() {
   // 新版：不再使用這個函數，由首頁的 showNameInput() 處理
 }
-
+ 
 function hideTitleOverlay() {
   const overlay = document.getElementById("title-overlay");
   if (overlay) overlay.classList.add("hidden");
   const nameModal = document.getElementById("name-input-modal");
   if (nameModal) nameModal.classList.add("hidden");
 }
-
+ 
 function enterVillage(villageKey) {
   const key = villageKey || _pendingVillageKey || "criminal";
   // 支援兩種輸入框（首頁 Modal 和進入內 overlay）
@@ -895,13 +934,13 @@ function enterVillage(villageKey) {
     } catch(e) {}
   }
   hideTitleOverlay();
-
+ 
   // 切換到遊戲畫面
   const mainScreen = document.getElementById('main-screen');
   const gameScreen = document.getElementById('game-screen');
   if (mainScreen) mainScreen.classList.add('hidden');
   if (gameScreen) gameScreen.classList.remove('hidden');
-
+ 
   // 初始化或重啟 Phaser
   if (!game) {
     // 儲存目標村莊，等 BootScene 完成後由 TitleScene 轉到 VillageScene
@@ -923,7 +962,7 @@ function enterVillage(villageKey) {
     game.scene.start("VillageScene", { villageKey: key });
   }
 }
-
+ 
 function goToTitle() {
   // 返回首頁主畫面
   const mainScreen = document.getElementById('main-screen');
@@ -944,6 +983,7 @@ function resumeVillageScene() {
  
 function openLevelMenu(building) {
   const levels = LEVELS[building.levels];
+  currentLevelList = levels;
   const menu = document.getElementById("level-menu");
   const list = document.getElementById("level-list");
   document.getElementById("level-menu-title").textContent = building.name;
@@ -966,6 +1006,7 @@ function closeLevelMenu() {
 }
  
 let currentLevel = null;
+let currentLevelList = null;
  
 function openQuiz(level) {
   currentLevel = level;
@@ -977,6 +1018,8 @@ function openQuiz(level) {
   document.getElementById("quiz-question").textContent = level.question;
   document.getElementById("quiz-result").classList.add("hidden");
   document.getElementById("quiz-result").textContent = "";
+  const nextBtn = document.getElementById("quiz-next-btn");
+  if (nextBtn) nextBtn.style.display = "none";
   const optWrap = document.getElementById("quiz-options");
   optWrap.innerHTML = "";
   level.options.forEach((opt, idx) => {
@@ -997,6 +1040,21 @@ function answerQuiz(idx) {
   resultEl.textContent = (correct ? "✅ 答對了！" : "❌ 答錯了，沒關係，看看解說：") + "\n" + currentLevel.explain;
   document.querySelectorAll(".quiz-option").forEach(b => b.disabled = true);
   if (correct) SaveSystem.markCompleted(currentLevel.id);
+ 
+  // 顯示「下一題」按鈕（若清單中還有下一關）
+  const nextBtn = document.getElementById("quiz-next-btn");
+  if (nextBtn && currentLevelList) {
+    const idxInList = currentLevelList.indexOf(currentLevel);
+    const hasNext = idxInList >= 0 && idxInList < currentLevelList.length - 1;
+    nextBtn.style.display = hasNext ? "flex" : "none";
+  }
+}
+ 
+function nextQuiz() {
+  if (!currentLevelList || !currentLevel) return;
+  const idxInList = currentLevelList.indexOf(currentLevel);
+  const next = currentLevelList[idxInList + 1];
+  if (next) openQuiz(next);
 }
  
 function closeQuiz() {
