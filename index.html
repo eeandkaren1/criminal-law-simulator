@@ -13,31 +13,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>刑法鎮 LawTown - 用闖關學刑法與刑事訴訟法</title>
 <meta name="description" content="刑法鎮：以台灣風格像素遊戲，透過故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。" />
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
+ 
 <!-- ====== 遊戲主畫面（全螢幕像素風格） ====== -->
 <div id="main-screen" class="main-screen">
-
+ 
   <!-- 頂部版本號 -->
   <div class="corner-badge corner-badge--left">
     <span class="corner-icon">📖</span>
     <span>版本 1.0.0</span>
   </div>
-
+ 
   <!-- 頂部設定按鈕 -->
   <button class="corner-badge corner-badge--right" onclick="document.getElementById('settings-modal').classList.remove('hidden')">
     <span class="corner-icon">⚙</span>
     <span>設定</span>
   </button>
-
+ 
   <!-- 背景圖 -->
   <div class="title-bg" id="title-bg-container">
     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663221733224/CJKNDeYAUfdBQzZg.png"
@@ -45,7 +45,7 @@
     <!-- 漸層遮罩，讓按鈕區域更清晰 -->
     <div class="title-bg-overlay"></div>
   </div>
-
+ 
   <!-- 主標題區 -->
   <div class="title-area">
     <div class="title-emblem">⚖</div>
@@ -54,7 +54,7 @@
       <span>學法・懂法・守法・用法</span>
     </div>
   </div>
-
+ 
   <!-- 雙村標籤 -->
   <div class="village-labels">
     <div class="village-label village-label--criminal">
@@ -66,7 +66,7 @@
       <span>刑事訴訟村</span>
     </div>
   </div>
-
+ 
   <!-- 角色對話框 -->
   <div class="char-left">
     <div class="char-bubble char-bubble--left">了解犯罪<br/>與法律責任！</div>
@@ -76,7 +76,7 @@
     <div class="char-bubble char-bubble--right">認識程序<br/>與權利保障！</div>
     <div class="char-sprite char-sprite--right">👨‍💼</div>
   </div>
-
+ 
   <!-- 主選單按鈕（木質招牌風格） -->
   <div class="main-menu" id="main-menu">
     <button class="menu-btn menu-btn--start" id="btn-start" onclick="showNameInput()">
@@ -104,13 +104,13 @@
       </div>
     </button>
   </div>
-
+ 
   <!-- 底部提示 -->
   <div class="bottom-hint">
     按下方向鍵選擇・按下 Enter 確認
   </div>
 </div>
-
+ 
 <!-- ====== 輸入名字 + 選擇村莊 彈窗 ====== -->
 <div id="name-input-modal" class="overlay hidden">
   <div class="pixel-modal">
@@ -135,7 +135,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- ====== 遊戲畫面容器 ====== -->
 <div id="game-screen" class="game-screen hidden">
   <div id="game-wrapper" style="position:relative; width:100%; height:100%;">
@@ -163,7 +163,7 @@
     <button class="pixel-reset-btn" onclick="resetSave()">🗑 重設進度</button>
   </div>
 </div>
-
+ 
 <!-- ====== 法學圖鑑 Modal ====== -->
 <div id="library-modal" class="overlay hidden">
   <div class="pixel-modal pixel-modal--wide">
@@ -177,7 +177,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- ====== 成就系統 Modal ====== -->
 <div id="achievement-modal" class="overlay hidden">
   <div class="pixel-modal pixel-modal--wide">
@@ -190,7 +190,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- ====== 設定 Modal ====== -->
 <div id="settings-modal" class="overlay hidden">
   <div class="pixel-modal">
@@ -219,7 +219,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- ====== 返回鎮口確認對話框 ====== -->
 <div id="exit-confirm-modal" class="overlay hidden">
   <div class="pixel-modal" style="max-width:360px; text-align:center;">
@@ -249,7 +249,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- ====== 關卡選單彊窗 ====== -->
 <div id="level-menu" class="overlay hidden">
   <div class="pixel-modal">
@@ -260,7 +260,7 @@
     <div id="level-list" class="level-list"></div>
   </div>
 </div>
-
+ 
 <!-- ====== 答題彈窗 ====== -->
 <div id="quiz-modal" class="overlay hidden">
   <div class="pixel-modal quiz-modal">
@@ -275,23 +275,26 @@
     <p class="quiz-question" id="quiz-question"></p>
     <div id="quiz-options" class="quiz-options"></div>
     <pre id="quiz-result" class="hidden"></pre>
-    <button class="menu-btn menu-btn--start" style="margin-top:12px;width:100%;" onclick="closeQuiz()">⬅ 返回小鎮</button>
+    <div id="quiz-actions" style="display:flex; gap:10px; margin-top:12px;">
+      <button class="menu-btn menu-btn--library" style="flex:1; height:48px;" onclick="closeQuiz()">⬅ 返回小鎮</button>
+      <button id="quiz-next-btn" class="menu-btn menu-btn--start" style="flex:1; height:48px; display:none;" onclick="nextQuiz()">下一題 ▶</button>
+    </div>
   </div>
 </div>
-
+ 
 <script>
 // ====== 主畫面鍵盤導航 ======
 (function() {
   const menuItems = ['btn-start'];
   let selectedIdx = 0;
-
+ 
   function updateSelection() {
     menuItems.forEach((id, i) => {
       const el = document.getElementById(id);
       if (el) el.classList.toggle('menu-btn--selected', i === selectedIdx);
     });
   }
-
+ 
   document.addEventListener('keydown', function(e) {
     const mainScreen = document.getElementById('main-screen');
     if (mainScreen.classList.contains('hidden')) return;
@@ -307,17 +310,17 @@
     }
   });
 })();
-
+ 
 function showNameInput() {
   document.getElementById('name-input-modal').classList.remove('hidden');
 }
-
+ 
 function showMainScreen() {
   document.getElementById('main-screen').classList.remove('hidden');
   document.getElementById('game-screen').classList.add('hidden');
 }
 </script>
-
+ 
 <script src="data/levels.js"></script>
 <script src="js/save.js"></script>
 <script src="js/game.js"></script>
@@ -332,7 +335,7 @@ function showMainScreen() {
     { id: 'all_done', icon: '🎓', title: '法學博士', desc: '完成所有關卡', check: () => false },
     { id: 'perfect', icon: '💯', title: '完美答題', desc: '一次全對', check: () => false },
   ];
-
+ 
   const list = document.getElementById('achievement-list');
   if (!list) return;
   list.innerHTML = achievements.map(a => {
@@ -347,7 +350,7 @@ function showMainScreen() {
     </div>`;
   }).join('');
 })();
-
+ 
 // 法學圖鑑初始化
 (function initLibrary() {
   const content = document.getElementById('library-content');
