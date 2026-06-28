@@ -10,7 +10,7 @@
   gtag('config', 'G-106KW7G3ZE');
 </script>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <title>刑法鎮 LawTown - 用闖關學刑法與刑事訴訟法</title>
 <meta name="description" content="刑法鎮：以台灣風格像素遊戲，透過故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。" />
 
@@ -275,7 +275,11 @@
     <p class="quiz-question" id="quiz-question"></p>
     <div id="quiz-options" class="quiz-options"></div>
     <pre id="quiz-result" class="hidden"></pre>
-    <button class="menu-btn menu-btn--start" style="margin-top:12px;width:100%;" onclick="closeQuiz()">⬅ 返回小鎮</button>
+    <!-- 答題後才顯示的操作按鈕 -->
+    <div id="quiz-actions" class="quiz-actions hidden">
+      <button class="menu-btn menu-btn--achieve" onclick="nextQuiz()">➡ 下一題</button>
+      <button class="menu-btn menu-btn--start" onclick="closeQuiz()">⬅ 返回小鎮</button>
+    </div>
   </div>
 </div>
 

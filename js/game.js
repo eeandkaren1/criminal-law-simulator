@@ -703,9 +703,12 @@ class VillageScene extends Phaser.Scene {
     drawKnob(0, 0);
  
     
-    // 觸控偵測區：整個右半畫面下半（含搖桿位置的大範圍，方便拇指任意觸碰）
-    const zoneX = camW / 2, zoneY = camH * 0.45;
-    const zone = this.add.zone(zoneX, zoneY, camW / 2, camH - zoneY)
+    // 觸控偵測區：右下角 40% 寬 x 50% 高，不遮擋左側和上方建築物
+    const zoneW = camW * 0.42;
+    const zoneH = camH * 0.52;
+    const zoneX = camW - zoneW;
+    const zoneY = camH - zoneH;
+    const zone = this.add.zone(zoneX, zoneY, zoneW, zoneH)
       .setOrigin(0).setScrollFactor(0).setDepth(19).setInteractive();
  
     // 動態搖桿：按下時以觸點為新圓心（不需要精準點到圓盤）
@@ -731,6 +734,8 @@ class VillageScene extends Phaser.Scene {
  
     zone.on("pointerup",  resetJoy);
     zone.on("pointerout", resetJoy);
+    // 暴露 reset 方法供外部呼叫（例如開啟題目時強制歸零）
+    this._joyReset = resetJoy;
   }
  
   _updateJoy(px, py, bx, by, radius, drawKnob) {
@@ -943,6 +948,7 @@ function resumeVillageScene() {
 }
  
 function openLevelMenu(building) {
+  currentBuilding = building;
   const levels = LEVELS[building.levels];
   const menu = document.getElementById("level-menu");
   const list = document.getElementById("level-list");
@@ -966,6 +972,7 @@ function closeLevelMenu() {
 }
  
 let currentLevel = null;
+let currentBuilding = null;
  
 function openQuiz(level) {
   currentLevel = level;
@@ -977,6 +984,7 @@ function openQuiz(level) {
   document.getElementById("quiz-question").textContent = level.question;
   document.getElementById("quiz-result").classList.add("hidden");
   document.getElementById("quiz-result").textContent = "";
+  document.getElementById("quiz-actions").classList.add("hidden");
   const optWrap = document.getElementById("quiz-options");
   optWrap.innerHTML = "";
   level.options.forEach((opt, idx) => {
@@ -987,6 +995,12 @@ function openQuiz(level) {
   });
   modal.classList.remove("hidden");
   pauseVillageScene();
+  // 進入題目時重設搖桿，防止人物繼續移動
+  if (game && game.scene.getScene('VillageScene')) {
+    const vs = game.scene.getScene('VillageScene');
+    if (vs.touchState) vs.touchState = { up: false, down: false, left: false, right: false };
+    if (vs._joyReset) vs._joyReset();
+  }
 }
  
 function answerQuiz(idx) {
@@ -997,6 +1011,28 @@ function answerQuiz(idx) {
   resultEl.textContent = (correct ? "✅ 答對了！" : "❌ 答錯了，沒關係，看看解說：") + "\n" + currentLevel.explain;
   document.querySelectorAll(".quiz-option").forEach(b => b.disabled = true);
   if (correct) SaveSystem.markCompleted(currentLevel.id);
+  // 顯示答題後按鈕（下一題 + 返回小鎮）
+  document.getElementById("quiz-actions").classList.remove("hidden");
+  // 根據是否有下一題决定「下一題」按鈕是否顯示
+  const nextBtn = document.querySelector("#quiz-actions .menu-btn--achieve");
+  const nextLevel = getNextLevel(currentLevel);
+  if (nextBtn) nextBtn.style.display = nextLevel ? '' : 'none';
+}
+
+function getNextLevel(level) {
+  // 在目前建築物的題目列表中找下一題
+  if (!currentBuilding) return null;
+  const levels = LEVELS[currentBuilding.levels];
+  if (!levels) return null;
+  const idx = levels.findIndex(lv => lv.id === level.id);
+  if (idx === -1 || idx >= levels.length - 1) return null;
+  return levels[idx + 1];
+}
+
+function nextQuiz() {
+  const next = getNextLevel(currentLevel);
+  if (next) openQuiz(next);
+  else closeQuiz();
 }
  
 function closeQuiz() {
