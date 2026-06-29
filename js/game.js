@@ -722,18 +722,52 @@ class VillageScene extends Phaser.Scene {
       drawKnob(0, 0);
     };
  
+    let activePointerId = null;
+
     zone.on("pointerdown", (ptr) => {
-      // 固定搖桿中心不移動，只移動搖桿頭
+      activePointerId = ptr.pointerId;
       this._updateJoy(ptr.x, ptr.y, activeX, activeY, joyRadius, drawKnob);
     });
- 
+
     zone.on("pointermove", (ptr) => {
       if (!ptr.isDown) return;
+      if (activePointerId !== null && ptr.pointerId !== activePointerId) return;
       this._updateJoy(ptr.x, ptr.y, activeX, activeY, joyRadius, drawKnob);
     });
- 
-    zone.on("pointerup",  resetJoy);
-    zone.on("pointerout", resetJoy);
+
+    zone.on("pointerup", (ptr) => {
+      if (activePointerId === null || ptr.pointerId === activePointerId) {
+        activePointerId = null;
+        resetJoy();
+      }
+    });
+    zone.on("pointerout", (ptr) => {
+      if (activePointerId === null || ptr.pointerId === activePointerId) {
+        activePointerId = null;
+        resetJoy();
+      }
+    });
+
+    // 全域 touchend / touchcancel 保底：手指在 zone 外放開也能歸中
+    const globalTouchEnd = (e) => {
+      if (activePointerId === null) return;
+      for (let i = 0; i < e.changedTouches.length; i++) {
+        if (e.changedTouches[i].identifier === activePointerId) {
+          activePointerId = null;
+          resetJoy();
+          break;
+        }
+      }
+    };
+    window.addEventListener('touchend',    globalTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', globalTouchEnd, { passive: true });
+
+    // 場景關閉時移除全域監聽
+    this.events.once('shutdown', () => {
+      window.removeEventListener('touchend',    globalTouchEnd);
+      window.removeEventListener('touchcancel', globalTouchEnd);
+    });
+
     // 暴露 reset 方法供外部呼叫（例如開啟題目時強制歸零）
     this._joyReset = resetJoy;
   }
