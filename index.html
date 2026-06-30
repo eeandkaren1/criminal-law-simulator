@@ -374,6 +374,35 @@ function showMainScreen() {
     </div>
   `).join('');
 })();
+
+// 手機方向改變時重新計算遇戲尺寸
+(function(){
+  let _orientTimer = null;
+  const handleOrientChange = () => {
+    clearTimeout(_orientTimer);
+    _orientTimer = setTimeout(() => {
+      // 如果目前在遇戲畫面中，重新計算直式/橫式並重啟遇戲
+      const gameScreen = document.getElementById('game-screen');
+      if (gameScreen && !gameScreen.classList.contains('hidden') && typeof game !== 'undefined' && game) {
+        window._gameIsPortrait = (window.innerWidth <= 768) && (window.innerHeight > window.innerWidth);
+        // 重新設定 Phaser 畫布尺寸
+        try {
+          game.scale.resize(window.innerWidth, window.innerHeight);
+          if (game.scene.isActive('VillageScene')) {
+            const vs = game.scene.getScene('VillageScene');
+            if (vs) {
+              const vk = vs.villageKey;
+              game.scene.stop('VillageScene');
+              game.scene.start('VillageScene', { villageKey: vk });
+            }
+          }
+        } catch(e) {}
+      }
+    }, 400);
+  };
+  window.addEventListener('orientationchange', handleOrientChange);
+  window.addEventListener('resize', handleOrientChange);
+})();
 </script>
 </body>
 </html>

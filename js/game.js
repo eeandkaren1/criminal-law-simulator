@@ -501,10 +501,15 @@ class VillageScene extends Phaser.Scene {
   }
  
   create() {
-    const cols = this.village.mapCols, rows = this.village.mapRows;
-    // 動態計算 TILE 大小，讓地圖填滿整個遊戲視窗
+    const isPortrait = window._gameIsPortrait === true;
     const camW = this.cameras.main.width;
     const camH = this.cameras.main.height;
+
+    // 直式手機：13欄xd720列（直式比例）；橫式/桌機：20欄xd713列
+    const cols = isPortrait ? 13 : this.village.mapCols;
+    const rows = isPortrait ? 20 : this.village.mapRows;
+
+    // 動態計算 TILE 大小，讓地圖填滿整個遇戲視窗
     const tileW = Math.floor(camW / cols);
     const tileH = Math.floor(camH / rows);
     const dynTile = Math.min(tileW, tileH);
@@ -512,6 +517,19 @@ class VillageScene extends Phaser.Scene {
     const mapH = rows * dynTile;
     const isCriminal = this.villageKey === "criminal";
     const bgKey = isCriminal ? 'img_bg_criminal' : 'img_bg_procedure';
+
+    // 直式手機：建築物座標從橫式(20xd713)映射到直式(13xd720)
+    // 橫式座標 (bx, by) → 直式座標 (by * 13/13, bx * 20/20) ≈ (by * 0.65, bx * 1.54)
+    const remapBuilding = (b) => {
+      if (!isPortrait) return b;
+      // 橫式地圖 20xd713 → 直式 13xd720
+      // x 轉換：原 x/20 → 新 x = (b.x / 20) * 13
+      // y 轉換：原 y/13 → 新 y = (b.y / 13) * 20
+      return Object.assign({}, b, {
+        x: Math.round((b.x / 20) * 13),
+        y: Math.round((b.y / 13) * 20)
+      });
+    };
 
     // ── 地圖背景圖（填滿整個遊戲視窗） ──
     this.add.image(0, 0, bgKey)
@@ -575,7 +593,8 @@ class VillageScene extends Phaser.Scene {
 
     // ── 建築物（使用精美圖片素材） ──
     this.buildingSprites = [];
-    this.village.buildings.forEach(b => {
+    this.village.buildings.forEach(rawB => {
+      const b = remapBuilding(rawB);
       // 建築物中心座標（使用 dynTile 縮放）
       const px = b.x * dynTile + dynTile/2;
       const py = b.y * dynTile + dynTile/2;
@@ -672,13 +691,14 @@ class VillageScene extends Phaser.Scene {
   createTouchControls() {
     const camW = this.cameras.main.width;
     const camH = this.cameras.main.height;
+    const isPortrait = window._gameIsPortrait === true;
     this.touchState = { up: false, down: false, left: false, right: false };
- 
-    // ── 虛擬搖桿：固定在地圖右下角，不遮擋地圖內容 ──
-    // 搖桿中心固定在畫面右下，使用 HTML overlay 而非 Phaser Graphics
-    const joyRadius = 60;
-    const joyBaseX = camW - joyRadius - 20;
-    const joyBaseY = camH - joyRadius - 20;
+
+    // ── 虛擬搖桿：固定在地圖右下角，不遠擋地圖內容 ──
+    // 直式手機：搖桿縮小，對齊屏幕右下角安全區
+    const joyRadius = isPortrait ? 45 : 60;
+    const joyBaseX = camW - joyRadius - (isPortrait ? 16 : 20);
+    const joyBaseY = camH - joyRadius - (isPortrait ? 16 : 20);
  
     // 底盤（半透明大圓）
     const joyBg = this.add.graphics().setScrollFactor(0).setDepth(20);
@@ -703,9 +723,9 @@ class VillageScene extends Phaser.Scene {
     drawKnob(0, 0);
  
     
-    // 觸控偵測區：右下角 40% 寬 x 50% 高，不遮擋左側和上方建築物
-    const zoneW = camW * 0.42;
-    const zoneH = camH * 0.52;
+    // 觸控偵測區：直式手機右下角 40%寬 x 28%高；橫式/桌機 42% x 52%
+    const zoneW = isPortrait ? camW * 0.40 : camW * 0.42;
+    const zoneH = isPortrait ? camH * 0.28 : camH * 0.52;
     const zoneX = camW - zoneW;
     const zoneY = camH - zoneH;
     const zone = this.add.zone(zoneX, zoneY, zoneW, zoneH)
@@ -858,28 +878,29 @@ let _pendingVillageKey = "criminal";
 
 function initGame() {
   if (game) return;
-  const isMobile = window.innerWidth <= 768;
-  const gameContainer = document.getElementById('game-container');
-  const containerW = gameContainer ? gameContainer.parentElement.offsetWidth : window.innerWidth;
-
-  // 手機版：填滿全螢幕；桌機版：保留底部工具列 50px
-  const containerH = isMobile ? window.innerHeight : window.innerHeight - 50;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const isMobile = vw <= 768;
+  const isPortrait = vh > vw;   // 直式判斷
 
   let gameW, gameH;
   if (isMobile) {
-    // 手機版：填滿整個螢幕
-    gameW = containerW;
-    gameH = containerH;
+    // 手機版：完全填滿螢幕（直式或橫式）
+    gameW = vw;
+    gameH = vh;
   } else {
-    // 桌機版：保持地圖比例 20:13
+    // 桌機版：保持地圖比例 20:13，保留底部工具列
+    const containerH = vh - 50;
     const MAP_RATIO = 20 / 13;
-    gameW = Math.min(containerW - 4, 900);
+    gameW = Math.min(vw - 4, 900);
     gameH = Math.round(gameW / MAP_RATIO);
     if (gameH > containerH) {
       gameH = containerH;
       gameW = Math.round(gameH * MAP_RATIO);
     }
   }
+  // 將直式/橫式資訊存到全域供 VillageScene 使用
+  window._gameIsPortrait = isMobile && isPortrait;
 
   const cfg = {
     type: Phaser.AUTO,
@@ -914,6 +935,8 @@ function hideTitleOverlay() {
 
 function enterVillage(villageKey) {
   const key = villageKey || _pendingVillageKey || "criminal";
+  // 重新計算直式/橫式狀態
+  window._gameIsPortrait = (window.innerWidth <= 768) && (window.innerHeight > window.innerWidth);
   // 支援兩種輸入框（首頁 Modal 和進入內 overlay）
   const nameInput1 = document.getElementById("player-name-input");
   const nameInput2 = document.getElementById("player-name-input-2");

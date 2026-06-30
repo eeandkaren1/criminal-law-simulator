@@ -938,6 +938,58 @@ body {
 }
 
 ::-webkit-scrollbar { width: 6px; }
+
+/* ===================================================
+   手機直式專用樣式
+   =================================================== */
+@media (max-width: 768px) and (orientation: portrait) {
+  /* 直式手機：遇戲畫面完全填滿螢幕 */
+  html, body {
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+    position: fixed;
+  }
+  .game-screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: #000;
+  }
+  #game-wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
+    display: flex;
+  }
+  #game-container {
+    width: 100vw !important;
+    height: 100dvh !important;
+    border: none;
+    border-radius: 0;
+  }
+  #game-container canvas {
+    width: 100vw !important;
+    height: 100dvh !important;
+    display: block;
+    object-fit: fill;
+  }
+  /* 直式手機隱藏底部工具列 */
+  .game-toolbar-overlay {
+    display: none !important;
+  }
+  /* 直式手機 Modal 高度限制 */
+  .pixel-modal {
+    max-height: 90dvh;
+    overflow-y: auto;
+    width: 92vw;
+  }
+}
 ::-webkit-scrollbar-track { background: #0a0804; }
 ::-webkit-scrollbar-thumb { background: #5a4008; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #8b6914; }
