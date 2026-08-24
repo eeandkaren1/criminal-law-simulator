@@ -358,6 +358,7 @@ const LEVELS = {
     },
     {
         "id": "cg_031",
+      image: "images/case_cg031_confiscation.png",
         "law": "刑法第38條（沒收）",
         "title": "犯罪工具的下場",
         "npc": "法警 老周",
@@ -371,11 +372,12 @@ const LEVELS = {
         "answer": 1,
         "explain": "刑法第38條第2項：供犯罪所用、犯罪預備或犯罪所生之物，屬於犯罪行為人者，得沒收之。沒收旨在剝奪犯罪工具與不法所得。",
       difficulty: "beginner",
-      hint: "先判斷行為或結果是否有一部分發生在臺灣，再處理具體犯罪成立與否。",
-      optionFeedback: ["抓到人在國外，所以一定不適用我國刑法。", "行為或結果有一在臺灣，就可能依刑法第4條認定為在臺灣犯罪。", "只要被害人是臺灣人，不論行為與結果在哪裡都必然適用。"]
+      hint: "先確認物品是否供犯罪所用或預備犯罪，再判斷所有權與沒收的法律效果。",
+      optionFeedback: ["犯罪工具不會因為被告刑滿就當然返還，仍須依沒收規定判斷。", "正確。符合刑法第38條要件的犯罪工具，法院得宣告沒收。", "沒收須由法院依法宣告，不是警察自行變賣。"]
     },
     {
         "id": "cg_032",
+      image: "images/case_cg032_lawful_arrest.png",
         "law": "刑法第21條（依法令之行為）",
         "title": "警察抓人受傷了",
         "npc": "警員 陳小華",
@@ -389,8 +391,8 @@ const LEVELS = {
         "answer": 1,
         "explain": "刑法第21條第1項：依法令之行為，不罰。警察依刑事訴訟法執行逮捕職務，屬於依法令之行為，只要手段符合比例原則，不構成犯罪。",
       difficulty: "intermediate",
-      hint: "關鍵在於「不能發生結果」之外，行為是否仍具有危險性；不能只看到行為人主觀上想犯罪。",
-      optionFeedback: ["只要行為人有殺人故意，就一定成立殺人既遂。", "若行為客觀上不能發生結果且沒有危險，刑法第26條規定不罰。", "只要沒有造成傷害，就必然成立殺人未遂。"]
+      hint: "先確認是否有法律依據及逮捕令，再判斷執法手段是否符合必要性與比例原則。",
+      optionFeedback: ["依法令之行為在符合要件時可能阻卻違法，不是當然有罪。", "正確。刑法第21條規定依法令之行為不罰，但仍須符合合法與相當的執行界線。", "是否有人受傷不是唯一判斷標準，仍須看行為是否合法及手段是否必要。"]
     }
   ],
 
@@ -816,6 +818,7 @@ const LEVELS = {
     },
     {
         "id": "cs_039",
+      image: "images/case_cs039_drunk_driving.png",
         "law": "刑法第185條之3（不能安全駕駛罪）",
         "title": "應酬後的代價",
         "npc": "交通警察",
@@ -834,6 +837,7 @@ const LEVELS = {
     },
     {
         "id": "cs_040",
+      image: "images/case_cs040_online_fraud.png",
         "law": "刑法第339條（普通詐欺罪）",
         "title": "網購的空盒子",
         "npc": "165反詐騙專員",
@@ -852,6 +856,7 @@ const LEVELS = {
     },
     {
         "id": "cs_041",
+      image: "images/case_cs041_assault.png",
         "law": "刑法第277條（傷害罪）",
         "title": "衝動的代價",
         "npc": "里長伯",
@@ -1078,6 +1083,7 @@ const LEVELS = {
     },
     {
         "id": "ps_018",
+      image: "images/case_ps018_illegal_evidence.png",
         "law": "刑事訴訟法第158條之4（權衡原則）",
         "title": "違法取得的證據能用嗎？",
         "npc": "法官 林大同",
@@ -1269,6 +1275,7 @@ const LEVELS = {
     },
     {
         "id": "pp_015",
+      image: "images/case_pp015_interrogation.png",
         "law": "刑事訴訟法第98條（訊問方法）",
         "title": "不能用騙的",
         "npc": "檢察官 王正義",
@@ -1288,6 +1295,7 @@ const LEVELS = {
     },
     {
         "id": "pp_016",
+      image: "images/case_pp016_jurisdiction.png",
         "law": "刑事訴訟法第5條（法院之管轄）",
         "title": "要在哪裡開庭？",
         "npc": "書記官 小蔡",
@@ -1360,6 +1368,7 @@ LEVELS.procedureReport = [
   }
   ,{
     id: "pr_005",
+      image: "images/case_pr005_complaint_right.png",
     law: "刑事訴訟法第232條、第233條（告訴權人）",
     title: "誰可以替被害人告？",
     npc: "律師 蘇文",
@@ -1426,6 +1435,7 @@ LEVELS.procedureAppeal = [
   }
   ,{
     id: "pa_005",
+      image: "images/case_pa005_extraordinary_appeal.png",
     law: "刑事訴訟法第441條（非常上訴）",
     title: "確定判決的法律糾錯",
     npc: "最高檢察署檢察官",

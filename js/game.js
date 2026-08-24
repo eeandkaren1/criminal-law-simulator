@@ -1030,7 +1030,23 @@ function closeLevelMenu() {
  
 let currentLevel = null;
 let currentBuilding = null;
- 
+
+// 每個案例都會有情境圖；舊案例尚未配置專屬插圖時使用同風格備援圖。
+const DEFAULT_CASE_IMAGE = "images/case_reference.png";
+function getCaseImage(level) {
+  if (level && level.image) return level.image;
+  const text = `${level?.law || ""} ${level?.title || ""} ${level?.story || ""}`;
+  if (/酒|駕駛|交通/.test(text)) return "images/case_cs039_drunk_driving.png";
+  if (/詐欺|網路|購物|訊息/.test(text)) return "images/case_cs040_online_fraud.png";
+  if (/傷害|鬥毆|受傷/.test(text)) return "images/case_cs041_assault.png";
+  if (/搜索|證據|扣押/.test(text)) return "images/case_ps018_illegal_evidence.png";
+  if (/訊問|自白|脅迫|利誘/.test(text)) return "images/case_pp015_interrogation.png";
+  if (/管轄|犯罪地|法院/.test(text)) return "images/case_pp016_jurisdiction.png";
+  if (/告訴|被害人|報案/.test(text)) return "images/case_pr005_complaint_right.png";
+  if (/非常上訴|確定判決|救濟/.test(text)) return "images/case_pa005_extraordinary_appeal.png";
+  return DEFAULT_CASE_IMAGE;
+}
+
 function openQuiz(level) {
   currentLevel = level;
   document.getElementById("level-menu").classList.add("hidden");
@@ -1038,6 +1054,19 @@ function openQuiz(level) {
   document.getElementById("quiz-law").textContent = level.law;
   document.getElementById("quiz-title").textContent = level.title;
   document.getElementById("quiz-story").textContent = level.story;
+  const quizImage = document.getElementById("quiz-image");
+  const quizFigure = document.getElementById("quiz-scene-figure");
+  if (quizImage) {
+    quizImage.src = getCaseImage(level);
+    quizImage.alt = `${level.title}案例情境插圖`;
+    quizImage.onerror = () => {
+      if (quizImage.src.endsWith(DEFAULT_CASE_IMAGE)) return;
+      quizImage.src = DEFAULT_CASE_IMAGE;
+    };
+  }
+  if (quizFigure) quizFigure.setAttribute("aria-label", `${level.title}案例情境圖`);
+  const imageCaption = document.getElementById("quiz-image-caption");
+  if (imageCaption) imageCaption.textContent = "案例情境圖｜請觀察人物、物件與程序線索";
   document.getElementById("quiz-question").textContent = level.question;
   document.getElementById("quiz-result").classList.add("hidden");
   document.getElementById("quiz-result").textContent = "";
