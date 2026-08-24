@@ -1065,8 +1065,14 @@ function answerQuiz(idx) {
   const resultEl = document.getElementById("quiz-result");
   resultEl.classList.remove("hidden");
   resultEl.className = correct ? "correct" : "wrong";
-  resultEl.textContent = (correct ? "✅ 答對了！" : "❌ 答錯了，沒關係，看看解說：") + "\n" + currentLevel.explain;
-  document.querySelectorAll(".quiz-option").forEach(b => b.disabled = true);
+  const optionFeedback = currentLevel.optionFeedback?.[idx] || "";
+  const feedbackText = optionFeedback ? "\n\n選項回饋：" + optionFeedback : "";
+  resultEl.textContent = (correct ? "✅ 答對了！" : "❌ 答錯了，沒關係，看看解說：") + feedbackText + "\n\n法條解說：" + currentLevel.explain;
+  document.querySelectorAll(".quiz-option").forEach((b, buttonIdx) => {
+    b.disabled = true;
+    b.classList.toggle("selected", buttonIdx === idx);
+    b.classList.toggle("answer-correct", buttonIdx === currentLevel.answer);
+  });
   if (correct) SaveSystem.markCompleted(currentLevel.id);
   // 顯示答題後按鈕（下一題 + 返回小鎮）
   document.getElementById("quiz-actions").classList.remove("hidden");

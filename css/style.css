@@ -704,6 +704,8 @@ body {
 }
 .quiz-option:hover:not(:disabled) { background: #1e1408; border-color: #f5d87a; }
 .quiz-option:disabled { opacity: 0.6; cursor: default; }
+.quiz-option.selected { opacity: 1; border-color: #f5d87a; }
+.quiz-option.answer-correct { opacity: 1; border-color: #4caf50; background: #102010; }
 #quiz-result {
   white-space: pre-wrap;
   font-family: inherit;
