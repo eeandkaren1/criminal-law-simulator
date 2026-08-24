@@ -50,6 +50,7 @@ const LEVELS = {
     },
     {
       id: "cg_003",
+      image: "images/case_cg_003.png",
       law: "刑法第14條（過失定義）",
       title: "沒注意，也是一種錯",
       npc: "建築工人 阿勇",
@@ -116,6 +117,7 @@ const LEVELS = {
     },
     {
       id: "cg_009",
+      image: "images/case_cg_009.png",
       law: "刑法第13條（直接故意與間接故意）",
       title: "明知卻還是做了",
       npc: "警員 陳小華",
@@ -127,6 +129,7 @@ const LEVELS = {
     },
     {
       id: "cg_010",
+      image: "images/case_cg_010.png",
       law: "刑法第15條（不作為犯）",
       title: "見死不救也有罪？",
       npc: "救生員 小強",
@@ -149,6 +152,7 @@ const LEVELS = {
     },
     {
       id: "cg_012",
+      image: "images/case_cg_012.png",
       law: "刑法第19條（精神障礙者之刑事責任）",
       title: "生病時做的事",
       npc: "精神科醫師",
@@ -160,6 +164,7 @@ const LEVELS = {
     },
     {
       id: "cg_013",
+      image: "images/case_cg_013.png",
       law: "刑法第24條（緊急避難）",
       title: "為了逃命撞壞了別人的門",
       npc: "登山客 小傑",

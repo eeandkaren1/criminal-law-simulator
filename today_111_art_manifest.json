@@ -1,0 +1,896 @@
+{
+  "date": "2026-08-24",
+  "style": "16-bit pixel art educational game scene; match existing LawTown palette and reference; no generated text, logos, or watermark",
+  "aspectRatio": "4:3",
+  "total": 111,
+  "cases": [
+    {
+      "id": "cg_003",
+      "title": "沒注意，也是一種錯",
+      "law": "刑法第14條（過失定義）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_003.png"
+    },
+    {
+      "id": "cg_009",
+      "title": "明知卻還是做了",
+      "law": "刑法第13條（直接故意與間接故意）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_009.png"
+    },
+    {
+      "id": "cg_010",
+      "title": "見死不救也有罪？",
+      "law": "刑法第15條（不作為犯）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_010.png"
+    },
+    {
+      "id": "cg_012",
+      "title": "生病時做的事",
+      "law": "刑法第19條（精神障礙者之刑事責任）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_012.png"
+    },
+    {
+      "id": "cg_013",
+      "title": "為了逃命撞壞了別人的門",
+      "law": "刑法第24條（緊急避難）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_013.png"
+    },
+    {
+      "id": "cg_020",
+      "title": "再犯，刑度會加重嗎？",
+      "law": "刑法第47條（累犯）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_020.png"
+    },
+    {
+      "id": "cg_024",
+      "title": "用糖粉假裝下毒",
+      "law": "刑法第26條（不能犯）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_024.png"
+    },
+    {
+      "id": "cg_027",
+      "title": "犯案後主動到案說明",
+      "law": "刑法第62條（自首）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_027.png"
+    },
+    {
+      "id": "cg_028",
+      "title": "犯罪工具與所得怎麼處理？",
+      "law": "刑法第38條（沒收）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_028.png"
+    },
+    {
+      "id": "cg_029",
+      "title": "病情穩定前先接受治療",
+      "law": "刑法第87條（保安處分—監護）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_029.png"
+    },
+    {
+      "id": "cg_030",
+      "title": "輕罪可以用罰金代替坐牢嗎？",
+      "law": "刑法第41條（易科罰金）",
+      "array": "criminalGeneral",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cg_030.png"
+    },
+    {
+      "id": "cs_006",
+      "title": "證人席上的謊言",
+      "law": "刑法第168條（偽證罪）",
+      "array": "criminalSpecific",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cs_006.png"
+    },
+    {
+      "id": "cs_031",
+      "title": "多收的錢進了誰的口袋？",
+      "law": "刑法第129條（違法徵收罪）",
+      "array": "criminalSpecific",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cs_031.png"
+    },
+    {
+      "id": "cs_036",
+      "title": "防疫期間故意違規",
+      "law": "刑法第192條（違背預防傳染病法令罪）",
+      "array": "criminalSpecific",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_cs_036.png"
+    },
+    {
+      "id": "ps_017",
+      "title": "【連動案件・113年偵字第4567號 之四】起訴書送出",
+      "law": "刑事訴訟法第251條、第264條（提起公訴）",
+      "array": "procedureStages",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_ps_017.png"
+    },
+    {
+      "id": "pc_001",
+      "title": "【連動案件・阿强深夜事件 之一】巷口的玻璃聲",
+      "law": "刑法第12條、第13條（故意與過失之初步判斷）",
+      "array": "policeCriminal",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_pc_001.png"
+    },
+    {
+      "id": "pc_002",
+      "title": "【連動案件・阿强深夜事件 之二】原來他才15歲",
+      "law": "刑法第18條（未成年人之刑事責任）",
+      "array": "policeCriminal",
+      "theme": "刑法總則與刑事責任",
+      "file": "images/case_pc_002.png"
+    },
+    {
+      "id": "cg_015",
+      "title": "臨陣放下了刀",
+      "law": "刑法第27條（中止犯）",
+      "array": "criminalGeneral",
+      "theme": "生命與身體法益",
+      "file": "images/case_cg_015.png"
+    },
+    {
+      "id": "cg_025",
+      "title": "一個行為，觸犯好幾條法",
+      "law": "刑法第55條（想像競合犯）",
+      "array": "criminalGeneral",
+      "theme": "生命與身體法益",
+      "file": "images/case_cg_025.png"
+    },
+    {
+      "id": "cs_001",
+      "title": "廟埕前的衝突",
+      "law": "刑法第271條（殺人罪）",
+      "array": "criminalSpecific",
+      "theme": "生命與身體法益",
+      "file": "images/case_cs_001.png"
+    },
+    {
+      "id": "cs_002",
+      "title": "夜市口角",
+      "law": "刑法第277條（傷害罪）",
+      "array": "criminalSpecific",
+      "theme": "生命與身體法益",
+      "file": "images/case_cs_002.png"
+    },
+    {
+      "id": "cs_008",
+      "title": "廟會變成街頭衝突",
+      "law": "刑法第149條、第150條（聚眾妨害秩序罪）",
+      "array": "criminalSpecific",
+      "theme": "生命與身體法益",
+      "file": "images/case_cs_008.png"
+    },
+    {
+      "id": "cs_013",
+      "title": "違反意願的傷害",
+      "law": "刑法第222條、第221條（強制性交罪）",
+      "array": "criminalSpecific",
+      "theme": "生命與身體法益",
+      "file": "images/case_cs_013.png"
+    },
+    {
+      "id": "cs_015",
+      "title": "公園裡的不雅行為",
+      "law": "刑法第234條（公然猥褻罪）",
+      "array": "criminalSpecific",
+      "theme": "生命與身體法益",
+      "file": "images/case_cs_015.png"
+    },
+    {
+      "id": "cs_017",
+      "title": "不小心撞到人",
+      "law": "刑法第284條（過失傷害罪）",
+      "array": "criminalSpecific",
+      "theme": "生命與身體法益",
+      "file": "images/case_cs_017.png"
+    },
+    {
+      "id": "pc_003",
+      "title": "【連動案件・阿强深夜事件 之三】肚子餓，可以當理由嗎？",
+      "law": "刑法第24條（緊急避難）之初步排除",
+      "array": "policeCriminal",
+      "theme": "生命與身體法益",
+      "file": "images/case_pc_003.png"
+    },
+    {
+      "id": "cg_004",
+      "title": "年紀也是一道防線",
+      "law": "刑法第18條（未成年人之刑事責任）",
+      "array": "criminalGeneral",
+      "theme": "財產犯罪",
+      "file": "images/case_cg_004.png"
+    },
+    {
+      "id": "cg_014",
+      "title": "差一點就得手",
+      "law": "刑法第25條（未遂犯）",
+      "array": "criminalGeneral",
+      "theme": "財產犯罪",
+      "file": "images/case_cg_014.png"
+    },
+    {
+      "id": "cg_016",
+      "title": "三個人一起做案",
+      "law": "刑法第28條（共同正犯）",
+      "array": "criminalGeneral",
+      "theme": "財產犯罪",
+      "file": "images/case_cg_016.png"
+    },
+    {
+      "id": "cg_022",
+      "title": "案子拖太久還能辦嗎？",
+      "law": "刑法第80條（追訴權時效）",
+      "array": "criminalGeneral",
+      "theme": "財產犯罪",
+      "file": "images/case_cg_022.png"
+    },
+    {
+      "id": "cg_023",
+      "title": "人在國外，結果在台灣",
+      "law": "刑法第4條（隔地犯／犯罪地之認定）",
+      "array": "criminalGeneral",
+      "theme": "財產犯罪",
+      "file": "images/case_cg_023.png"
+    },
+    {
+      "id": "cg_026",
+      "title": "犯了好幾件不同的案子",
+      "law": "刑法第50條、第51條（數罪併罰）",
+      "array": "criminalGeneral",
+      "theme": "財產犯罪",
+      "file": "images/case_cg_026.png"
+    },
+    {
+      "id": "cs_004",
+      "title": "便利商店的飲料",
+      "law": "刑法第320條（竊盜罪）",
+      "array": "criminalSpecific",
+      "theme": "財產犯罪",
+      "file": "images/case_cs_004.png"
+    },
+    {
+      "id": "cs_022",
+      "title": "騎車經過硬搶包包",
+      "law": "刑法第325條（搶奪罪）",
+      "array": "criminalSpecific",
+      "theme": "財產犯罪",
+      "file": "images/case_cs_022.png"
+    },
+    {
+      "id": "cs_023",
+      "title": "持刀逼你交出財物",
+      "law": "刑法第328條（強盜罪）",
+      "array": "criminalSpecific",
+      "theme": "財產犯罪",
+      "file": "images/case_cs_023.png"
+    },
+    {
+      "id": "cs_024",
+      "title": "代收的包裹拿去變賣",
+      "law": "刑法第335條（侵占罪）",
+      "array": "criminalSpecific",
+      "theme": "財產犯罪",
+      "file": "images/case_cs_024.png"
+    },
+    {
+      "id": "cs_026",
+      "title": "氣不過砸了車",
+      "law": "刑法第354條（毀損罪）",
+      "array": "criminalSpecific",
+      "theme": "財產犯罪",
+      "file": "images/case_cs_026.png"
+    },
+    {
+      "id": "cs_034",
+      "title": "假報案陷害無辜",
+      "law": "刑法第169條（誣告罪）",
+      "array": "criminalSpecific",
+      "theme": "財產犯罪",
+      "file": "images/case_cs_034.png"
+    },
+    {
+      "id": "pc_004",
+      "title": "【連動案件・阿强深夜事件 終】這個案子該怎麼定罪？",
+      "law": "刑法第320條（竊盜罪）、第354條（毀損罪）—案件導向分則館",
+      "array": "policeCriminal",
+      "theme": "財產犯罪",
+      "file": "images/case_pc_004.png"
+    },
+    {
+      "id": "cs_005",
+      "title": "假投資真詐騙",
+      "law": "刑法第339條（詐欺罪）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_005.png"
+    },
+    {
+      "id": "cs_012",
+      "title": "假合約騙人簽名",
+      "law": "刑法第210條、第216條（偽造文書罪）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_012.png"
+    },
+    {
+      "id": "cs_019",
+      "title": "逼你簽下不平等條件",
+      "law": "刑法第304條（強制罪）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_019.png"
+    },
+    {
+      "id": "cs_020",
+      "title": "我會讓你好看",
+      "law": "刑法第305條（恐嚇危安罪）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_020.png"
+    },
+    {
+      "id": "cs_025",
+      "title": "拿照片威脅要錢",
+      "law": "刑法第346條（恐嚇取財罪）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_025.png"
+    },
+    {
+      "id": "cs_029",
+      "title": "蓋章前先收一個紅包",
+      "law": "刑法第121條（公務員賄賂罪—收受賄賂）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_029.png"
+    },
+    {
+      "id": "cs_038",
+      "title": "假冒公務員打電話來",
+      "law": "刑法第339條之4（加重詐欺罪）",
+      "array": "criminalSpecific",
+      "theme": "交易、財產與公信",
+      "file": "images/case_cs_038.png"
+    },
+    {
+      "id": "pp_006",
+      "title": "用刑求換來的自白能用嗎？",
+      "law": "刑事訴訟法第156條（自白法則）",
+      "array": "procedurePrinciples",
+      "theme": "交易、財產與公信",
+      "file": "images/case_pp_006.png"
+    },
+    {
+      "id": "pp_013",
+      "title": "【連動案件・113年偵字第4567號 之五】開庭審理",
+      "law": "刑事訴訟法第156條、第159條（嚴格證明法則之實踐）",
+      "array": "procedurePrinciples",
+      "theme": "交易、財產與公信",
+      "file": "images/case_pp_013.png"
+    },
+    {
+      "id": "pp_014",
+      "title": "【連動案件・113年偵字第4567號 之六】一審宣判",
+      "law": "刑事訴訟法第299條、第310條（判決與量刑）",
+      "array": "procedurePrinciples",
+      "theme": "交易、財產與公信",
+      "file": "images/case_pp_014.png"
+    },
+    {
+      "id": "cg_002",
+      "title": "不是故意的，也要負責嗎？",
+      "law": "刑法第12條（故意與過失）",
+      "array": "criminalGeneral",
+      "theme": "公共危險與交通",
+      "file": "images/case_cg_002.png"
+    },
+    {
+      "id": "cg_005",
+      "title": "被打的人，可以還手嗎？",
+      "law": "刑法第23條（正當防衛）",
+      "array": "criminalGeneral",
+      "theme": "公共危險與交通",
+      "file": "images/case_cg_005.png"
+    },
+    {
+      "id": "cs_007",
+      "title": "推開執法的警察",
+      "law": "刑法第135條（妨害公務罪）",
+      "array": "criminalSpecific",
+      "theme": "公共危險與交通",
+      "file": "images/case_cs_007.png"
+    },
+    {
+      "id": "cs_010",
+      "title": "縱火燒毀鄰居倉庫",
+      "law": "刑法第173條、第175條（公共危險罪—放火）",
+      "array": "criminalSpecific",
+      "theme": "公共危險與交通",
+      "file": "images/case_cs_010.png"
+    },
+    {
+      "id": "cs_011",
+      "title": "喝了酒還上路",
+      "law": "刑法第185條之3（公共危險罪—酒駕）",
+      "array": "criminalSpecific",
+      "theme": "公共危險與交通",
+      "file": "images/case_cs_011.png"
+    },
+    {
+      "id": "cg_007",
+      "title": "判決前法律改了怎麼辦？",
+      "law": "刑法第2條（從輕原則／法律變更之適用）",
+      "array": "criminalGeneral",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_cg_007.png"
+    },
+    {
+      "id": "cg_019",
+      "title": "刑罰有哪幾種？",
+      "law": "刑法第33條、第35條（主刑種類與輕重）",
+      "array": "criminalGeneral",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_cg_019.png"
+    },
+    {
+      "id": "cs_030",
+      "title": "明知無罪卻硬要起訴",
+      "law": "刑法第125條（濫權追訴處罰罪）",
+      "array": "criminalSpecific",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_cs_030.png"
+    },
+    {
+      "id": "ps_001",
+      "title": "案發後，第一步是什麼？",
+      "law": "刑事訴訟法第228條（偵查之發動）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_001.png"
+    },
+    {
+      "id": "ps_002",
+      "title": "案件移送法院",
+      "law": "刑事訴訟法第251條（起訴）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_002.png"
+    },
+    {
+      "id": "ps_003",
+      "title": "法庭攻防",
+      "law": "刑事訴訟法第3編（審判）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_003.png"
+    },
+    {
+      "id": "ps_004",
+      "title": "判決確定後",
+      "law": "刑事訴訟法第457條、第458條（執行）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_004.png"
+    },
+    {
+      "id": "ps_006",
+      "title": "當場被抓到",
+      "law": "刑事訴訟法第88條（現行犯之逮捕）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_006.png"
+    },
+    {
+      "id": "ps_007",
+      "title": "進門搜查要有令狀",
+      "law": "刑事訴訟法第122條（搜索）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_007.png"
+    },
+    {
+      "id": "ps_008",
+      "title": "先關起來等審判？",
+      "law": "刑事訴訟法第101條（羈押之要件）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_008.png"
+    },
+    {
+      "id": "ps_009",
+      "title": "案件還在查，不能亂講",
+      "law": "刑事訴訟法第245條（偵查不公開原則）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_009.png"
+    },
+    {
+      "id": "ps_010",
+      "title": "給一次不起訴的機會",
+      "law": "刑事訴訟法第253條、第253條之1（緩起訴）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_010.png"
+    },
+    {
+      "id": "ps_013",
+      "title": "多久內要提告？",
+      "law": "刑事訴訟法第232條、第237條（告訴與告訴期間）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_013.png"
+    },
+    {
+      "id": "ps_014",
+      "title": "判決書要寫什麼？",
+      "law": "刑事訴訟法第308條、第309條（判決書應載事項）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_014.png"
+    },
+    {
+      "id": "ps_015",
+      "title": "判決確定後發現新證據",
+      "law": "刑事訴訟法第420條（再審）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_015.png"
+    },
+    {
+      "id": "ps_016",
+      "title": "【連動案件・113年偵字第4567號 之三】複訊邱志凱",
+      "law": "刑事訴訟法第95條、第100條之2（訊問被告）",
+      "array": "procedureStages",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_ps_016.png"
+    },
+    {
+      "id": "pp_001",
+      "title": "還沒判決前，他是清白的",
+      "law": "刑事訴訟法第154條（無罪推定原則）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_001.png"
+    },
+    {
+      "id": "pp_002",
+      "title": "法官不能自己找案子審",
+      "law": "刑事訴訟法第268條（不告不理原則）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_002.png"
+    },
+    {
+      "id": "pp_003",
+      "title": "傳聞不能當證據",
+      "law": "刑事訴訟法第155條、第159條（嚴格證明法則）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_003.png"
+    },
+    {
+      "id": "pp_004",
+      "title": "不服判決怎麼辦？",
+      "law": "刑事訴訟法第344條（上訴制度／三級三審）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_004.png"
+    },
+    {
+      "id": "pp_005",
+      "title": "我可以請律師嗎？",
+      "law": "刑事訴訟法第27條、第31條（辯護權）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_005.png"
+    },
+    {
+      "id": "pp_007",
+      "title": "誰來舉證？",
+      "law": "刑事訴訟法第163條（當事人進行主義與職權調查）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_007.png"
+    },
+    {
+      "id": "pp_008",
+      "title": "程序錯了，判決也站不住",
+      "law": "刑事訴訟法第379條（判決違背法令／上訴第三審事由）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_008.png"
+    },
+    {
+      "id": "pp_010",
+      "title": "不羈押，但要受到一定限制",
+      "law": "刑事訴訟法第93條之1（具保、責付、限制住居）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_010.png"
+    },
+    {
+      "id": "pp_011",
+      "title": "對被告也要公平調查",
+      "law": "刑事訴訟法第2條（公平對待原則）",
+      "array": "procedurePrinciples",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pp_011.png"
+    },
+    {
+      "id": "pr_004",
+      "title": "【連動案件・113年偵字第4567號 之四】卷證移送地檢署",
+      "law": "刑事訴訟法第228條第4項（案件移送）",
+      "array": "procedureReport",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pr_004.png"
+    },
+    {
+      "id": "pa_001",
+      "title": "【連動案件・113年偵字第4567號 之七】不服，提起上訴",
+      "law": "刑事訴訟法第344條、第349條（上訴之提起）",
+      "array": "procedureAppeal",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pa_001.png"
+    },
+    {
+      "id": "pa_002",
+      "title": "【連動案件・113年偵字第4567號 之八】二審開庭辯論",
+      "law": "刑事訴訟法第364條、第365條（第二審之審理）",
+      "array": "procedureAppeal",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pa_002.png"
+    },
+    {
+      "id": "pa_003",
+      "title": "【連動案件・113年偵字第4567號 之九】二審判決",
+      "law": "刑事訴訟法第369條、第370條（上訴之判決—撤銷或駁回）",
+      "array": "procedureAppeal",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pa_003.png"
+    },
+    {
+      "id": "pa_004",
+      "title": "【連動案件・113年偵字第4567號 終】判決確定，案件落幕",
+      "law": "刑事訴訟法第456條、第457條（判決確定與執行）",
+      "array": "procedureAppeal",
+      "theme": "刑事訴訟程序",
+      "file": "images/case_pa_004.png"
+    },
+    {
+      "id": "cg_001",
+      "title": "沒有寫在法律上的罪",
+      "law": "刑法第1條（罪刑法定原則）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_001.png"
+    },
+    {
+      "id": "cg_006",
+      "title": "法官怎麼決定刑期？",
+      "law": "刑法第57條（量刑標準）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_006.png"
+    },
+    {
+      "id": "cg_008",
+      "title": "什麼叫「重傷」？",
+      "law": "刑法第10條（公務員、重傷等定義）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_008.png"
+    },
+    {
+      "id": "cg_011",
+      "title": "我不知道這樣違法",
+      "law": "刑法第16條（法律之不知）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_011.png"
+    },
+    {
+      "id": "cg_017",
+      "title": "出主意的人",
+      "law": "刑法第29條（教唆犯）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_017.png"
+    },
+    {
+      "id": "cg_018",
+      "title": "借工具給小偷的人",
+      "law": "刑法第30條（幫助犯）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_018.png"
+    },
+    {
+      "id": "cg_021",
+      "title": "給一次改過的機會",
+      "law": "刑法第74條（緩刑）",
+      "array": "criminalGeneral",
+      "theme": "其他／綜合",
+      "file": "images/case_cg_021.png"
+    },
+    {
+      "id": "cs_003",
+      "title": "假工作真陷阱",
+      "law": "刑法第296條之1（人口販運相關）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_003.png"
+    },
+    {
+      "id": "cs_009",
+      "title": "網路上號召大家一起違法",
+      "law": "刑法第153條（煽惑他人犯罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_009.png"
+    },
+    {
+      "id": "cs_014",
+      "title": "從中牟利的仲介",
+      "law": "刑法第231條（圖利使人為性交易罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_014.png"
+    },
+    {
+      "id": "cs_016",
+      "title": "巷口的麻將攤",
+      "law": "刑法第266條（賭博罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_016.png"
+    },
+    {
+      "id": "cs_018",
+      "title": "把人鎖在房間裡",
+      "law": "刑法第302條（剝奪他人行動自由罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_018.png"
+    },
+    {
+      "id": "cs_021",
+      "title": "網路上的辱罵與爆料",
+      "law": "刑法第309條、第310條（公然侮辱罪、誹謗罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_021.png"
+    },
+    {
+      "id": "cs_027",
+      "title": "企圖顛覆國家",
+      "law": "刑法第100條、第101條（內亂罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_027.png"
+    },
+    {
+      "id": "cs_028",
+      "title": "該守的崗位卻棄守",
+      "law": "刑法第120條（公務員委棄職守罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_028.png"
+    },
+    {
+      "id": "cs_032",
+      "title": "從拘留所逃跑",
+      "law": "刑法第161條（脫逃罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_032.png"
+    },
+    {
+      "id": "cs_033",
+      "title": "幫忙頂罪的朋友",
+      "law": "刑法第164條（藏匿人犯罪、頂替罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_033.png"
+    },
+    {
+      "id": "cs_035",
+      "title": "偷排廢水進入河川",
+      "law": "刑法第190條之1（污染環境罪）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_035.png"
+    },
+    {
+      "id": "cs_037",
+      "title": "曾經存在過的條文",
+      "law": "刑法第239條（通姦罪已刪除之歷史說明）",
+      "array": "criminalSpecific",
+      "theme": "其他／綜合",
+      "file": "images/case_cs_037.png"
+    },
+    {
+      "id": "ps_005",
+      "title": "傳票來了，去不去？",
+      "law": "刑事訴訟法第71條、第75條（傳喚與拘提）",
+      "array": "procedureStages",
+      "theme": "其他／綜合",
+      "file": "images/case_ps_005.png"
+    },
+    {
+      "id": "ps_011",
+      "title": "法庭上有哪些人？",
+      "law": "刑事訴訟法第3條（當事人之定義）",
+      "array": "procedureStages",
+      "theme": "其他／綜合",
+      "file": "images/case_ps_011.png"
+    },
+    {
+      "id": "ps_012",
+      "title": "被害人自己提告",
+      "law": "刑事訴訟法第319條（自訴）",
+      "array": "procedureStages",
+      "theme": "其他／綜合",
+      "file": "images/case_ps_012.png"
+    },
+    {
+      "id": "pp_009",
+      "title": "誰有權力處罰犯罪？",
+      "law": "刑事訴訟法第1條（國家刑罰權之發動）",
+      "array": "procedurePrinciples",
+      "theme": "其他／綜合",
+      "file": "images/case_pp_009.png"
+    },
+    {
+      "id": "pp_012",
+      "title": "我可以不回答這個問題嗎？",
+      "law": "刑事訴訟法第181條（拒絕證言權）",
+      "array": "procedurePrinciples",
+      "theme": "其他／綜合",
+      "file": "images/case_pp_012.png"
+    },
+    {
+      "id": "pr_001",
+      "title": "【連動案件・113年偵字第4567號 之一】林淑芬來報案",
+      "law": "刑事訴訟法第228條第1項、警察職權行使法相關規定（報案受理）",
+      "array": "procedureReport",
+      "theme": "其他／綜合",
+      "file": "images/case_pr_001.png"
+    },
+    {
+      "id": "pr_002",
+      "title": "【連動案件・113年偵字第4567號 之二】追查金流與IP",
+      "law": "刑事訴訟法第230條、第231條（司法警察之調查職權）",
+      "array": "procedureReport",
+      "theme": "其他／綜合",
+      "file": "images/case_pr_002.png"
+    },
+    {
+      "id": "pr_003",
+      "title": "【連動案件・113年偵字第4567號 之三】拘提到案",
+      "law": "刑事訴訟法第88條之1、第92條（逕行拘提與解送）",
+      "array": "procedureReport",
+      "theme": "其他／綜合",
+      "file": "images/case_pr_003.png"
+    }
+  ]
+}
