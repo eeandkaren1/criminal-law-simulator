@@ -62,6 +62,7 @@ const LEVELS = {
     },
     {
       id: "cg_004",
+      image: "images/case_cg_004.png",
       law: "刑法第18條（未成年人之刑事責任）",
       title: "年紀也是一道防線",
       npc: "社工 小芸",
@@ -176,6 +177,7 @@ const LEVELS = {
     },
     {
       id: "cg_014",
+      image: "images/case_cg_014.png",
       law: "刑法第25條（未遂犯）",
       title: "差一點就得手",
       npc: "保全 阿成",
@@ -187,6 +189,7 @@ const LEVELS = {
     },
     {
       id: "cg_015",
+      image: "images/case_cg_015.png",
       law: "刑法第27條（中止犯）",
       title: "臨陣放下了刀",
       npc: "心理輔導師",
@@ -198,6 +201,7 @@ const LEVELS = {
     },
     {
       id: "cg_016",
+      image: "images/case_cg_016.png",
       law: "刑法第28條（共同正犯）",
       title: "三個人一起做案",
       npc: "偵查佐 老張",
@@ -242,6 +246,7 @@ const LEVELS = {
     },
     {
       id: "cg_020",
+      image: "images/case_cg_020.png",
       law: "刑法第47條（累犯）",
       title: "再犯，刑度會加重嗎？",
       npc: "觀護人 阿光",
@@ -264,6 +269,7 @@ const LEVELS = {
     },
     {
       id: "cg_022",
+      image: "images/case_cg_022.png",
       law: "刑法第80條（追訴權時效）",
       title: "案子拖太久還能辦嗎？",
       npc: "檢察官 王正義",
@@ -275,6 +281,7 @@ const LEVELS = {
     },
     {
       id: "cg_023",
+      image: "images/case_cg_023.png",
       law: "刑法第4條（隔地犯／犯罪地之認定）",
       title: "人在國外，結果在台灣",
       npc: "外事警察",
@@ -286,6 +293,7 @@ const LEVELS = {
     },
     {
       id: "cg_024",
+      image: "images/case_cg_024.png",
       law: "刑法第26條（不能犯）",
       title: "用糖粉假裝下毒",
       npc: "偵查佐 老張",
@@ -297,6 +305,7 @@ const LEVELS = {
     },
     {
       id: "cg_025",
+      image: "images/case_cg_025.png",
       law: "刑法第55條（想像競合犯）",
       title: "一個行為，觸犯好幾條法",
       npc: "法官 林大同",
@@ -319,6 +328,7 @@ const LEVELS = {
     },
     {
       id: "cg_027",
+      image: "images/case_cg_027.png",
       law: "刑法第62條（自首）",
       title: "犯案後主動到案說明",
       npc: "觀護人 阿光",
@@ -330,6 +340,7 @@ const LEVELS = {
     },
     {
       id: "cg_028",
+      image: "images/case_cg_028.png",
       law: "刑法第38條（沒收）",
       title: "犯罪工具與所得怎麼處理？",
       npc: "法警 老周",
@@ -341,6 +352,7 @@ const LEVELS = {
     },
     {
       id: "cg_029",
+      image: "images/case_cg_029.png",
       law: "刑法第87條（保安處分—監護）",
       title: "病情穩定前先接受治療",
       npc: "精神科醫師",
@@ -352,6 +364,7 @@ const LEVELS = {
     },
     {
       id: "cg_030",
+      image: "images/case_cg_030.png",
       law: "刑法第41條（易科罰金）",
       title: "輕罪可以用罰金代替坐牢嗎？",
       npc: "觀護人 阿光",
@@ -405,6 +418,7 @@ const LEVELS = {
   criminalSpecific: [
     {
       id: "cs_001",
+      image: "images/case_cs_001.png",
       law: "刑法第271條（殺人罪）",
       title: "廟埕前的衝突",
       npc: "里長伯",
@@ -416,6 +430,7 @@ const LEVELS = {
     },
     {
       id: "cs_002",
+      image: "images/case_cs_002.png",
       law: "刑法第277條（傷害罪）",
       title: "夜市口角",
       npc: "夜市攤販 阿財",
@@ -482,6 +497,7 @@ const LEVELS = {
     },
     {
       id: "cs_008",
+      image: "images/case_cs_008.png",
       law: "刑法第149條、第150條（聚眾妨害秩序罪）",
       title: "廟會變成街頭衝突",
       npc: "里長伯",
@@ -537,6 +553,7 @@ const LEVELS = {
     },
     {
       id: "cs_013",
+      image: "images/case_cs_013.png",
       law: "刑法第222條、第221條（強制性交罪）",
       title: "違反意願的傷害",
       npc: "社工 小芸",
@@ -559,6 +576,7 @@ const LEVELS = {
     },
     {
       id: "cs_015",
+      image: "images/case_cs_015.png",
       law: "刑法第234條（公然猥褻罪）",
       title: "公園裡的不雅行為",
       npc: "里長伯",
@@ -581,6 +599,7 @@ const LEVELS = {
     },
     {
       id: "cs_017",
+      image: "images/case_cs_017.png",
       law: "刑法第284條（過失傷害罪）",
       title: "不小心撞到人",
       npc: "交通警察",
@@ -1484,6 +1503,7 @@ LEVELS.policeCriminal = [
   },
   {
     id: "pc_003",
+      image: "images/case_pc_003.png",
     law: "刑法第24條（緊急避難）之初步排除",
     title: "【連動案件・阿强深夜事件 之三】肚子餓，可以當理由嗎？",
     npc: "社工 小芸",
