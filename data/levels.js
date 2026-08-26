@@ -317,6 +317,7 @@ const LEVELS = {
     },
     {
       id: "cg_026",
+      image: "images/case_cg_026.png",
       law: "刑法第50條、第51條（數罪併罰）",
       title: "犯了好幾件不同的案子",
       npc: "法官 林大同",
@@ -453,6 +454,7 @@ const LEVELS = {
     },
     {
       id: "cs_004",
+      image: "images/case_cs_004.png",
       law: "刑法第320條（竊盜罪）",
       title: "便利商店的飲料",
       npc: "店員 小美",
@@ -464,6 +466,7 @@ const LEVELS = {
     },
     {
       id: "cs_005",
+      image: "images/case_cs_005.png",
       law: "刑法第339條（詐欺罪）",
       title: "假投資真詐騙",
       npc: "鄰里大姊",
@@ -475,6 +478,7 @@ const LEVELS = {
     },
     {
       id: "cs_006",
+      image: "images/case_cs_006.png",
       law: "刑法第168條（偽證罪）",
       title: "證人席上的謊言",
       npc: "法警 老周",
@@ -542,6 +546,7 @@ const LEVELS = {
     },
     {
       id: "cs_012",
+      image: "images/case_cs_012.png",
       law: "刑法第210條、第216條（偽造文書罪）",
       title: "假合約騙人簽名",
       npc: "里長伯",
@@ -622,6 +627,7 @@ const LEVELS = {
     },
     {
       id: "cs_019",
+      image: "images/case_cs_019.png",
       law: "刑法第304條（強制罪）",
       title: "逼你簽下不平等條件",
       npc: "里長伯",
@@ -633,6 +639,7 @@ const LEVELS = {
     },
     {
       id: "cs_020",
+      image: "images/case_cs_020.png",
       law: "刑法第305條（恐嚇危安罪）",
       title: "我會讓你好看",
       npc: "鄰里大姊",
@@ -655,6 +662,7 @@ const LEVELS = {
     },
     {
       id: "cs_022",
+      image: "images/case_cs_022.png",
       law: "刑法第325條（搶奪罪）",
       title: "騎車經過硬搶包包",
       npc: "店員 小美",
@@ -666,6 +674,7 @@ const LEVELS = {
     },
     {
       id: "cs_023",
+      image: "images/case_cs_023.png",
       law: "刑法第328條（強盜罪）",
       title: "持刀逼你交出財物",
       npc: "便利店店長",
@@ -677,6 +686,7 @@ const LEVELS = {
     },
     {
       id: "cs_024",
+      image: "images/case_cs_024.png",
       law: "刑法第335條（侵占罪）",
       title: "代收的包裹拿去變賣",
       npc: "宅配員 阿明",
@@ -688,6 +698,7 @@ const LEVELS = {
     },
     {
       id: "cs_025",
+      image: "images/case_cs_025.png",
       law: "刑法第346條（恐嚇取財罪）",
       title: "拿照片威脅要錢",
       npc: "鄰里大姊",
@@ -699,6 +710,7 @@ const LEVELS = {
     },
     {
       id: "cs_026",
+      image: "images/case_cs_026.png",
       law: "刑法第354條（毀損罪）",
       title: "氣不過砸了車",
       npc: "里長伯",
@@ -732,6 +744,7 @@ const LEVELS = {
     },
     {
       id: "cs_029",
+      image: "images/case_cs_029.png",
       law: "刑法第121條（公務員賄賂罪—收受賄賂）",
       title: "蓋章前先收一個紅包",
       npc: "廉政官員",
@@ -754,6 +767,7 @@ const LEVELS = {
     },
     {
       id: "cs_031",
+      image: "images/case_cs_031.png",
       law: "刑法第129條（違法徵收罪）",
       title: "多收的錢進了誰的口袋？",
       npc: "廉政官員",
@@ -787,6 +801,7 @@ const LEVELS = {
     },
     {
       id: "cs_034",
+      image: "images/case_cs_034.png",
       law: "刑法第169條（誣告罪）",
       title: "假報案陷害無辜",
       npc: "偵查佐 老張",
@@ -809,6 +824,7 @@ const LEVELS = {
     },
     {
       id: "cs_036",
+      image: "images/case_cs_036.png",
       law: "刑法第192條（違背預防傳染病法令罪）",
       title: "防疫期間故意違規",
       npc: "衛生局人員",
@@ -1095,6 +1111,7 @@ const LEVELS = {
     },
     {
       id: "ps_017",
+      image: "images/case_ps_017.png",
       law: "刑事訴訟法第251條、第264條（提起公訴）",
       title: "【連動案件・113年偵字第4567號 之四】起訴書送出",
       npc: "檢察官 王正義",
@@ -1479,6 +1496,7 @@ LEVELS.procedureAppeal = [
 LEVELS.policeCriminal = [
   {
     id: "pc_001",
+      image: "images/case_pc_001.png",
     law: "刑法第12條、第13條（故意與過失之初步判斷）",
     title: "【連動案件・阿强深夜事件 之一】巷口的玻璃聲",
     npc: "警員 陳小華",
@@ -1491,6 +1509,7 @@ LEVELS.policeCriminal = [
   },
   {
     id: "pc_002",
+      image: "images/case_pc_002.png",
     law: "刑法第18條（未成年人之刑事責任）",
     title: "【連動案件・阿强深夜事件 之二】原來他才15歲",
     npc: "警員 陳小華",
@@ -1516,6 +1535,7 @@ LEVELS.policeCriminal = [
   },
   {
     id: "pc_004",
+      image: "images/case_pc_004.png",
     law: "刑法第320條（竊盜罪）、第354條（毀損罪）—案件導向分則館",
     title: "【連動案件・阿强深夜事件 終】這個案子該怎麼定罪？",
     npc: "警員 陳小華",
