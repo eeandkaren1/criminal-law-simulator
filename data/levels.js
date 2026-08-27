@@ -39,6 +39,7 @@ const LEVELS = {
     },
     {
       id: "cg_002",
+      image: "images/case_cg_002.png",
       law: "刑法第12條（故意與過失）",
       title: "不是故意的，也要負責嗎？",
       npc: "警員 陳小華",
@@ -74,6 +75,7 @@ const LEVELS = {
     },
     {
       id: "cg_005",
+      image: "images/case_cg_005.png",
       law: "刑法第23條（正當防衛）",
       title: "被打的人，可以還手嗎？",
       npc: "夜市攤販 阿財",
@@ -96,6 +98,7 @@ const LEVELS = {
     },
     {
       id: "cg_007",
+      image: "images/case_cg_007.png",
       law: "刑法第2條（從輕原則／法律變更之適用）",
       title: "判決前法律改了怎麼辦？",
       npc: "書記官 小蔡",
@@ -235,6 +238,7 @@ const LEVELS = {
     },
     {
       id: "cg_019",
+      image: "images/case_cg_019.png",
       law: "刑法第33條、第35條（主刑種類與輕重）",
       title: "刑罰有哪幾種？",
       npc: "法警 老周",
@@ -490,6 +494,7 @@ const LEVELS = {
     },
     {
       id: "cs_007",
+      image: "images/case_cs_007.png",
       law: "刑法第135條（妨害公務罪）",
       title: "推開執法的警察",
       npc: "警員 陳小華",
@@ -524,6 +529,7 @@ const LEVELS = {
     },
     {
       id: "cs_010",
+      image: "images/case_cs_010.png",
       law: "刑法第173條、第175條（公共危險罪—放火）",
       title: "縱火燒毀鄰居倉庫",
       npc: "消防隊員",
@@ -535,6 +541,7 @@ const LEVELS = {
     },
     {
       id: "cs_011",
+      image: "images/case_cs_011.png",
       law: "刑法第185條之3（公共危險罪—酒駕）",
       title: "喝了酒還上路",
       npc: "交通警察",
@@ -756,6 +763,7 @@ const LEVELS = {
     },
     {
       id: "cs_030",
+      image: "images/case_cs_030.png",
       law: "刑法第125條（濫權追訴處罰罪）",
       title: "明知無罪卻硬要起訴",
       npc: "廉政官員",
@@ -847,6 +855,7 @@ const LEVELS = {
     },
     {
       id: "cs_038",
+      image: "images/case_cs_038.png",
       law: "刑法第339條之4（加重詐欺罪）",
       title: "假冒公務員打電話來",
       npc: "165反詐騙專員",
@@ -919,6 +928,7 @@ const LEVELS = {
   procedureStages: [
     {
       id: "ps_001",
+      image: "images/case_ps_001.png",
       law: "刑事訴訟法第228條（偵查之發動）",
       title: "案發後，第一步是什麼？",
       npc: "檢察官 王正義",
@@ -931,6 +941,7 @@ const LEVELS = {
     },
     {
       id: "ps_002",
+      image: "images/case_ps_002.png",
       law: "刑事訴訟法第251條（起訴）",
       title: "案件移送法院",
       npc: "檢察官 王正義",
@@ -943,6 +954,7 @@ const LEVELS = {
     },
     {
       id: "ps_003",
+      image: "images/case_ps_003.png",
       law: "刑事訴訟法第3編（審判）",
       title: "法庭攻防",
       npc: "法官 林大同",
@@ -955,6 +967,7 @@ const LEVELS = {
     },
     {
       id: "ps_004",
+      image: "images/case_ps_004.png",
       law: "刑事訴訟法第457條、第458條（執行）",
       title: "判決確定後",
       npc: "檢察官 王正義",
@@ -979,6 +992,7 @@ const LEVELS = {
     },
     {
       id: "ps_006",
+      image: "images/case_ps_006.png",
       law: "刑事訴訟法第88條（現行犯之逮捕）",
       title: "當場被抓到",
       npc: "警員 陳小華",
@@ -991,6 +1005,7 @@ const LEVELS = {
     },
     {
       id: "ps_007",
+      image: "images/case_ps_007.png",
       law: "刑事訴訟法第122條（搜索）",
       title: "進門搜查要有令狀",
       npc: "檢察官 王正義",
@@ -1003,6 +1018,7 @@ const LEVELS = {
     },
     {
       id: "ps_008",
+      image: "images/case_ps_008.png",
       law: "刑事訴訟法第101條（羈押之要件）",
       title: "先關起來等審判？",
       npc: "法官 林大同",
@@ -1015,6 +1031,7 @@ const LEVELS = {
     },
     {
       id: "ps_009",
+      image: "images/case_ps_009.png",
       law: "刑事訴訟法第245條（偵查不公開原則）",
       title: "案件還在查，不能亂講",
       npc: "檢察官 王正義",
@@ -1208,6 +1225,7 @@ const LEVELS = {
     },
     {
       id: "pp_006",
+      image: "images/case_pp_006.png",
       law: "刑事訴訟法第156條（自白法則）",
       title: "用刑求換來的自白能用嗎？",
       npc: "辯護律師 蘇文",
@@ -1292,6 +1310,7 @@ const LEVELS = {
     },
     {
       id: "pp_013",
+      image: "images/case_pp_013.png",
       law: "刑事訴訟法第156條、第159條（嚴格證明法則之實踐）",
       title: "【連動案件・113年偵字第4567號 之五】開庭審理",
       npc: "法官 林大同",
@@ -1304,6 +1323,7 @@ const LEVELS = {
     },
     {
       id: "pp_014",
+      image: "images/case_pp_014.png",
       law: "刑事訴訟法第299條、第310條（判決與量刑）",
       title: "【連動案件・113年偵字第4567號 之六】一審宣判",
       npc: "法官 林大同",
