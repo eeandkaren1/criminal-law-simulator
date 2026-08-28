@@ -28,6 +28,7 @@ const LEVELS = {
   criminalGeneral: [
     {
       id: "cg_001",
+      image: "images/case_cg_001.png",
       law: "刑法第1條（罪刑法定原則）",
       title: "沒有寫在法律上的罪",
       npc: "法官 林大同",
@@ -1248,6 +1249,7 @@ const LEVELS = {
     },
     {
       id: "pp_007",
+      image: "images/case_pp_007.png",
       law: "刑事訴訟法第163條（當事人進行主義與職權調查）",
       title: "誰來舉證？",
       npc: "檢察官 王正義",
@@ -1260,6 +1262,7 @@ const LEVELS = {
     },
     {
       id: "pp_008",
+      image: "images/case_pp_008.png",
       law: "刑事訴訟法第379條（判決違背法令／上訴第三審事由）",
       title: "程序錯了，判決也站不住",
       npc: "辯護律師 蘇文",
@@ -1284,6 +1287,7 @@ const LEVELS = {
     },
     {
       id: "pp_010",
+      image: "images/case_pp_010.png",
       law: "刑事訴訟法第93條之1（具保、責付、限制住居）",
       title: "不羈押，但要受到一定限制",
       npc: "辯護律師 蘇文",
@@ -1296,6 +1300,7 @@ const LEVELS = {
     },
     {
       id: "pp_011",
+      image: "images/case_pp_011.png",
       law: "刑事訴訟法第2條（公平對待原則）",
       title: "對被告也要公平調查",
       npc: "檢察官 王正義",
@@ -1427,6 +1432,7 @@ LEVELS.procedureReport = [
   },
   {
     id: "pr_004",
+      image: "images/case_pr_004.png",
     law: "刑事訴訟法第228條第4項（案件移送）",
     title: "【連動案件・113年偵字第4567號 之四】卷證移送地檢署",
     npc: "警員 陳小華",
@@ -1458,6 +1464,7 @@ LEVELS.procedureReport = [
 LEVELS.procedureAppeal = [
   {
     id: "pa_001",
+      image: "images/case_pa_001.png",
     law: "刑事訴訟法第344條、第349條（上訴之提起）",
     title: "【連動案件・113年偵字第4567號 之七】不服，提起上訴",
     npc: "辯護律師 蘇文",
@@ -1470,6 +1477,7 @@ LEVELS.procedureAppeal = [
   },
   {
     id: "pa_002",
+      image: "images/case_pa_002.png",
     law: "刑事訴訟法第364條、第365條（第二審之審理）",
     title: "【連動案件・113年偵字第4567號 之八】二審開庭辯論",
     npc: "法官 林大同",
@@ -1482,6 +1490,7 @@ LEVELS.procedureAppeal = [
   },
   {
     id: "pa_003",
+      image: "images/case_pa_003.png",
     law: "刑事訴訟法第369條、第370條（上訴之判決—撤銷或駁回）",
     title: "【連動案件・113年偵字第4567號 之九】二審判決",
     npc: "法官 林大同",
@@ -1494,6 +1503,7 @@ LEVELS.procedureAppeal = [
   },
   {
     id: "pa_004",
+      image: "images/case_pa_004.png",
     law: "刑事訴訟法第456條、第457條（判決確定與執行）",
     title: "【連動案件・113年偵字第4567號 終】判決確定，案件落幕",
     npc: "檢察官 王正義",
