@@ -1044,6 +1044,7 @@ const LEVELS = {
     },
     {
       id: "ps_010",
+      image: "images/case_ps_010.png",
       law: "刑事訴訟法第253條、第253條之1（緩起訴）",
       title: "給一次不起訴的機會",
       npc: "檢察官 王正義",
@@ -1080,6 +1081,7 @@ const LEVELS = {
     },
     {
       id: "ps_013",
+      image: "images/case_ps_013.png",
       law: "刑事訴訟法第232條、第237條（告訴與告訴期間）",
       title: "多久內要提告？",
       npc: "警員 陳小華",
@@ -1092,6 +1094,7 @@ const LEVELS = {
     },
     {
       id: "ps_014",
+      image: "images/case_ps_014.png",
       law: "刑事訴訟法第308條、第309條（判決書應載事項）",
       title: "判決書要寫什麼？",
       npc: "書記官 小蔡",
@@ -1104,6 +1107,7 @@ const LEVELS = {
     },
     {
       id: "ps_015",
+      image: "images/case_ps_015.png",
       law: "刑事訴訟法第420條（再審）",
       title: "判決確定後發現新證據",
       npc: "辯護律師 蘇文",
@@ -1116,6 +1120,7 @@ const LEVELS = {
     },
     {
       id: "ps_016",
+      image: "images/case_ps_016.png",
       law: "刑事訴訟法第95條、第100條之2（訊問被告）",
       title: "【連動案件・113年偵字第4567號 之三】複訊邱志凱",
       npc: "檢察官 王正義",
@@ -1165,6 +1170,7 @@ const LEVELS = {
   procedurePrinciples: [
     {
       id: "pp_001",
+      image: "images/case_pp_001.png",
       law: "刑事訴訟法第154條（無罪推定原則）",
       title: "還沒判決前，他是清白的",
       npc: "辯護律師 蘇文",
@@ -1177,6 +1183,7 @@ const LEVELS = {
     },
     {
       id: "pp_002",
+      image: "images/case_pp_002.png",
       law: "刑事訴訟法第268條（不告不理原則）",
       title: "法官不能自己找案子審",
       npc: "法官 林大同",
@@ -1189,6 +1196,7 @@ const LEVELS = {
     },
     {
       id: "pp_003",
+      image: "images/case_pp_003.png",
       law: "刑事訴訟法第155條、第159條（嚴格證明法則）",
       title: "傳聞不能當證據",
       npc: "辯護律師 蘇文",
@@ -1201,6 +1209,7 @@ const LEVELS = {
     },
     {
       id: "pp_004",
+      image: "images/case_pp_004.png",
       law: "刑事訴訟法第344條（上訴制度／三級三審）",
       title: "不服判決怎麼辦？",
       npc: "辯護律師 蘇文",
@@ -1213,6 +1222,7 @@ const LEVELS = {
     },
     {
       id: "pp_005",
+      image: "images/case_pp_005.png",
       law: "刑事訴訟法第27條、第31條（辯護權）",
       title: "我可以請律師嗎？",
       npc: "辯護律師 蘇文",
