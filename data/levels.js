@@ -634,6 +634,7 @@ const LEVELS = {
     },
     {
       id: "cs_018",
+      image: "images/case_cs_018.png",
       law: "刑法第302條（剝奪他人行動自由罪）",
       title: "把人鎖在房間裡",
       npc: "社工 小芸",
@@ -669,6 +670,7 @@ const LEVELS = {
     },
     {
       id: "cs_021",
+      image: "images/case_cs_021.png",
       law: "刑法第309條、第310條（公然侮辱罪、誹謗罪）",
       title: "網路上的辱罵與爆料",
       npc: "網路犯罪偵查員",
@@ -740,6 +742,7 @@ const LEVELS = {
     },
     {
       id: "cs_027",
+      image: "images/case_cs_027.png",
       law: "刑法第100條、第101條（內亂罪）",
       title: "企圖顛覆國家",
       npc: "國安官員",
@@ -751,6 +754,7 @@ const LEVELS = {
     },
     {
       id: "cs_028",
+      image: "images/case_cs_028.png",
       law: "刑法第120條（公務員委棄職守罪）",
       title: "該守的崗位卻棄守",
       npc: "里長伯",
@@ -798,6 +802,7 @@ const LEVELS = {
     },
     {
       id: "cs_032",
+      image: "images/case_cs_032.png",
       law: "刑法第161條（脫逃罪）",
       title: "從拘留所逃跑",
       npc: "法警 老周",
