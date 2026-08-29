@@ -88,6 +88,7 @@ const LEVELS = {
     },
     {
       id: "cg_006",
+      image: "images/case_cg_006.png",
       law: "刑法第57條（量刑標準）",
       title: "法官怎麼決定刑期？",
       npc: "法官 林大同",
@@ -111,6 +112,7 @@ const LEVELS = {
     },
     {
       id: "cg_008",
+      image: "images/case_cg_008.png",
       law: "刑法第10條（公務員、重傷等定義）",
       title: "什麼叫「重傷」？",
       npc: "醫院社工 阿珍",
@@ -146,6 +148,7 @@ const LEVELS = {
     },
     {
       id: "cg_011",
+      image: "images/case_cg_011.png",
       law: "刑法第16條（法律之不知）",
       title: "我不知道這樣違法",
       npc: "外籍遊客嚮導",
@@ -217,6 +220,7 @@ const LEVELS = {
     },
     {
       id: "cg_017",
+      image: "images/case_cg_017.png",
       law: "刑法第29條（教唆犯）",
       title: "出主意的人",
       npc: "偵查佐 老張",
@@ -228,6 +232,7 @@ const LEVELS = {
     },
     {
       id: "cg_018",
+      image: "images/case_cg_018.png",
       law: "刑法第30條（幫助犯）",
       title: "借工具給小偷的人",
       npc: "偵查佐 老張",
