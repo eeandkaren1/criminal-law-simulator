@@ -814,6 +814,7 @@ const LEVELS = {
     },
     {
       id: "cs_033",
+      image: "images/case_cs_033.png",
       law: "刑法第164條（藏匿人犯罪、頂替罪）",
       title: "幫忙頂罪的朋友",
       npc: "偵查佐 老張",
@@ -837,6 +838,7 @@ const LEVELS = {
     },
     {
       id: "cs_035",
+      image: "images/case_cs_035.png",
       law: "刑法第190條之1（污染環境罪）",
       title: "偷排廢水進入河川",
       npc: "環保局稽查員",
@@ -860,6 +862,7 @@ const LEVELS = {
     },
     {
       id: "cs_037",
+      image: "images/case_cs_037.png",
       law: "刑法第239條（通姦罪已刪除之歷史說明）",
       title: "曾經存在過的條文",
       npc: "法律系學生",
@@ -996,6 +999,7 @@ const LEVELS = {
     },
     {
       id: "ps_005",
+      image: "images/case_ps_005.png",
       law: "刑事訴訟法第71條、第75條（傳喚與拘提）",
       title: "傳票來了，去不去？",
       npc: "警員 陳小華",
@@ -1073,6 +1077,7 @@ const LEVELS = {
     },
     {
       id: "ps_011",
+      image: "images/case_ps_011.png",
       law: "刑事訴訟法第3條（當事人之定義）",
       title: "法庭上有哪些人？",
       npc: "書記官 小蔡",
