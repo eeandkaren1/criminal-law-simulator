@@ -268,6 +268,7 @@ const LEVELS = {
     },
     {
       id: "cg_021",
+      image: "images/case_cg_021.png",
       law: "刑法第74條（緩刑）",
       title: "給一次改過的機會",
       npc: "觀護人 阿光",
@@ -453,6 +454,7 @@ const LEVELS = {
     },
     {
       id: "cs_003",
+      image: "images/case_cs_003.png",
       law: "刑法第296條之1（人口販運相關）",
       title: "假工作真陷阱",
       npc: "移工小組長",
@@ -524,6 +526,7 @@ const LEVELS = {
     },
     {
       id: "cs_009",
+      image: "images/case_cs_009.png",
       law: "刑法第153條（煽惑他人犯罪）",
       title: "網路上號召大家一起違法",
       npc: "網路犯罪偵查員",
@@ -583,6 +586,7 @@ const LEVELS = {
     },
     {
       id: "cs_014",
+      image: "images/case_cs_014.png",
       law: "刑法第231條（圖利使人為性交易罪）",
       title: "從中牟利的仲介",
       npc: "社工 小芸",
@@ -606,6 +610,7 @@ const LEVELS = {
     },
     {
       id: "cs_016",
+      image: "images/case_cs_016.png",
       law: "刑法第266條（賭博罪）",
       title: "巷口的麻將攤",
       npc: "里長伯",
