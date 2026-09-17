@@ -1090,6 +1090,7 @@ const LEVELS = {
     },
     {
       id: "ps_012",
+      image: "images/case_ps_012.png",
       law: "刑事訴訟法第319條（自訴）",
       title: "被害人自己提告",
       npc: "辯護律師 蘇文",
@@ -1295,6 +1296,7 @@ const LEVELS = {
     },
     {
       id: "pp_009",
+      image: "images/case_pp_009.png",
       law: "刑事訴訟法第1條（國家刑罰權之發動）",
       title: "誰有權力處罰犯罪？",
       npc: "法官 林大同",
@@ -1333,6 +1335,7 @@ const LEVELS = {
     },
     {
       id: "pp_012",
+      image: "images/case_pp_012.png",
       law: "刑事訴訟法第181條（拒絕證言權）",
       title: "我可以不回答這個問題嗎？",
       npc: "辯護律師 蘇文",
@@ -1416,6 +1419,7 @@ const LEVELS = {
 LEVELS.procedureReport = [
   {
     id: "pr_001",
+      image: "images/case_pr_001.png",
     law: "刑事訴訟法第228條第1項、警察職權行使法相關規定（報案受理）",
     title: "【連動案件・113年偵字第4567號 之一】林淑芬來報案",
     npc: "警員 陳小華",
@@ -1428,6 +1432,7 @@ LEVELS.procedureReport = [
   },
   {
     id: "pr_002",
+      image: "images/case_pr_002.png",
     law: "刑事訴訟法第230條、第231條（司法警察之調查職權）",
     title: "【連動案件・113年偵字第4567號 之二】追查金流與IP",
     npc: "警員 陳小華",
@@ -1440,6 +1445,7 @@ LEVELS.procedureReport = [
   },
   {
     id: "pr_003",
+      image: "images/case_pr_003.png",
     law: "刑事訴訟法第88條之1、第92條（逕行拘提與解送）",
     title: "【連動案件・113年偵字第4567號 之三】拘提到案",
     npc: "警員 陳小華",
