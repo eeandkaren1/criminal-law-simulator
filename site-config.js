@@ -31,10 +31,11 @@ window.SITE_CONFIG = Object.freeze({
     document.querySelectorAll("[data-site-year]").forEach(el => { el.textContent = "2026"; });
   }
 
+  // Apply title and meta immediately when this file is loaded in <head>.
+  // Run once more after DOM parsing so body placeholders are populated too.
+  apply();
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", apply, { once: true });
-  } else {
-    apply();
   }
 })();
 
