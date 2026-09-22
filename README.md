@@ -1,6 +1,14 @@
 # 刑法鎮 LawTown 🏯⚖️
 
 一款純前端、像素風格、可直接架在 GitHub + Render 上的法律教育闖關小遊戲。
+
+## 網站共用設定
+
+- 品牌名稱：`LawVibe 法律風`
+- 聯絡信箱：`guaned0402@gmail.com`
+- 共用設定檔：`site-config.js`（品牌、產品名稱、聯絡信箱與版權聲明集中於此）
+
+公開頁面：`about.html`（關於我們）、`privacy.html`（隱私權政策）、`terms.html`（服務條款）、`sponsor.html`（贊助支持）。
 玩家透過走進「刑法村」（刑法總則館、刑法分則館）與「刑事訴訟村」（檢察署、地方法院…）
 觸發故事關卡來學習條文。**遊戲進度只存在玩家自己手機的 localStorage**，
 不需要任何後端伺服器、資料庫或開發者額度。
@@ -109,4 +117,5 @@ git push -u origin main
 
 ## 六、版權聲明
 
-© 宸鑫頤意企業社 版權所有。本專案內容（不含 Phaser 引擎本身，其為獨立開源授權）僅供教育用途。
+© 2026 LawVibe 法律風｜刑法鎮 LawTown｜All Rights Reserved.
+本專案內容（不含 Phaser 引擎本身，其為獨立開源授權）僅供教育用途。

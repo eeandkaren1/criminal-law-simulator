@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-page-title="用闖關學刑法與刑事訴訟法" data-page-description="以像素風格故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-106KW7G3ZE"></script>
@@ -11,8 +11,8 @@
 </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-<title>刑法鎮 LawTown - 用闖關學刑法與刑事訴訟法</title>
-<meta name="description" content="刑法鎮：以台灣風格像素遊戲，透過故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。" />
+<title>刑法鎮 LawTown</title>
+<meta name="description" content="以像素風格故事闖關認識刑法總則、分則與刑事訴訟法核心程序與原則。" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
 <link rel="stylesheet" href="css/style.css" />
+<script src="site-config.js"></script>
 </head>
 <body>
 
@@ -40,7 +41,7 @@
 
   <!-- 背景圖 -->
   <div class="title-bg" id="title-bg-container">
-    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663221733224/CJKNDeYAUfdBQzZg.png"
+    <img src="images/title_bg.png"
          alt="刑法鎮背景" class="title-bg-img" id="title-bg-img" />
     <!-- 漸層遮罩，讓按鈕區域更清晰 -->
     <div class="title-bg-overlay"></div>
@@ -111,6 +112,8 @@
   </div>
 </div>
 
+<div class="ad-placeholder ad-placeholder--home" aria-label="首頁廣告版位"></div>
+
 <!-- ====== 輸入名字 + 選擇村莊 彈窗 ====== -->
 <div id="name-input-modal" class="overlay hidden">
   <div class="pixel-modal">
@@ -163,6 +166,8 @@
     <button class="pixel-reset-btn" onclick="resetSave()">🗑 重設進度</button>
   </div>
 </div>
+
+<div class="ad-placeholder ad-placeholder--game" aria-label="遊戲廣告版位"></div>
 
 <!-- ====== 法學圖鑑 Modal ====== -->
 <div id="library-modal" class="overlay hidden">
@@ -286,6 +291,15 @@
     </div>
   </div>
 </div>
+
+<footer class="site-footer-links">
+  <span data-site-copyright></span>
+  <a href="about.html">關於我們</a>
+  <a href="privacy.html">隱私權政策</a>
+  <a href="terms.html">服務條款</a>
+  <a href="sponsor.html">贊助支持</a>
+  <a data-site-email></a>
+</footer>
 
 <script>
 // ====== 主畫面鍵盤導航 ======
