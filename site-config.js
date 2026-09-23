@@ -2,7 +2,7 @@
 window.SITE_CONFIG = Object.freeze({
   brand: "LawVibe 法律風",
   product: "刑法鎮 LawTown",
-  contactEmail: "guaned0402@gmail.com",
+  contactEmail: "lawvibe2026@gmail.com",
   copyright: "© 2026 LawVibe 法律風｜刑法鎮 LawTown｜All Rights Reserved."
 });
 
@@ -23,6 +23,7 @@ window.SITE_CONFIG = Object.freeze({
 
     document.querySelectorAll("[data-site-brand]").forEach(el => { el.textContent = config.brand; });
     document.querySelectorAll("[data-site-product]").forEach(el => { el.textContent = config.product; });
+    document.querySelectorAll("[data-site-operator]").forEach(el => { el.textContent = config.brand; });
     document.querySelectorAll("[data-site-email]").forEach(el => {
       if (el.tagName === "A") el.href = `mailto:${config.contactEmail}`;
       el.textContent = config.contactEmail;

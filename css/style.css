@@ -15,6 +15,21 @@ body {
   width: 100vw;
 }
 
+/* 首頁遊戲維持一個完整視窗，頁尾放在其後方，避免蓋住任何遊戲畫面。 */
+.home-body {
+  height: auto;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.home-body .main-screen {
+  position: relative;
+  inset: auto;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100dvh;
+}
+
 /* ===================================================
    主畫面（全螢幕）
    =================================================== */
@@ -209,7 +224,7 @@ body {
 /* ── 主選單按鈕（木質招牌風格） ── */
 .main-menu {
   position: absolute;
-  bottom: 9%;
+  bottom: clamp(58px, 9vh, 92px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -218,6 +233,11 @@ body {
   gap: 10px;
   width: min(300px, 62vw);
 }
+
+/* 主要入口位於首頁選單最下方，並與底部提示列保留安全距離。 */
+.main-menu .menu-btn--library { order: 1; }
+.main-menu .menu-btn--achievement { order: 2; }
+.main-menu .menu-btn--start { order: 3; }
 
 /* 木質招牌按鈕基礎樣式 */
 .menu-btn {
@@ -903,7 +923,7 @@ body {
 @media (max-width: 600px) {
   .village-labels { top: 22%; }
   .char-left, .char-right { display: none; }
-  .main-menu { bottom: 8%; width: 85vw; }
+  .main-menu { bottom: max(58px, 8vh); width: 85vw; }
   .menu-btn { font-size: 15px; padding: 11px 16px; }
   .game-title { font-size: 52px; }
 }
@@ -1110,7 +1130,8 @@ body {
 }
 .site-footer-links {
   position: relative;
-  z-index: 20;
+  /* 不得蓋住固定定位的遊戲畫面；回到首頁後仍會在內容下方顯示。 */
+  z-index: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

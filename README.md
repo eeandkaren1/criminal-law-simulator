@@ -5,7 +5,7 @@
 ## 網站共用設定
 
 - 品牌名稱：`LawVibe 法律風`
-- 聯絡信箱：`guaned0402@gmail.com`
+- 聯絡信箱：`lawvibe2026@gmail.com`
 - 共用設定檔：`site-config.js`（品牌、產品名稱、聯絡信箱與版權聲明集中於此）
 
 公開頁面：`about.html`（關於我們）、`privacy.html`（隱私權政策）、`terms.html`（服務條款）、`sponsor.html`（贊助支持）。

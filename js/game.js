@@ -570,7 +570,7 @@ class VillageScene extends Phaser.Scene {
 
     // ── 出口區（鳥居/大門已在背景圖中，只需設定出口碰撞區） ──
     const gateX = cx;
-    this.exitZone = { x: gateX, y: dynTile * 1.2, radius: Math.round(dynTile * 1.8) };
+    this.exitZone = { x: gateX, y: dynTile * 1.2, radius: Math.round(dynTile * 1.25) };
 
     // 出口提示文字（懸浮在背景圖的大門上方）
     this.add.text(gateX, dynTile * 2.0, '⬆ 返回鎮口', {
@@ -645,8 +645,10 @@ class VillageScene extends Phaser.Scene {
 
     // ── 玩家（使用精美圖片） ──
     const saved = SaveSystem.getPosition(this.villageKey);
+    // 新旅程從村落最上方入口下方出生，與出口保留安全距離，
+    // 避免一進村就立即觸發「返回鎮口」對話框。
     const startX = saved ? saved.x : gateX;
-    const startY = saved ? saved.y : dynTile * 4.5;
+    const startY = saved ? saved.y : dynTile * 3.35;
     const playerW = Math.round(dynTile * 1.1);
     const playerH = Math.round(dynTile * 1.4);
     this.player = this.physics.add.image(startX, startY, 'img_player')
