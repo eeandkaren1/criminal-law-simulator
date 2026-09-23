@@ -234,10 +234,10 @@ body {
   width: min(300px, 62vw);
 }
 
-/* 主要入口位於首頁選單最下方，並與底部提示列保留安全距離。 */
-.main-menu .menu-btn--library { order: 1; }
-.main-menu .menu-btn--achievement { order: 2; }
-.main-menu .menu-btn--start { order: 3; }
+/* 開始冒險是首頁主入口，固定排在選單第一個。 */
+.main-menu .menu-btn--start { order: 1; }
+.main-menu .menu-btn--library { order: 2; }
+.main-menu .menu-btn--achievement { order: 3; }
 
 /* 木質招牌按鈕基礎樣式 */
 .menu-btn {
@@ -458,6 +458,7 @@ body {
   color: #f5d87a;
   letter-spacing: 0.1em;
 }
+.home-mobile-copyright { display: none; }
 
 /* ===================================================
    遊戲畫面
@@ -1055,6 +1056,47 @@ body {
   .quiz-option { min-height: 50px; padding: 12px 13px; font-size: 14px; line-height: 1.65; }
   .quiz-actions { flex-direction: column; }
   .quiz-actions .menu-btn { width: 100%; min-width: 0; }
+}
+
+/* 手機首頁：隱藏尚未放入實際廣告的預留區，讓版權列緊接在主畫面後可見。 */
+@media (max-width: 768px) {
+  .home-body .ad-placeholder--home,
+  .home-body .ad-placeholder--game {
+    display: none;
+  }
+  .home-body .site-footer-links {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px 10px;
+    padding: 10px 12px 14px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .home-body .site-footer-links [data-site-copyright] {
+    flex: 0 0 100%;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  .home-body .bottom-hint {
+    padding: 6px 8px 7px;
+    font-size: 10px;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+  }
+  .home-body .home-mobile-copyright {
+    display: block;
+    margin-top: 2px;
+    color: #d4b896;
+    font-size: 9px;
+    line-height: 1.35;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+  .home-body .site-footer-links a {
+    flex: 0 0 auto;
+  }
 }
 ::-webkit-scrollbar-track { background: #0a0804; }
 ::-webkit-scrollbar-thumb { background: #5a4008; border-radius: 3px; }
